@@ -2414,26 +2414,26 @@ backgroundcolorL060
 	.byte  $04
 	.byte  $04
 	.byte  $04
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $44
-	.byte  $46
-	.byte  $46
-	.byte  $46
-	.byte  $46
-	.byte  $46
-	.byte  $46
-	.byte  $46
-	.byte  $46
-	.byte  $46
-	.byte  $46
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
+	.byte  $04
  if ECHOFIRST
        echo "    ",[(DPC_graphics_end - *)]d , "bytes of ROM space left in graphics bank")
  endif 
