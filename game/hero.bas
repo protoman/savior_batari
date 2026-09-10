@@ -88,43 +88,26 @@ main
  DF2FRACINC = 20
  DF3FRACINC = 20
 
- ; Check laser-spider collision (disabled)
- rem if f = 1 then if collision(missile0, player1) then j = 0 : f = 0
-
- ; Check player-spider collision (disabled)
- rem if collision(player0, player1) then gosub PlayerHit
-
- ; Store position
- a = player0x
- b = player0y
+ ; Store movement delta (like examples: track how much we moved)
+ p = 0
+ d = 0
 
  ; Horizontal movement
- if joy0left then player0x = player0x - 1 : e = 0
- if joy0right then player0x = player0x + 1 : e = 1
-
- ; Check horizontal collision (only if moved)
- if player0x <> a then if collision(playfield, player0) then player0x = a
+ if joy0left then player0x = player0x - 1 : p = 255 : e = 0
+ if joy0right then player0x = player0x + 1 : p = 1 : e = 1
 
  ; Vertical movement
- if joy0up then player0y = player0y - 1 : n = 0
+ if joy0up then player0y = player0y - 1 : d = 255 : n = 0
 
  ; Gravity
  if !joy0up then n = n + 1
- if !joy0up then if n >= 2 then player0y = player0y + 1 : n = 0
+ if !joy0up then if n >= 2 then player0y = player0y + 1 : d = 1 : n = 0
 
- ; Check vertical collision (only if moved)
- if player0y > b then if collision(playfield, player0) then player0y = b
-
- ; Room transitions
+ ; Room transitions (before drawscreen, like the example)
  ; Right edge -> next room
  if player0x > 150 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 18
  ; Left edge -> previous room
  if player0x < 18 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 148
-
- ; Boundaries
- if player0x < 18 then player0x = 18
- if player0x > 148 then player0x = 148
- if player0y < 10 then player0y = 10
 
  ; Laser
  if joy0fire then if f = 0 then f = 1 : missile0x = player0x + 3 : missile0y = player0y + 2
@@ -139,17 +122,6 @@ main
  if joy0down then if i = 0 then if g > 0 then i = 1 : h = 30 : g = g - 1
  if i = 1 then h = h - 1
  if h <= 0 then i = 0
-
- ; Spider (disabled)
- rem if j > 0 then j = j + k
- rem if j < 60 then k = 1
- rem if j > 100 then k = -1
- rem if j > 0 then player1x = j
- rem if j > 0 then player1y = 50
-
- ; Power depletion (disabled for testing)
- rem if d = 1 then c = c - 1
- rem if c <= 0 then gosub GameOver
 
  ; Colors - set every frame
  COLUPF = $28
@@ -320,6 +292,16 @@ end
 end
 
  drawscreen
+
+ ; Check collision AFTER drawscreen (like the example)
+ if collision(player0, playfield) then player0x = player0x - p
+ if collision(player0, playfield) then player0y = player0y - d
+
+ ; Boundaries
+ if player0x < 18 then player0x = 18
+ if player0x > 148 then player0x = 148
+ if player0y < 10 then player0y = 10
+
  goto main
 
 PlayerHit
@@ -343,10 +325,10 @@ GameOver
  return
 
 LoadRoom
- pfclear
- ; ROOM_CODE_START
+ pfclear; ROOM_CODE_START
 LoadRoom0
-  pfhline 0 0 31 on
+  pfhline 0 0 12 on
+  pfhline 19 0 31 on
   pfhline 0 1 0 on
   pfhline 31 1 31 on
   pfhline 0 2 0 on
@@ -410,4 +392,4 @@ LoadRoom1
   pfhline 0 11 31 on
   return
 ; ROOM_CODE_END
- return
+return
