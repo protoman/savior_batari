@@ -62,7 +62,7 @@ end
 
  ; Load first room
  gosub LoadRoom
- ; Start player inside room (center of 32-col room)
+ ; Start player inside room (center)
  player0x = 80
  player0y = 30
 
@@ -97,13 +97,13 @@ main
 
  ; Room transitions
  ; Right edge -> next room
- if player0x > 150 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 16
+ if player0x > 150 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 18
  ; Left edge -> previous room
- if player0x < 14 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 148
+ if player0x < 18 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 148
 
  ; Boundaries
- if player0x < 14 then player0x = 14
- if player0x > 150 then player0x = 150
+ if player0x < 18 then player0x = 18
+ if player0x > 148 then player0x = 148
  if player0y < 10 then player0y = 10
  if player0y > 80 then player0y = 80
 
@@ -182,16 +182,40 @@ LoadRoom
 LoadRoom0
  ; Top border (row 0) - full width
  pfhline 0 0 31 on
- ; Left wall (column 0, rows 1-10)
- pfvline 0 1 10 on
- ; Right wall (column 31, rows 1-10)
- pfvline 31 1 10 on
  ; Bottom border (row 10) - full width
  pfhline 0 10 31 on
- ; Platform at row 4, columns 8-12
- pfhline 8 4 12 on
+ ; Left wall (column 1, rows 1-9) - shift in from edge
+ ; Right wall (column 30, rows 1-9) - shift in from edge
+ ; Draw walls row by row using pfhline for solid appearance
+ q = 1
+ gosub DrawWalls
+ q = 2
+ gosub DrawWalls
+ q = 3
+ gosub DrawWalls
+ q = 4
+ gosub DrawWalls
+ q = 5
+ gosub DrawWalls
+ q = 6
+ gosub DrawWalls
+ q = 7
+ gosub DrawWalls
+ q = 8
+ gosub DrawWalls
+ q = 9
+ gosub DrawWalls
+ ; Platform at row 4, columns 10-14
+ pfhline 10 4 14 on
  ; Platform at row 7, columns 18-22
  pfhline 18 7 22 on
+ return
+
+DrawWalls
+ ; Left wall pixel
+ pfpixel 1 q on
+ ; Right wall pixel
+ pfpixel 30 q on
  return
 
 ; Room 1: Shaft with opening top/bottom
@@ -199,15 +223,30 @@ LoadRoom1
  ; Top border with shaft opening (columns 14-17 open)
  pfhline 0 0 13 on
  pfhline 18 0 31 on
- ; Left wall
- pfvline 0 1 10 on
- ; Right wall
- pfvline 31 1 10 on
  ; Bottom border with shaft opening (columns 14-17 open)
  pfhline 0 10 13 on
  pfhline 18 10 31 on
- ; Platform at row 3, columns 4-8
- pfhline 4 3 8 on
+ ; Walls row by row
+ q = 1
+ gosub DrawWalls
+ q = 2
+ gosub DrawWalls
+ q = 3
+ gosub DrawWalls
+ q = 4
+ gosub DrawWalls
+ q = 5
+ gosub DrawWalls
+ q = 6
+ gosub DrawWalls
+ q = 7
+ gosub DrawWalls
+ q = 8
+ gosub DrawWalls
+ q = 9
+ gosub DrawWalls
+ ; Platform at row 3, columns 5-9
+ pfhline 5 3 9 on
  ; Platform at row 6, columns 14-18
  pfhline 14 6 18 on
  ; Platform at row 8, columns 22-26
@@ -219,18 +258,34 @@ LoadRoom2
  ; Top border with shaft opening (columns 14-17 open)
  pfhline 0 0 13 on
  pfhline 18 0 31 on
- ; Left wall
- pfvline 0 1 10 on
- ; Right wall
- pfvline 31 1 10 on
  ; Bottom border - full width
  pfhline 0 10 31 on
+ ; Walls row by row
+ q = 1
+ gosub DrawWalls
+ q = 2
+ gosub DrawWalls
+ q = 3
+ gosub DrawWalls
+ q = 4
+ gosub DrawWalls
+ q = 5
+ gosub DrawWalls
+ q = 6
+ gosub DrawWalls
+ q = 7
+ gosub DrawWalls
+ q = 8
+ gosub DrawWalls
+ q = 9
+ gosub DrawWalls
  ; Platform at row 4, columns 10-14
  pfhline 10 4 14 on
  ; Platform at row 7, columns 6-10
  pfhline 6 7 10 on
  ; Fragile wall at row 5-6, columns 20-20
- pfvline 20 5 6 on
+ pfpixel 20 5 on
+ pfpixel 20 6 on
  return
 
 PlayerHit
