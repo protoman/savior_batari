@@ -31,6 +31,8 @@ public:
     // Converts the pixel-decoded authentic H.E.R.O. stage maps into standard
     // level JSON files. Returns false if the intermediate file is missing.
     static bool ImportAuthenticMaps(const std::string& intermediateJsonPath, const std::string& outputDirectory);
+    // Exports a level to bB-compatible include file (.asm data statements)
+    static bool ExportBbLevel(const LevelData& level, const std::string& filepath);
 };
 
 } // namespace hero

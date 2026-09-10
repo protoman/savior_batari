@@ -1,22 +1,24 @@
 ; Savior - H.E.R.O. Atari 2600 Clone
-; 16K with bankswitching
+; 16K with bankswitching + inline level data
 
  set romsize 16k
  const pfscore = 1
 
+ ; Variables:
  ; a = lastPlayerX, b = lastPlayerY, c = powerGauge
  ; d = isMoving, e = laserDir, f = laserActive
  ; g = dynamiteCount, h = dynamiteFuse, i = dynamiteActive
  ; j = spiderX, k = spiderDir, m = lives
- ; n = gravityTimer
+ ; n = gravityTimer, o = currentRoom
+ ; q = tempRow
 
  a = 72 : b = 40 : c = 100
  d = 0 : e = 1 : f = 0
  g = 6 : h = 0 : i = 0
  j = 120 : k = -1 : m = 4
- n = 0
+ n = 0 : o = 0 : q = 0
 
- ; Simple mine shaft
+ ; Default playfield
  playfield:
  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
  X..............................X
@@ -59,6 +61,8 @@ end
  %00000000
 end
 
+ ; Load first room
+ gosub LoadRoom
  player0x = 72
  player0y = 40
 
@@ -91,6 +95,10 @@ main
  ; Check vertical collision
  if collision(player0, playfield) then player0y = b
 
+ ; Room transitions
+ if player0x < 10 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 135
+ if player0x > 140 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 12
+
  ; Boundaries
  if player0x < 9 then player0x = 9
  if player0x > 143 then player0x = 143
@@ -111,7 +119,8 @@ main
  if i = 1 then h = h - 1
  if h <= 0 then i = 0
 
- ; Spider
+ ; Spider - reset when room changes
+ if j < 0 then j = 120 : k = -1
  if j > 0 then j = j + k
  if j < 80 then k = 1
  if j > 130 then k = -1
@@ -122,12 +131,7 @@ main
  if d = 1 then c = c - 1
  if c <= 0 then gosub GameOver
 
- ; HUD - pfscore bars
- ; Left bar = lives (dots)
- ; Right bar = power (bar)
-
- ; Lives: 4 dots = 4 lives
- ; %00011111 = 5 dots (4 lives + buffer)
+ ; HUD
  pfscore1 = 0
  if m = 4 then pfscore1 = 31
  if m = 3 then pfscore1 = 15
@@ -135,8 +139,6 @@ main
  if m = 1 then pfscore1 = 3
  if m = 0 then pfscore1 = 0
 
- ; Power bar: c is 0-100, map to 0-255
- ; Each step = 12.5 units
  pfscore2 = 0
  if c > 87 then pfscore2 = 255
  if c > 75 then pfscore2 = 224
@@ -150,7 +152,7 @@ main
  if c > 0 then pfscore2 = 8
  if c = 0 then pfscore2 = 0
 
- ; Colors - set every frame
+ ; Colors
  COLUBK = $02
  COLUPF = $28
  COLUP0 = $C6
@@ -159,6 +161,105 @@ main
 
  drawscreen
  goto main
+
+LoadRoom
+ pfclear
+ if o = 0 then gosub LoadRoom0
+ if o = 1 then gosub LoadRoom1
+ if o = 2 then gosub LoadRoom2
+ ; Set spider start based on room
+ if o = 0 then j = 120 : k = -1
+ if o = 1 then j = 100 : k = -1
+ if o = 2 then j = 80 : k = 1
+ return
+
+LoadRoom0
+ ; Top border
+ pfhline 0 2 15 on
+ ; Left and right walls rows 3-9
+ q = 3
+ gosub DrawBorder
+ q = 4
+ gosub DrawBorder
+ q = 5
+ gosub DrawBorder
+ pfpixel 5 5 on
+ pfpixel 6 5 on
+ q = 6
+ gosub DrawBorder
+ q = 7
+ gosub DrawBorder
+ pfpixel 9 7 on
+ pfpixel 10 7 on
+ q = 8
+ gosub DrawBorder
+ q = 9
+ gosub DrawBorder
+ ; Bottom border
+ pfhline 0 10 15 on
+ return
+
+LoadRoom1
+ ; Top border with shaft opening
+ pfhline 0 2 5 on
+ pfhline 10 2 15 on
+ ; Left and right walls rows 3-9
+ q = 3
+ gosub DrawBorder
+ pfpixel 3 3 on
+ pfpixel 4 3 on
+ q = 4
+ gosub DrawBorder
+ q = 5
+ gosub DrawBorder
+ q = 6
+ gosub DrawBorder
+ pfpixel 7 6 on
+ pfpixel 8 6 on
+ q = 7
+ gosub DrawBorder
+ q = 8
+ gosub DrawBorder
+ pfpixel 11 8 on
+ pfpixel 12 8 on
+ q = 9
+ gosub DrawBorder
+ ; Bottom border with shaft opening
+ pfhline 0 10 5 on
+ pfhline 10 10 15 on
+ return
+
+LoadRoom2
+ ; Top border with shaft opening
+ pfhline 0 2 5 on
+ pfhline 10 2 15 on
+ ; Left and right walls rows 3-9
+ q = 3
+ gosub DrawBorder
+ q = 4
+ gosub DrawBorder
+ q = 5
+ gosub DrawBorder
+ pfpixel 6 5 on
+ pfpixel 7 5 on
+ q = 6
+ gosub DrawBorder
+ q = 7
+ gosub DrawBorder
+ pfpixel 4 7 on
+ pfpixel 5 7 on
+ q = 8
+ gosub DrawBorder
+ q = 9
+ gosub DrawBorder
+ ; Bottom border
+ pfhline 0 10 15 on
+ return
+
+DrawBorder
+ pfpixel 0 q on
+ pfpixel 15 q on
+ return
 
 PlayerHit
  COLUBK = $34
@@ -175,7 +276,9 @@ GameOver
  c = 100
  g = 6
  m = 4
+ o = 0
  player0x = 72
  player0y = 40
  j = 120
+ gosub LoadRoom
  return

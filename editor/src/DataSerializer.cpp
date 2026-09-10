@@ -488,4 +488,123 @@ import_levels:
     }
 }
 
+// ---------------------------------------------------------------------------
+// bB export: generates a .asm include file with data statements for each
+// room's playfield bitmap, enemy list, and lamp list.
+//
+// Format per room:
+//   data _L{level}_R{room}_PF
+//   {row0_hi},{row0_lo},{row1_hi},{row1_lo},...{row11_hi},{row11_lo}
+//   end
+//
+// Each row is 16 bits stored as 2 bytes (hi=cols 0-7, lo=cols 8-15).
+// Bit set = wall pixel ON, bit clear = air.
+//
+// Enemy data:
+//   data _L{level}_R{room}_EN
+//   count, {type,x,y,range_min,range_max}...
+//   end
+//
+// Lamp data:
+//   data _L{level}_R{room}_LM
+//   count, {x,y}...
+//   end
+//
+// Level metadata:
+//   data _L{level}_META
+//   start_room, start_x, start_y, miner_room, miner_x, miner_y,
+//   num_rooms, pf_color, bg_color
+//   end
+// ---------------------------------------------------------------------------
+
+static bool IsWallTile(int tileType) {
+    return tileType == (int)TileType::SOLID_WALL ||
+           tileType == (int)TileType::FRAGILE_WALL ||
+           tileType == (int)TileType::REINFORCED_WALL;
+}
+
+bool DataSerializer::ExportBbLevel(const LevelData& level, const std::string& filepath) {
+    try {
+        std::ofstream os(filepath);
+        if (!os.is_open()) return false;
+
+        os << "; bB level data - auto-generated from editor\n";
+        os << "; Level " << level.level_id << ": " << level.name << "\n";
+        os << "; DO NOT EDIT MANUALLY - regenerate from .json\n\n";
+
+        int numRooms = (int)level.rooms.size();
+
+        // Level metadata
+        os << "data _L" << level.level_id << "_META\n";
+        os << "  " << level.start_room << ",";
+        os << "  " << (int)(level.start_x * 2) << ",";  // *2 for bB pixel coords
+        os << "  " << (int)(level.start_y * 2) << ",";
+        os << "  " << level.miner_room << ",";
+        os << "  " << (int)(level.miner_x * 2) << ",";
+        os << "  " << (int)(level.miner_y * 2) << ",";
+        os << "  " << numRooms << ",";
+        // Convert RGB to NTSC color (simplified: use R channel shifted)
+        int pfColor = ((level.wall_r / 32) << 6) | ((level.wall_g / 32) << 4) | ((level.wall_b / 32) << 2);
+        int bgColor = 0x02; // dark background
+        os << "  $" << std::hex << (pfColor & 0xFF) << ",";
+        os << "  $" << std::hex << bgColor;
+        os << std::dec << "\n";
+        os << "end\n\n";
+
+        // Per-room data
+        for (int r = 0; r < numRooms; ++r) {
+            const auto& room = level.rooms[r];
+
+            // Playfield bitmap: 12 rows × 2 bytes = 24 bytes
+            os << "data _L" << level.level_id << "_R" << r << "_PF\n";
+            for (int y = 0; y < 12; ++y) {
+                unsigned char hi = 0, lo = 0;
+                for (int x = 0; x < 8; ++x) {
+                    int tileIdx = y * 16 + x;
+                    if (tileIdx < (int)room.tiles.size() && IsWallTile(room.tiles[tileIdx])) {
+                        hi |= (0x80 >> x);
+                    }
+                }
+                for (int x = 0; x < 8; ++x) {
+                    int tileIdx = y * 16 + 8 + x;
+                    if (tileIdx < (int)room.tiles.size() && IsWallTile(room.tiles[tileIdx])) {
+                        lo |= (0x80 >> x);
+                    }
+                }
+                os << "  $" << std::hex << (int)hi << ",$" << (int)lo;
+                if (y < 11) os << ",";
+                os << std::dec;
+            }
+            os << "\nend\n\n";
+
+            // Enemy data
+            os << "data _L" << level.level_id << "_R" << r << "_EN\n";
+            os << "  " << room.enemies.size();
+            for (const auto& e : room.enemies) {
+                os << "\n  " << e.type;
+                os << "," << (int)(e.x * 2);     // *2 for bB pixel coords
+                os << "," << (int)(e.y * 2);
+                os << "," << (int)(e.range_min * 2);
+                os << "," << (int)(e.range_max * 2);
+            }
+            os << "\nend\n\n";
+
+            // Lamp data
+            os << "data _L" << level.level_id << "_R" << r << "_LM\n";
+            os << "  " << room.lamps.size();
+            for (const auto& l : room.lamps) {
+                os << "\n  " << (int)(l.x * 2);
+                os << "," << (int)(l.y * 2);
+            }
+            os << "\nend\n\n";
+        }
+
+        os << "; End of level " << level.level_id << " data\n";
+        return true;
+    } catch (const std::exception& e) {
+        std::cerr << "ExportBbLevel failed: " << e.what() << std::endl;
+        return false;
+    }
+}
+
 } // namespace hero

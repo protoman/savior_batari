@@ -1,14 +1,23 @@
 # Build artifacts
 *.bin
-*.asm
 *.lst
 *.sym
 *.rom
+*.o
+*.out
+a.out
+
+# bB generated files
+game/2600basic_variable_redefs.h
+game/2600basic.h
+game/includes.bB
+game/hero.bas.asm
 
 # Editor build
 editor/build/
 editor/CMakeCache.txt
 editor/cmake_install.cmake
+editor/.idea/
 
 # OS files
 .DS_Store

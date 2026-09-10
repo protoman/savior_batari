@@ -123,11 +123,61 @@ editor/
 ### Data Format (LevelData.hpp)
 - **TileType:** AIR, SOLID_WALL, FRAGILE_WALL, REINFORCED_WALL, LAVA, WATER, RAFT, MAGMA_FALL
 - **EnemyType:** SPIDER, BAT, SNAKE, TENTACLE, GIANT_MOTH
-- **RoomData:** 20×12 tiles, enemies, lamps
-- **LevelData:** Rooms, colors, start/miner positions
+- **RoomData:** 16×12 tiles (authentic map dimensions), enemies, lamps
+- **LevelData:** Rooms, wall colors (RGB), start/miner positions
+
+### bB Level Data Format
+
+**CRITICAL: When changing the level data format in the editor, ALWAYS regenerate/convert existing data files to match.**
+
+The editor exports to bB-compatible `.asm` files stored in `game/levels/`. The format uses bB `data` statements:
+
+#### Playfield Data (per room, 24 bytes)
+```bB
+data _L{level}_R{room}_PF
+  $XX,$YY, ...  ; 12 rows × 2 bytes (16 bits per row)
+end
+```
+- Each bit represents a tile: 1=wall (SOLID/FRAGILE/REINFORCED), 0=air
+- Bit 7 = column 0 (left), Bit 0 = column 15 (right)
+- Row 0 = top, Row 11 = bottom
+
+#### Enemy Data (per room)
+```bB
+data _L{level}_R{room}_EN
+  count, {type,x,y,range_min,range_max}, ...
+end
+```
+- type: 0=SPIDER, 1=BAT, 2=SNAKE, 3=TENTACLE, 4=GIANT_MOTH
+- x,y: pixel coordinates (×2 from editor grid)
+- range_min,range_max: patrol bounds in pixels
+
+#### Lamp Data (per room)
+```bB
+data _L{level}_R{room}_LM
+  count, {x,y}, ...
+end
+```
+
+#### Level Metadata
+```bB
+data _L{level}_META
+  start_room, start_x, start_y,
+  miner_room, miner_x, miner_y,
+  num_rooms, pf_color, bg_color
+end
+```
+
+### Data File Maintenance Rule
+**When modifying tile types, enemy types, or room dimensions in the editor:**
+1. Update `DataSerializer::ExportBbLevel()` to match new format
+2. Regenerate all affected `.asm` files in `game/levels/`
+3. Update hero.bas loading code if format changes
+4. Test compilation and verify rooms render correctly
+5. Commit both editor changes AND regenerated data files together
 
 ### Export Target
-Editor should export to bB-compatible format (`.asm` include or binary data).
+Editor exports to bB-compatible format (`.asm` include files in `game/levels/`).
 
 ## Implementation Plan (Incremental)
 
@@ -152,8 +202,14 @@ Each feature validated before proceeding.
 
 ### Phase 4: Level System
 - [x] **4.1** Flip-screen room transitions
-- [ ] **4.2** Level data loading from editor format
-- [ ] **4.3** Multiple rooms per level
+- [~] **4.2** Level data loading from editor format
+  - Editor export function added to DataSerializer
+  - bB data format defined (playfield, enemies, lamps)
+  - Current implementation: hardcoded rooms with pfhline/pfpixel
+  - TODO: Integrate actual data statements from level_XX.asm files
+- [~] **4.3** Multiple rooms per level
+  - 3 rooms implemented with left/right transitions
+  - TODO: Vertical transitions, more rooms
 - [ ] **4.4** Miner rescue goal + level complete
 
 ### Phase 5: HUD & Polish
@@ -178,16 +234,19 @@ Each feature validated before proceeding.
 
 ### Working Code Structure
 Current hero.bas uses:
-- 12 variables (a-l) for game state
+- 14 variables (a-n) for game state
 - Direct variable assignments (no dim aliases)
-- Simplified HUD using score display and ball indicator
+- HUD using pfscore bars (lives + power) and score display
 - Core gameplay: movement, laser, dynamite, enemies, transitions
+- 3 rooms with hardcoded layouts (pfhline/pfpixel)
+- Room transitions via left/right edge detection
 
 ### Next Steps
-1. Implement fragile wall destruction (Phase 3.3)
-2. Add level data loading from editor format (Phase 4.2)
+1. Integrate level data loading from data statements (Phase 4.2)
+2. Implement fragile wall destruction (Phase 3.3)
 3. Complete score system (Phase 5.2)
-4. Test on Stella emulator for accuracy
+4. Add more rooms and vertical transitions (Phase 4.3)
+5. Test on Stella emulator for accuracy
 
 ## Validation Protocol
 
@@ -245,4 +304,5 @@ batari_savior/
     ├── hero.bas.sym    # Symbol table
     ├── includes/       # Custom kernels, data
     └── levels/         # Level data files
+        └── level_01.asm  # Level 1 data (24 bytes/room)
 ```
