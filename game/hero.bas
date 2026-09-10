@@ -294,11 +294,11 @@ end
  drawscreen
 
  ; Check collision AFTER drawscreen (like the example)
- ; When moving up and hitting ceiling, only undo vertical (allows sliding sideways)
- if collision(player0, playfield) then if d = 255 then player0y = player0y - d
- ; Otherwise undo both axes
- if collision(player0, playfield) then if d <> 255 then player0x = player0x - p
- if collision(player0, playfield) then if d <> 255 then player0y = player0y - d
+ ; When moving straight up and hitting ceiling, only undo vertical (allows sliding sideways)
+ ; When moving diagonally, undo both to prevent passing through side walls
+ if collision(player0, playfield) then if d = 255 && p = 0 then player0y = player0y - d
+ if collision(player0, playfield) then if d <> 255 || p <> 0 then player0x = player0x - p
+ if collision(player0, playfield) then if d <> 255 || p <> 0 then player0y = player0y - d
 
  ; Boundaries
  if player0x < 18 then player0x = 18
