@@ -1,5 +1,5 @@
 ; Savior - H.E.R.O. Atari 2600 Clone
-; DPC+ kernel test - hardcoded playfield
+; DPC+ kernel test - following dpcpfread.bas sample exactly
 
  set kernel DPC+
 
@@ -9,18 +9,22 @@
 start
 
  playfield:
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X..............................X
+X..............................X
+X..............................X
+X..............................X
+X..............................X
+X..............................X
+X..............................X
+X..............................X
+X..............................X
+X..............................X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+end
+
+ pfcolors:
+ $28
 end
 
  player0:
@@ -69,7 +73,7 @@ main
  player0x = a
  player0y = b
 
- ; Spider patrol
+ ; Spider patrol - bounce left/right
  player1x = player1x + 1
  if player1x > 120 then player1x = 40
 

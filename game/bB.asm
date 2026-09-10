@@ -133,157 +133,176 @@ ret_point1
 .
  ;;line 25;; 
 
-.L04 ;;line 26;;  player0:
+.L04 ;;line 26;;  pfcolors:
 
-	LDX #<playerL04_0
+	LDA #<PFCOLS
+	STA DF0LOW
+	LDA #(>PFCOLS) & $0F
+	STA DF0HI
+	LDA #<playfieldcolorL04
+	STA PARAMETER
+	LDA #((>playfieldcolorL04) & $0f) | (((>playfieldcolorL04) / 2) & $70)
+	STA PARAMETER
+	LDA #0
+	STA PARAMETER
+	LDA #1
+	STA PARAMETER
+	LDA #1
+	STA CALLFUNCTION
+.
+ ;;line 29;; 
+
+.L05 ;;line 30;;  player0:
+
+	LDX #<playerL05_0
 	STX player0pointerlo
-	LDA #((>playerL04_0) & $0f) | (((>playerL04_0) / 2) & $70)
+	LDA #((>playerL05_0) & $0f) | (((>playerL05_0) / 2) & $70)
 	STA player0pointerhi
 	LDA #11
 	STA player0height
 .
- ;;line 39;; 
+ ;;line 43;; 
 
-.L05 ;;line 40;;  player1:
+.L06 ;;line 44;;  player1:
 
 	lda #<(playerpointers+0)
 	sta DF0LOW
 	lda #(>(playerpointers+0)) & $0F
 	sta DF0HI
-	LDX #<playerL05_1
+	LDX #<playerL06_1
 	STX DF0WRITE
-	LDA #((>playerL05_1) & $0f) | (((>playerL05_1) / 2) & $70)
+	LDA #((>playerL06_1) & $0f) | (((>playerL06_1) / 2) & $70)
 	STA DF0WRITE
 	LDA #11
 	STA player1height
 .
- ;;line 53;; 
+ ;;line 57;; 
 
-.L06 ;;line 54;;  a = 80  :  b = 50
+.L07 ;;line 58;;  a = 80  :  b = 50
 
 	LDA #80
 	STA a
 	LDA #50
 	STA b
-.L07 ;;line 55;;  player0x = a  :  player0y = b
+.L08 ;;line 59;;  player0x = a  :  player0y = b
 
 	LDA a
 	STA player0x
 	LDA b
 	STA player0y
-.L08 ;;line 56;;  player1x = 60  :  player1y = 50
+.L09 ;;line 60;;  player1x = 60  :  player1y = 50
 
 	LDA #60
 	STA player1x
 	LDA #50
 	STA player1y
 .
- ;;line 57;; 
+ ;;line 61;; 
 
 .main
- ;;line 58;; main
+ ;;line 62;; main
 
-.L09 ;;line 59;;  DF0FRACINC = 16
+.L010 ;;line 63;;  DF0FRACINC = 16
 
 	LDA #16
 	STA DF0FRACINC
-.L010 ;;line 60;;  DF1FRACINC = 16
+.L011 ;;line 64;;  DF1FRACINC = 16
 
 	LDA #16
 	STA DF1FRACINC
-.L011 ;;line 61;;  DF2FRACINC = 16
+.L012 ;;line 65;;  DF2FRACINC = 16
 
 	LDA #16
 	STA DF2FRACINC
-.L012 ;;line 62;;  DF3FRACINC = 32
+.L013 ;;line 66;;  DF3FRACINC = 32
 
 	LDA #32
 	STA DF3FRACINC
 .
- ;;line 63;; 
+ ;;line 67;; 
 
-.L013 ;;line 64;;  if joy0left then a = a  -  1
+.L014 ;;line 68;;  if joy0left then a = a  -  1
 
  bit SWCHA
-	BVS .skipL013
+	BVS .skipL014
 .condpart0
 	DEC a
-.skipL013
-.L014 ;;line 65;;  if joy0right then a = a  +  1
+.skipL014
+.L015 ;;line 69;;  if joy0right then a = a  +  1
 
  bit SWCHA
-	BMI .skipL014
+	BMI .skipL015
 .condpart1
 	INC a
-.skipL014
-.L015 ;;line 66;;  if joy0up then b = b  -  1
+.skipL015
+.L016 ;;line 70;;  if joy0up then b = b  -  1
 
  lda #$10
  bit SWCHA
-	BNE .skipL015
+	BNE .skipL016
 .condpart2
 	DEC b
-.skipL015
-.L016 ;;line 67;;  if joy0down then b = b  +  1
+.skipL016
+.L017 ;;line 71;;  if joy0down then b = b  +  1
 
  lda #$20
  bit SWCHA
-	BNE .skipL016
+	BNE .skipL017
 .condpart3
 	INC b
-.skipL016
+.skipL017
 .
- ;;line 68;; 
+ ;;line 72;; 
 
-.L017 ;;line 69;;  player0x = a
+.L018 ;;line 73;;  player0x = a
 
 	LDA a
 	STA player0x
-.L018 ;;line 70;;  player0y = b
+.L019 ;;line 74;;  player0y = b
 
 	LDA b
 	STA player0y
 .
- ;;line 71;; 
+ ;;line 75;; 
 
 .
- ;;line 72;; 
+ ;;line 76;; 
 
-.L019 ;;line 73;;  player1x = player1x  +  1
+.L020 ;;line 77;;  player1x = player1x  +  1
 
 	INC player1x
-.L020 ;;line 74;;  if player1x  >  120 then player1x = 40
+.L021 ;;line 78;;  if player1x  >  120 then player1x = 40
 
 	LDA #120
 	CMP player1x
-     BCS .skipL020
+     BCS .skipL021
 .condpart4
 	LDA #40
 	STA player1x
-.skipL020
+.skipL021
 .
- ;;line 75;; 
+ ;;line 79;; 
 
-.L021 ;;line 76;;  COLUBK = $00
+.L022 ;;line 80;;  COLUBK = $00
 
 	LDA #$00
 	STA COLUBK
-.L022 ;;line 77;;  COLUPF = $28
+.L023 ;;line 81;;  COLUPF = $28
 
 	LDA #$28
 	STA COLUPF
-.L023 ;;line 78;;  COLUP0 = $C6
+.L024 ;;line 82;;  COLUP0 = $C6
 
 	LDA #$C6
 	STA COLUP0
-.L024 ;;line 79;;  COLUP1 = $1C
+.L025 ;;line 83;;  COLUP1 = $1C
 
 	LDA #$1C
 	STA COLUP1
 .
- ;;line 80;; 
+ ;;line 84;; 
 
-.L025 ;;line 81;;  drawscreen
+.L026 ;;line 85;;  drawscreen
 
  sta temp7
  lda #>(ret_point2-1)
@@ -301,7 +320,7 @@ ret_point1
  ldx #1
  jmp BS_jsr
 ret_point2
-.L026 ;;line 82;;  goto main
+.L027 ;;line 86;;  goto main
 
  jmp .main
 
@@ -670,7 +689,9 @@ PF_data1
 	.byte %10000000
 	.byte %10000000
 	.byte %11111111
-playerL04_0
+playfieldcolorL04
+	.byte  $28
+playerL05_0
 	.byte  %00111100
 	.byte  %01111110
 	.byte  %01111110
@@ -682,7 +703,7 @@ playerL04_0
 	.byte  %00111100
 	.byte  %00111100
 	.byte  %00011000
-playerL05_1
+playerL06_1
 	.byte  %00000000
 	.byte  %01000010
 	.byte  %10100101
