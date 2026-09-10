@@ -1,0 +1,15 @@
+# Build artifacts
+*.bin
+*.asm
+*.lst
+*.sym
+*.rom
+
+# Editor build
+editor/build/
+editor/CMakeCache.txt
+editor/cmake_install.cmake
+
+# OS files
+.DS_Store
+Thumbs.db
