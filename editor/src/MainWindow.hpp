@@ -50,6 +50,8 @@ private slots:
     void SaveLevelAs();
     void SelectGameDataDir();
     void PerformUndo();
+    void GenerateDefaultLevels();
+    void ExportToBb();
 
     void AddRoomAbove();
     void AddRoomBelow();

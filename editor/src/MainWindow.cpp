@@ -279,6 +279,9 @@ void MainWindow::SetupUI() {
     fileMenu->addSeparator();
     fileMenu->addAction("&Set Game Data Directory...", this, &MainWindow::SelectGameDataDir);
     fileMenu->addSeparator();
+    fileMenu->addAction("&Generate Default Levels...", this, &MainWindow::GenerateDefaultLevels);
+    fileMenu->addAction("&Export to bB Format...", this, &MainWindow::ExportToBb);
+    fileMenu->addSeparator();
     fileMenu->addAction("E&xit", QKeySequence::Quit, qApp, &QApplication::quit);
 
     // Edit Menu (Undo)
@@ -864,6 +867,47 @@ void MainWindow::UpdateUIFromLevel() {
     m_ignoreComboEvents = false;
 
     UpdateRoomDirectionButtons();
+}
+
+void MainWindow::GenerateDefaultLevels() {
+    QString dir = QFileDialog::getExistingDirectory(this,
+        "Select Output Directory for Default Levels",
+        m_gameDataDir);
+
+    if (dir.isEmpty()) return;
+
+    QMessageBox::StandardButton reply = QMessageBox::question(this,
+        "Generate Default Levels",
+        QString("This will generate 20 default level JSON files in:\n%1\n\nExisting files will NOT be overwritten.\n\nContinue?").arg(dir),
+        QMessageBox::Yes | QMessageBox::No);
+
+    if (reply != QMessageBox::Yes) return;
+
+    hero::DataSerializer::GenerateAll20DefaultLevels(dir.toStdString());
+
+    QMessageBox::information(this, "Done",
+        QString("Default levels generated in:\n%1").arg(dir));
+
+    PopulateStageCombo();
+}
+
+void MainWindow::ExportToBb() {
+    // Export current level to bB format
+    QString filepath = QFileDialog::getSaveFileName(this,
+        "Export Level to bB Format",
+        m_gameDataDir + "/level_" +
+        QString::number(m_levelData.level_id).rightJustified(2, '0') + ".asm",
+        "bB Assembly (*.asm);;All Files (*)");
+
+    if (filepath.isEmpty()) return;
+
+    if (hero::DataSerializer::ExportBbLevel(m_levelData, filepath.toStdString())) {
+        QMessageBox::information(this, "Export Complete",
+            QString("Level exported to:\n%1").arg(filepath));
+    } else {
+        QMessageBox::warning(this, "Export Failed",
+            "Failed to export level to bB format.");
+    }
 }
 
 } // namespace editor
