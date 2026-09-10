@@ -62,8 +62,8 @@ end
 
  ; Load first room
  gosub LoadRoom
- ; Start player inside room (column 8 = center)
- player0x = 42
+ ; Start player inside room (center of 32-col room)
+ player0x = 80
  player0y = 30
 
 main
@@ -97,13 +97,13 @@ main
 
  ; Room transitions
  ; Right edge -> next room
- if player0x > 80 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 14
+ if player0x > 150 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 16
  ; Left edge -> previous room
- if player0x < 12 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 78
+ if player0x < 14 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 148
 
- ; Boundaries (keep player in visible area)
- if player0x < 12 then player0x = 12
- if player0x > 80 then player0x = 80
+ ; Boundaries
+ if player0x < 14 then player0x = 14
+ if player0x > 150 then player0x = 150
  if player0y < 10 then player0y = 10
  if player0y > 80 then player0y = 80
 
@@ -123,8 +123,8 @@ main
 
  ; Spider
  if j > 0 then j = j + k
- if j < 30 then k = 1
- if j > 70 then k = -1
+ if j < 40 then k = 1
+ if j > 120 then k = -1
  if j > 0 then player1x = j
  if j > 0 then player1y = 50
 
@@ -153,13 +153,12 @@ main
  if c > 0 then pfscore2 = 8
  if c = 0 then pfscore2 = 0
 
- ; Colors
+ ; Colors - set every frame
  COLUBK = $02
  COLUPF = $28
  COLUP0 = $C6
  COLUP1 = $1C
  scorecolor = $36
- CTRLPF = $01
 
  drawscreen
  goto main
@@ -174,70 +173,70 @@ LoadRoom
  if o = 1 then gosub LoadRoom1
  if o = 2 then gosub LoadRoom2
  ; Reset spider position for room
- if o = 0 then j = 60 : k = -1
- if o = 1 then j = 40 : k = -1
- if o = 2 then j = 50 : k = 1
+ if o = 0 then j = 100 : k = -1
+ if o = 1 then j = 80 : k = -1
+ if o = 2 then j = 120 : k = 1
  return
 
 ; Room 0: Simple mine shaft with platforms
 LoadRoom0
- ; Top border (row 0)
- pfhline 0 0 15 on
+ ; Top border (row 0) - full width
+ pfhline 0 0 31 on
  ; Left wall (column 0, rows 1-10)
  pfvline 0 1 10 on
- ; Right wall (column 15, rows 1-10)
- pfvline 15 1 10 on
- ; Bottom border (row 10)
- pfhline 0 10 15 on
- ; Platform at row 4, columns 4-6
- pfhline 4 4 6 on
- ; Platform at row 7, columns 9-11
- pfhline 9 7 11 on
+ ; Right wall (column 31, rows 1-10)
+ pfvline 31 1 10 on
+ ; Bottom border (row 10) - full width
+ pfhline 0 10 31 on
+ ; Platform at row 4, columns 8-12
+ pfhline 8 4 12 on
+ ; Platform at row 7, columns 18-22
+ pfhline 18 7 22 on
  return
 
 ; Room 1: Shaft with opening top/bottom
 LoadRoom1
- ; Top border with shaft opening (columns 6-9 open)
- pfhline 0 0 5 on
- pfhline 10 0 15 on
+ ; Top border with shaft opening (columns 14-17 open)
+ pfhline 0 0 13 on
+ pfhline 18 0 31 on
  ; Left wall
  pfvline 0 1 10 on
  ; Right wall
- pfvline 15 1 10 on
- ; Bottom border with shaft opening (columns 6-9 open)
- pfhline 0 10 5 on
- pfhline 10 10 15 on
- ; Platform at row 3, columns 2-4
- pfhline 2 3 4 on
- ; Platform at row 6, columns 7-9
- pfhline 7 6 9 on
- ; Platform at row 8, columns 11-13
- pfhline 11 8 13 on
+ pfvline 31 1 10 on
+ ; Bottom border with shaft opening (columns 14-17 open)
+ pfhline 0 10 13 on
+ pfhline 18 10 31 on
+ ; Platform at row 3, columns 4-8
+ pfhline 4 3 8 on
+ ; Platform at row 6, columns 14-18
+ pfhline 14 6 18 on
+ ; Platform at row 8, columns 22-26
+ pfhline 22 8 26 on
  return
 
 ; Room 2: Miner room
 LoadRoom2
- ; Top border with shaft opening (columns 6-9 open)
- pfhline 0 0 5 on
- pfhline 10 0 15 on
+ ; Top border with shaft opening (columns 14-17 open)
+ pfhline 0 0 13 on
+ pfhline 18 0 31 on
  ; Left wall
  pfvline 0 1 10 on
  ; Right wall
- pfvline 15 1 10 on
- ; Bottom border
- pfhline 0 10 15 on
- ; Platform at row 4, columns 5-7
- pfhline 5 4 7 on
- ; Platform at row 7, columns 3-5
- pfhline 3 7 5 on
- ; Fragile wall at row 5-6, columns 10-10 (single column)
- pfvline 10 5 6 on
+ pfvline 31 1 10 on
+ ; Bottom border - full width
+ pfhline 0 10 31 on
+ ; Platform at row 4, columns 10-14
+ pfhline 10 4 14 on
+ ; Platform at row 7, columns 6-10
+ pfhline 6 7 10 on
+ ; Fragile wall at row 5-6, columns 20-20
+ pfvline 20 5 6 on
  return
 
 PlayerHit
  COLUBK = $34
  m = m - 1
- player0x = 42
+ player0x = 80
  player0y = 30
  j = 0
  COLUBK = $02
@@ -249,7 +248,7 @@ GameOver
  g = 6
  m = 4
  o = 0
- player0x = 42
+ player0x = 80
  player0y = 30
  gosub LoadRoom
  return

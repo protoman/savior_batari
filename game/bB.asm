@@ -171,9 +171,9 @@ pflabel0
 .
  ;;line 65;; 
 
-.L011 ;;line 66;;  player0x = 42
+.L011 ;;line 66;;  player0x = 80
 
-	LDA #42
+	LDA #80
 	STA player0x
 .L012 ;;line 67;;  player0y = 30
 
@@ -345,9 +345,9 @@ pflabel0
 .
  ;;line 99;; 
 
-.L025 ;;line 100;;  if player0x  >  80 then if o  <  2 then o = o  +  1  :  gosub LoadRoom  :  player0x = 14
+.L025 ;;line 100;;  if player0x  >  150 then if o  <  2 then o = o  +  1  :  gosub LoadRoom  :  player0x = 16
 
-	LDA #80
+	LDA #150
 	CMP player0x
      BCS .skipL025
 .condpart11
@@ -357,17 +357,17 @@ pflabel0
 .condpart12
 	INC o
  jsr .LoadRoom
-	LDA #14
+	LDA #16
 	STA player0x
 .skip11then
 .skipL025
 .
  ;;line 101;; 
 
-.L026 ;;line 102;;  if player0x  <  12 then if o  >  0 then o = o  -  1  :  gosub LoadRoom  :  player0x = 78
+.L026 ;;line 102;;  if player0x  <  14 then if o  >  0 then o = o  -  1  :  gosub LoadRoom  :  player0x = 148
 
 	LDA player0x
-	CMP #12
+	CMP #14
      BCS .skipL026
 .condpart13
 	LDA #0
@@ -376,7 +376,7 @@ pflabel0
 .condpart14
 	DEC o
  jsr .LoadRoom
-	LDA #78
+	LDA #148
 	STA player0x
 .skip13then
 .skipL026
@@ -386,22 +386,22 @@ pflabel0
 .
  ;;line 104;; 
 
-.L027 ;;line 105;;  if player0x  <  12 then player0x = 12
+.L027 ;;line 105;;  if player0x  <  14 then player0x = 14
 
 	LDA player0x
-	CMP #12
+	CMP #14
      BCS .skipL027
 .condpart15
-	LDA #12
+	LDA #14
 	STA player0x
 .skipL027
-.L028 ;;line 106;;  if player0x  >  80 then player0x = 80
+.L028 ;;line 106;;  if player0x  >  150 then player0x = 150
 
-	LDA #80
+	LDA #150
 	CMP player0x
      BCS .skipL028
 .condpart16
-	LDA #80
+	LDA #150
 	STA player0x
 .skipL028
 .L029 ;;line 107;;  if player0y  <  10 then player0y = 10
@@ -592,18 +592,18 @@ pflabel0
 	ADC k
 	STA j
 .skipL041
-.L042 ;;line 126;;  if j  <  30 then k = 1
+.L042 ;;line 126;;  if j  <  40 then k = 1
 
 	LDA j
-	CMP #30
+	CMP #40
      BCS .skipL042
 .condpart38
 	LDA #1
 	STA k
 .skipL042
-.L043 ;;line 127;;  if j  >  70 then k =  - 1
+.L043 ;;line 127;;  if j  >  120 then k =  - 1
 
-	LDA #70
+	LDA #120
 	CMP j
      BCS .skipL043
 .condpart39
@@ -838,14 +838,10 @@ pflabel0
 
 	LDA #$36
 	STA scorecolor
-.L071 ;;line 162;;  CTRLPF = $01
-
-	LDA #$01
-	STA CTRLPF
 .
- ;;line 163;; 
+ ;;line 162;; 
 
-.L072 ;;line 164;;  drawscreen
+.L071 ;;line 163;;  drawscreen
 
  sta temp7
  lda #>(ret_point1-1)
@@ -863,9 +859,12 @@ pflabel0
  ldx #4
  jmp BS_jsr
 ret_point1
-.L073 ;;line 165;;  goto main
+.L072 ;;line 164;;  goto main
 
  jmp .main
+
+.
+ ;;line 165;; 
 
 .
  ;;line 166;; 
@@ -879,13 +878,10 @@ ret_point1
 .
  ;;line 169;; 
 
-.
- ;;line 170;; 
-
 .LoadRoom
- ;;line 171;; LoadRoom
+ ;;line 170;; LoadRoom
 
-.L074 ;;line 172;;  pfclear
+.L073 ;;line 171;;  pfclear
 
 	LDA #0
  sta temp7
@@ -904,70 +900,70 @@ ret_point1
  ldx #4
  jmp BS_jsr
 ret_point2
-.L075 ;;line 173;;  if o = 0 then gosub LoadRoom0
+.L074 ;;line 172;;  if o = 0 then gosub LoadRoom0
 
 	LDA o
 	CMP #0
-     BNE .skipL075
+     BNE .skipL074
 .condpart60
  jsr .LoadRoom0
 
-.skipL075
-.L076 ;;line 174;;  if o = 1 then gosub LoadRoom1
+.skipL074
+.L075 ;;line 173;;  if o = 1 then gosub LoadRoom1
 
 	LDA o
 	CMP #1
-     BNE .skipL076
+     BNE .skipL075
 .condpart61
  jsr .LoadRoom1
 
-.skipL076
-.L077 ;;line 175;;  if o = 2 then gosub LoadRoom2
+.skipL075
+.L076 ;;line 174;;  if o = 2 then gosub LoadRoom2
 
 	LDA o
 	CMP #2
-     BNE .skipL077
+     BNE .skipL076
 .condpart62
  jsr .LoadRoom2
 
-.skipL077
+.skipL076
 .
- ;;line 176;; 
+ ;;line 175;; 
 
-.L078 ;;line 177;;  if o = 0 then j = 60  :  k =  - 1
+.L077 ;;line 176;;  if o = 0 then j = 100  :  k =  - 1
 
 	LDA o
 	CMP #0
-     BNE .skipL078
+     BNE .skipL077
 .condpart63
-	LDA #60
+	LDA #100
+	STA j
+	LDA #255
+	STA k
+.skipL077
+.L078 ;;line 177;;  if o = 1 then j = 80  :  k =  - 1
+
+	LDA o
+	CMP #1
+     BNE .skipL078
+.condpart64
+	LDA #80
 	STA j
 	LDA #255
 	STA k
 .skipL078
-.L079 ;;line 178;;  if o = 1 then j = 40  :  k =  - 1
-
-	LDA o
-	CMP #1
-     BNE .skipL079
-.condpart64
-	LDA #40
-	STA j
-	LDA #255
-	STA k
-.skipL079
-.L080 ;;line 179;;  if o = 2 then j = 50  :  k = 1
+.L079 ;;line 178;;  if o = 2 then j = 120  :  k = 1
 
 	LDA o
 	CMP #2
-     BNE .skipL080
+     BNE .skipL079
 .condpart65
-	LDA #50
+	LDA #120
 	STA j
 	LDA #1
 	STA k
-.skipL080
-.L081 ;;line 180;;  return
+.skipL079
+.L080 ;;line 179;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -977,21 +973,21 @@ ret_point2
 	JMP BS_return
 	RTS
 .
+ ;;line 180;; 
+
+.
  ;;line 181;; 
 
-.
- ;;line 182;; 
-
 .LoadRoom0
- ;;line 183;; LoadRoom0
+ ;;line 182;; LoadRoom0
 
 .
- ;;line 184;; 
+ ;;line 183;; 
 
-.L082 ;;line 185;;  pfhline 0 0 15 on
+.L081 ;;line 184;;  pfhline 0 0 31 on
 
 	LDX #0
-	LDA #15
+	LDA #31
 	STA temp3
 	LDY #0
 	LDA #0
@@ -1012,9 +1008,9 @@ ret_point2
  jmp BS_jsr
 ret_point3
 .
- ;;line 186;; 
+ ;;line 185;; 
 
-.L083 ;;line 187;;  pfvline 0 1 10 on
+.L082 ;;line 186;;  pfvline 0 1 10 on
 
 	LDX #0
 	LDA #10
@@ -1038,15 +1034,15 @@ ret_point3
  jmp BS_jsr
 ret_point4
 .
- ;;line 188;; 
+ ;;line 187;; 
 
-.L084 ;;line 189;;  pfvline 15 1 10 on
+.L083 ;;line 188;;  pfvline 31 1 10 on
 
 	LDX #0
 	LDA #10
 	STA temp3
 	LDY #1
-	LDA #15
+	LDA #31
  sta temp7
  lda #>(ret_point5-1)
  pha
@@ -1064,12 +1060,12 @@ ret_point4
  jmp BS_jsr
 ret_point5
 .
- ;;line 190;; 
+ ;;line 189;; 
 
-.L085 ;;line 191;;  pfhline 0 10 15 on
+.L084 ;;line 190;;  pfhline 0 10 31 on
 
 	LDX #0
-	LDA #15
+	LDA #31
 	STA temp3
 	LDY #10
 	LDA #0
@@ -1090,15 +1086,15 @@ ret_point5
  jmp BS_jsr
 ret_point6
 .
- ;;line 192;; 
+ ;;line 191;; 
 
-.L086 ;;line 193;;  pfhline 4 4 6 on
+.L085 ;;line 192;;  pfhline 8 4 12 on
 
 	LDX #0
-	LDA #6
+	LDA #12
 	STA temp3
 	LDY #4
-	LDA #4
+	LDA #8
  sta temp7
  lda #>(ret_point7-1)
  pha
@@ -1116,15 +1112,15 @@ ret_point6
  jmp BS_jsr
 ret_point7
 .
- ;;line 194;; 
+ ;;line 193;; 
 
-.L087 ;;line 195;;  pfhline 9 7 11 on
+.L086 ;;line 194;;  pfhline 18 7 22 on
 
 	LDX #0
-	LDA #11
+	LDA #22
 	STA temp3
 	LDY #7
-	LDA #9
+	LDA #18
  sta temp7
  lda #>(ret_point8-1)
  pha
@@ -1141,7 +1137,7 @@ ret_point7
  ldx #4
  jmp BS_jsr
 ret_point8
-.L088 ;;line 196;;  return
+.L087 ;;line 195;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1151,21 +1147,21 @@ ret_point8
 	JMP BS_return
 	RTS
 .
+ ;;line 196;; 
+
+.
  ;;line 197;; 
 
-.
- ;;line 198;; 
-
 .LoadRoom1
- ;;line 199;; LoadRoom1
+ ;;line 198;; LoadRoom1
 
 .
- ;;line 200;; 
+ ;;line 199;; 
 
-.L089 ;;line 201;;  pfhline 0 0 5 on
+.L088 ;;line 200;;  pfhline 0 0 13 on
 
 	LDX #0
-	LDA #5
+	LDA #13
 	STA temp3
 	LDY #0
 	LDA #0
@@ -1185,13 +1181,13 @@ ret_point8
  ldx #4
  jmp BS_jsr
 ret_point9
-.L090 ;;line 202;;  pfhline 10 0 15 on
+.L089 ;;line 201;;  pfhline 18 0 31 on
 
 	LDX #0
-	LDA #15
+	LDA #31
 	STA temp3
 	LDY #0
-	LDA #10
+	LDA #18
  sta temp7
  lda #>(ret_point10-1)
  pha
@@ -1209,9 +1205,9 @@ ret_point9
  jmp BS_jsr
 ret_point10
 .
- ;;line 203;; 
+ ;;line 202;; 
 
-.L091 ;;line 204;;  pfvline 0 1 10 on
+.L090 ;;line 203;;  pfvline 0 1 10 on
 
 	LDX #0
 	LDA #10
@@ -1235,15 +1231,15 @@ ret_point10
  jmp BS_jsr
 ret_point11
 .
- ;;line 205;; 
+ ;;line 204;; 
 
-.L092 ;;line 206;;  pfvline 15 1 10 on
+.L091 ;;line 205;;  pfvline 31 1 10 on
 
 	LDX #0
 	LDA #10
 	STA temp3
 	LDY #1
-	LDA #15
+	LDA #31
  sta temp7
  lda #>(ret_point12-1)
  pha
@@ -1261,12 +1257,12 @@ ret_point11
  jmp BS_jsr
 ret_point12
 .
- ;;line 207;; 
+ ;;line 206;; 
 
-.L093 ;;line 208;;  pfhline 0 10 5 on
+.L092 ;;line 207;;  pfhline 0 10 13 on
 
 	LDX #0
-	LDA #5
+	LDA #13
 	STA temp3
 	LDY #10
 	LDA #0
@@ -1286,13 +1282,13 @@ ret_point12
  ldx #4
  jmp BS_jsr
 ret_point13
-.L094 ;;line 209;;  pfhline 10 10 15 on
+.L093 ;;line 208;;  pfhline 18 10 31 on
 
 	LDX #0
-	LDA #15
+	LDA #31
 	STA temp3
 	LDY #10
-	LDA #10
+	LDA #18
  sta temp7
  lda #>(ret_point14-1)
  pha
@@ -1310,15 +1306,15 @@ ret_point13
  jmp BS_jsr
 ret_point14
 .
- ;;line 210;; 
+ ;;line 209;; 
 
-.L095 ;;line 211;;  pfhline 2 3 4 on
+.L094 ;;line 210;;  pfhline 4 3 8 on
 
 	LDX #0
-	LDA #4
+	LDA #8
 	STA temp3
 	LDY #3
-	LDA #2
+	LDA #4
  sta temp7
  lda #>(ret_point15-1)
  pha
@@ -1336,15 +1332,15 @@ ret_point14
  jmp BS_jsr
 ret_point15
 .
- ;;line 212;; 
+ ;;line 211;; 
 
-.L096 ;;line 213;;  pfhline 7 6 9 on
+.L095 ;;line 212;;  pfhline 14 6 18 on
 
 	LDX #0
-	LDA #9
+	LDA #18
 	STA temp3
 	LDY #6
-	LDA #7
+	LDA #14
  sta temp7
  lda #>(ret_point16-1)
  pha
@@ -1362,15 +1358,15 @@ ret_point15
  jmp BS_jsr
 ret_point16
 .
- ;;line 214;; 
+ ;;line 213;; 
 
-.L097 ;;line 215;;  pfhline 11 8 13 on
+.L096 ;;line 214;;  pfhline 22 8 26 on
 
 	LDX #0
-	LDA #13
+	LDA #26
 	STA temp3
 	LDY #8
-	LDA #11
+	LDA #22
  sta temp7
  lda #>(ret_point17-1)
  pha
@@ -1387,7 +1383,7 @@ ret_point16
  ldx #4
  jmp BS_jsr
 ret_point17
-.L098 ;;line 216;;  return
+.L097 ;;line 215;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1397,21 +1393,21 @@ ret_point17
 	JMP BS_return
 	RTS
 .
+ ;;line 216;; 
+
+.
  ;;line 217;; 
 
-.
- ;;line 218;; 
-
 .LoadRoom2
- ;;line 219;; LoadRoom2
+ ;;line 218;; LoadRoom2
 
 .
- ;;line 220;; 
+ ;;line 219;; 
 
-.L099 ;;line 221;;  pfhline 0 0 5 on
+.L098 ;;line 220;;  pfhline 0 0 13 on
 
 	LDX #0
-	LDA #5
+	LDA #13
 	STA temp3
 	LDY #0
 	LDA #0
@@ -1431,13 +1427,13 @@ ret_point17
  ldx #4
  jmp BS_jsr
 ret_point18
-.L0100 ;;line 222;;  pfhline 10 0 15 on
+.L099 ;;line 221;;  pfhline 18 0 31 on
 
 	LDX #0
-	LDA #15
+	LDA #31
 	STA temp3
 	LDY #0
-	LDA #10
+	LDA #18
  sta temp7
  lda #>(ret_point19-1)
  pha
@@ -1455,9 +1451,9 @@ ret_point18
  jmp BS_jsr
 ret_point19
 .
- ;;line 223;; 
+ ;;line 222;; 
 
-.L0101 ;;line 224;;  pfvline 0 1 10 on
+.L0100 ;;line 223;;  pfvline 0 1 10 on
 
 	LDX #0
 	LDA #10
@@ -1481,15 +1477,15 @@ ret_point19
  jmp BS_jsr
 ret_point20
 .
- ;;line 225;; 
+ ;;line 224;; 
 
-.L0102 ;;line 226;;  pfvline 15 1 10 on
+.L0101 ;;line 225;;  pfvline 31 1 10 on
 
 	LDX #0
 	LDA #10
 	STA temp3
 	LDY #1
-	LDA #15
+	LDA #31
  sta temp7
  lda #>(ret_point21-1)
  pha
@@ -1507,12 +1503,12 @@ ret_point20
  jmp BS_jsr
 ret_point21
 .
- ;;line 227;; 
+ ;;line 226;; 
 
-.L0103 ;;line 228;;  pfhline 0 10 15 on
+.L0102 ;;line 227;;  pfhline 0 10 31 on
 
 	LDX #0
-	LDA #15
+	LDA #31
 	STA temp3
 	LDY #10
 	LDA #0
@@ -1533,15 +1529,15 @@ ret_point21
  jmp BS_jsr
 ret_point22
 .
- ;;line 229;; 
+ ;;line 228;; 
 
-.L0104 ;;line 230;;  pfhline 5 4 7 on
+.L0103 ;;line 229;;  pfhline 10 4 14 on
 
 	LDX #0
-	LDA #7
+	LDA #14
 	STA temp3
 	LDY #4
-	LDA #5
+	LDA #10
  sta temp7
  lda #>(ret_point23-1)
  pha
@@ -1559,15 +1555,15 @@ ret_point22
  jmp BS_jsr
 ret_point23
 .
- ;;line 231;; 
+ ;;line 230;; 
 
-.L0105 ;;line 232;;  pfhline 3 7 5 on
+.L0104 ;;line 231;;  pfhline 6 7 10 on
 
 	LDX #0
-	LDA #5
+	LDA #10
 	STA temp3
 	LDY #7
-	LDA #3
+	LDA #6
  sta temp7
  lda #>(ret_point24-1)
  pha
@@ -1585,15 +1581,15 @@ ret_point23
  jmp BS_jsr
 ret_point24
 .
- ;;line 233;; 
+ ;;line 232;; 
 
-.L0106 ;;line 234;;  pfvline 10 5 6 on
+.L0105 ;;line 233;;  pfvline 20 5 6 on
 
 	LDX #0
 	LDA #6
 	STA temp3
 	LDY #5
-	LDA #10
+	LDA #20
  sta temp7
  lda #>(ret_point25-1)
  pha
@@ -1610,7 +1606,7 @@ ret_point24
  ldx #4
  jmp BS_jsr
 ret_point25
-.L0107 ;;line 235;;  return
+.L0106 ;;line 234;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1620,44 +1616,44 @@ ret_point25
 	JMP BS_return
 	RTS
 .
- ;;line 236;; 
+ ;;line 235;; 
 
 .PlayerHit
- ;;line 237;; PlayerHit
+ ;;line 236;; PlayerHit
 
-.L0108 ;;line 238;;  COLUBK = $34
+.L0107 ;;line 237;;  COLUBK = $34
 
 	LDA #$34
 	STA COLUBK
-.L0109 ;;line 239;;  m = m  -  1
+.L0108 ;;line 238;;  m = m  -  1
 
 	DEC m
-.L0110 ;;line 240;;  player0x = 42
+.L0109 ;;line 239;;  player0x = 80
 
-	LDA #42
+	LDA #80
 	STA player0x
-.L0111 ;;line 241;;  player0y = 30
+.L0110 ;;line 240;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L0112 ;;line 242;;  j = 0
+.L0111 ;;line 241;;  j = 0
 
 	LDA #0
 	STA j
-.L0113 ;;line 243;;  COLUBK = $02
+.L0112 ;;line 242;;  COLUBK = $02
 
 	LDA #$02
 	STA COLUBK
-.L0114 ;;line 244;;  if m  <=  0 then gosub GameOver
+.L0113 ;;line 243;;  if m  <=  0 then gosub GameOver
 
 	LDA #0
 	CMP m
-     BCC .skipL0114
+     BCC .skipL0113
 .condpart66
  jsr .GameOver
 
-.skipL0114
-.L0115 ;;line 245;;  return
+.skipL0113
+.L0114 ;;line 244;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1667,40 +1663,40 @@ ret_point25
 	JMP BS_return
 	RTS
 .
- ;;line 246;; 
+ ;;line 245;; 
 
 .GameOver
- ;;line 247;; GameOver
+ ;;line 246;; GameOver
 
-.L0116 ;;line 248;;  c = 100
+.L0115 ;;line 247;;  c = 100
 
 	LDA #100
 	STA c
-.L0117 ;;line 249;;  g = 6
+.L0116 ;;line 248;;  g = 6
 
 	LDA #6
 	STA g
-.L0118 ;;line 250;;  m = 4
+.L0117 ;;line 249;;  m = 4
 
 	LDA #4
 	STA m
-.L0119 ;;line 251;;  o = 0
+.L0118 ;;line 250;;  o = 0
 
 	LDA #0
 	STA o
-.L0120 ;;line 252;;  player0x = 42
+.L0119 ;;line 251;;  player0x = 80
 
-	LDA #42
+	LDA #80
 	STA player0x
-.L0121 ;;line 253;;  player0y = 30
+.L0120 ;;line 252;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L0122 ;;line 254;;  gosub LoadRoom
+.L0121 ;;line 253;;  gosub LoadRoom
 
  jsr .LoadRoom
 
-.L0123 ;;line 255;;  return
+.L0122 ;;line 254;;  return
 
 	tsx
 	lda 2,x ; check return address
