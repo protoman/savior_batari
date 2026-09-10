@@ -260,9 +260,9 @@ ret_point1
 	LDA #0
 	STA h
 	STA i
-.L011 ;;line 74;;  j = 120  :  k =  - 1  :  m = 4
+.L011 ;;line 74;;  j = 0  :  k =  - 1  :  m = 4
 
-	LDA #120
+	LDA #0
 	STA j
 	LDA #255
 	STA k
@@ -333,34 +333,16 @@ ret_point1
 .
  ;;line 91;; 
 
-.L021 ;;line 92;;  if f = 1 then if collision(missile0,player1) then j = 0  :  f = 0
+.L021 ;;line 92;;  rem if f = 1 then if collision(missile0, player1) then j = 0 : f = 0
 
-	LDA f
-	CMP #1
-     BNE .skipL021
-.condpart0
-	bit 	CXM0P
-	BPL .skip0then
-.condpart1
-	LDA #0
-	STA j
-	STA f
-.skip0then
-.skipL021
 .
  ;;line 93;; 
 
 .
  ;;line 94;; 
 
-.L022 ;;line 95;;  if collision(player0,player1) then gosub PlayerHit
+.L022 ;;line 95;;  rem if collision(player0, player1) then gosub PlayerHit
 
-	bit 	CXPPMM
-	BPL .skipL022
-.condpart2
- jsr .PlayerHit
-
-.skipL022
 .
  ;;line 96;; 
 
@@ -389,7 +371,7 @@ ret_point1
 
  bit SWCHA
 	BVS .skipL026
-.condpart3
+.condpart0
 	DEC player0x
 	LDA #1
 	STA d
@@ -400,7 +382,7 @@ ret_point1
 
  bit SWCHA
 	BMI .skipL027
-.condpart4
+.condpart1
 	INC player0x
 	LDA #1
 	STA d
@@ -416,7 +398,7 @@ ret_point1
 
 	bit 	CXP0FB
 	BPL .skipL028
-.condpart5
+.condpart2
 	LDA a
 	STA player0x
 .skipL028
@@ -431,7 +413,7 @@ ret_point1
  lda #$10
  bit SWCHA
 	BNE .skipL029
-.condpart6
+.condpart3
 	DEC player0y
 	LDA #1
 	STA d
@@ -449,7 +431,7 @@ ret_point1
  lda #$10
  bit SWCHA
 	BEQ .skipL030
-.condpart7
+.condpart4
 	INC n
 .skipL030
 .L031 ;;line 114;;  if !joy0up then if n  >=  2 then player0y = player0y  +  1  :  n = 0
@@ -457,15 +439,15 @@ ret_point1
  lda #$10
  bit SWCHA
 	BEQ .skipL031
-.condpart8
+.condpart5
 	LDA n
 	CMP #2
-     BCC .skip8then
-.condpart9
+     BCC .skip5then
+.condpart6
 	INC player0y
 	LDA #0
 	STA n
-.skip8then
+.skip5then
 .skipL031
 .
  ;;line 115;; 
@@ -477,7 +459,7 @@ ret_point1
 
 	bit 	CXP0FB
 	BPL .skipL032
-.condpart10
+.condpart7
 	LDA b
 	STA player0y
 .skipL032
@@ -495,16 +477,16 @@ ret_point1
 	LDA #150
 	CMP player0x
      BCS .skipL033
-.condpart11
+.condpart8
 	LDA o
 	CMP #2
-     BCS .skip11then
-.condpart12
+     BCS .skip8then
+.condpart9
 	INC o
  jsr .LoadRoom
 	LDA #18
 	STA player0x
-.skip11then
+.skip8then
 .skipL033
 .
  ;;line 122;; 
@@ -514,16 +496,16 @@ ret_point1
 	LDA player0x
 	CMP #18
      BCS .skipL034
-.condpart13
+.condpart10
 	LDA #0
 	CMP o
-     BCS .skip13then
-.condpart14
+     BCS .skip10then
+.condpart11
 	DEC o
  jsr .LoadRoom
 	LDA #148
 	STA player0x
-.skip13then
+.skip10then
 .skipL034
 .
  ;;line 124;; 
@@ -536,7 +518,7 @@ ret_point1
 	LDA player0x
 	CMP #18
      BCS .skipL035
-.condpart15
+.condpart12
 	LDA #18
 	STA player0x
 .skipL035
@@ -545,7 +527,7 @@ ret_point1
 	LDA #148
 	CMP player0x
      BCS .skipL036
-.condpart16
+.condpart13
 	LDA #148
 	STA player0x
 .skipL036
@@ -554,7 +536,7 @@ ret_point1
 	LDA player0y
 	CMP #10
      BCS .skipL037
-.condpart17
+.condpart14
 	LDA #10
 	STA player0y
 .skipL037
@@ -568,11 +550,11 @@ ret_point1
 
  bit INPT4
 	BMI .skipL038
-.condpart18
+.condpart15
 	LDA f
 	CMP #0
-     BNE .skip18then
-.condpart19
+     BNE .skip15then
+.condpart16
 	LDA #1
 	STA f
 	LDA player0x
@@ -583,86 +565,86 @@ ret_point1
 	CLC
 	ADC #2
 	STA missile0y
-.skip18then
+.skip15then
 .skipL038
 .L039 ;;line 132;;  if f = 1 then if e = 1 then missile0x = missile0x  +  3
 
 	LDA f
 	CMP #1
      BNE .skipL039
-.condpart20
+.condpart17
 	LDA e
 	CMP #1
-     BNE .skip20then
-.condpart21
+     BNE .skip17then
+.condpart18
 	LDA missile0x
 	CLC
 	ADC #3
 	STA missile0x
-.skip20then
+.skip17then
 .skipL039
 .L040 ;;line 133;;  if f = 1 then if e = 0 then missile0x = missile0x  -  3
 
 	LDA f
 	CMP #1
      BNE .skipL040
-.condpart22
+.condpart19
 	LDA e
 	CMP #0
-     BNE .skip22then
-.condpart23
+     BNE .skip19then
+.condpart20
 	LDA missile0x
 	SEC
 	SBC #3
 	STA missile0x
-.skip22then
+.skip19then
 .skipL040
 .L041 ;;line 134;;  if f = 1 then if missile0x  <  1 then f = 0
 
 	LDA f
 	CMP #1
      BNE .skipL041
-.condpart24
+.condpart21
 	LDA missile0x
 	CMP #1
-     BCS .skip24then
-.condpart25
+     BCS .skip21then
+.condpart22
 	LDA #0
 	STA f
-.skip24then
+.skip21then
 .skipL041
 .L042 ;;line 135;;  if f = 1 then if missile0x  >  150 then f = 0
 
 	LDA f
 	CMP #1
      BNE .skipL042
-.condpart26
+.condpart23
 	LDA #150
 	CMP missile0x
-     BCS .skip26then
-.condpart27
+     BCS .skip23then
+.condpart24
 	LDA #0
 	STA f
-.skip26then
+.skip23then
 .skipL042
 .L043 ;;line 136;;  if f = 1 then if collision(missile0,playfield) then f = 0
 
 	LDA f
 	CMP #1
      BNE .skipL043
-.condpart28
+.condpart25
 	bit 	CXM0FB
-	BPL .skip28then
-.condpart29
+	BPL .skip25then
+.condpart26
 	LDA #0
 	STA f
-.skip28then
+.skip25then
 .skipL043
 .L044 ;;line 137;;  if !joy0fire then f = 0
 
  bit INPT4
 	BPL .skipL044
-.condpart30
+.condpart27
 	LDA #0
 	STA f
 .skipL044
@@ -677,29 +659,29 @@ ret_point1
  lda #$20
  bit SWCHA
 	BNE .skipL045
-.condpart31
+.condpart28
 	LDA i
 	CMP #0
-     BNE .skip31then
-.condpart32
+     BNE .skip28then
+.condpart29
 	LDA #0
 	CMP g
-     BCS .skip32then
-.condpart33
+     BCS .skip29then
+.condpart30
 	LDA #1
 	STA i
 	LDA #30
 	STA h
 	DEC g
-.skip32then
-.skip31then
+.skip29then
+.skip28then
 .skipL045
 .L046 ;;line 141;;  if i = 1 then h = h  -  1
 
 	LDA i
 	CMP #1
      BNE .skipL046
-.condpart34
+.condpart31
 	DEC h
 .skipL046
 .L047 ;;line 142;;  if h  <=  0 then i = 0
@@ -707,7 +689,7 @@ ret_point1
 	LDA #0
 	CMP h
      BCC .skipL047
-.condpart35
+.condpart32
 	LDA #0
 	STA i
 .skipL047
@@ -717,53 +699,16 @@ ret_point1
 .
  ;;line 144;; 
 
-.L048 ;;line 145;;  if j  >  0 then j = j  +  k
+.L048 ;;line 145;;  rem if j > 0 then j = j + k
 
-	LDA #0
-	CMP j
-     BCS .skipL048
-.condpart36
-	LDA j
-	CLC
-	ADC k
-	STA j
-.skipL048
-.L049 ;;line 146;;  if j  <  60 then k = 1
+.L049 ;;line 146;;  rem if j < 60 then k = 1
 
-	LDA j
-	CMP #60
-     BCS .skipL049
-.condpart37
-	LDA #1
-	STA k
-.skipL049
-.L050 ;;line 147;;  if j  >  100 then k =  - 1
+.L050 ;;line 147;;  rem if j > 100 then k = -1
 
-	LDA #100
-	CMP j
-     BCS .skipL050
-.condpart38
-	LDA #255
-	STA k
-.skipL050
-.L051 ;;line 148;;  if j  >  0 then player1x = j
+.L051 ;;line 148;;  rem if j > 0 then player1x = j
 
-	LDA #0
-	CMP j
-     BCS .skipL051
-.condpart39
-	LDA j
-	STA player1x
-.skipL051
-.L052 ;;line 149;;  if j  >  0 then player1y = 50
+.L052 ;;line 149;;  rem if j > 0 then player1y = 50
 
-	LDA #0
-	CMP j
-     BCS .skipL052
-.condpart40
-	LDA #50
-	STA player1y
-.skipL052
 .
  ;;line 150;; 
 
@@ -775,7 +720,7 @@ ret_point1
 	LDA d
 	CMP #1
      BNE .skipL053
-.condpart41
+.condpart33
 	DEC c
 .skipL053
 .L054 ;;line 153;;  if c  <=  0 then gosub GameOver
@@ -783,7 +728,7 @@ ret_point1
 	LDA #0
 	CMP c
      BCC .skipL054
-.condpart42
+.condpart34
  jsr .GameOver
 
 .skipL054
@@ -896,7 +841,7 @@ ret_point2
 	LDA #0
 	CMP m
      BCC .skipL070
-.condpart43
+.condpart35
  jsr .GameOver
 
 .skipL070

@@ -71,7 +71,7 @@ end
  a = 72 : b = 40 : c = 100
  d = 0 : e = 1 : f = 0
  g = 6 : h = 0 : i = 0
- j = 120 : k = -1 : m = 4
+ j = 0 : k = -1 : m = 4
  n = 0 : o = 0
  score = 123456
 
@@ -88,11 +88,11 @@ main
  DF2FRACINC = 20
  DF3FRACINC = 20
 
- ; Check laser-spider collision
- if f = 1 then if collision(missile0, player1) then j = 0 : f = 0
+ ; Check laser-spider collision (disabled)
+ rem if f = 1 then if collision(missile0, player1) then j = 0 : f = 0
 
- ; Check player-spider collision
- if collision(player0, player1) then gosub PlayerHit
+ ; Check player-spider collision (disabled)
+ rem if collision(player0, player1) then gosub PlayerHit
 
  ; Store position
  a = player0x
@@ -141,12 +141,12 @@ main
  if i = 1 then h = h - 1
  if h <= 0 then i = 0
 
- ; Spider
- if j > 0 then j = j + k
- if j < 60 then k = 1
- if j > 100 then k = -1
- if j > 0 then player1x = j
- if j > 0 then player1y = 50
+ ; Spider (disabled)
+ rem if j > 0 then j = j + k
+ rem if j < 60 then k = 1
+ rem if j > 100 then k = -1
+ rem if j > 0 then player1x = j
+ rem if j > 0 then player1y = 50
 
  ; Power depletion
  if d = 1 then c = c - 1
