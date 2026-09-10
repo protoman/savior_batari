@@ -145,6 +145,7 @@ main
  COLUPF = $28
  COLUP0 = $C6
  COLUP1 = $1C
+ scorecolor = $04
 
  drawscreen
  goto main
