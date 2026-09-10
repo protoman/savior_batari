@@ -86,6 +86,7 @@ end
 | Problem | Cause | Fix |
 |---------|-------|-----|
 | No playfield visible | Missing DF0FRACINC-3 settings | Set all to same value (e.g., 20) |
+| Player0 not visible | DPC+ resets player0 pointer each frame | **Move player0: definition into main loop** |
 | Score not visible | scorecolors overriding scorecolor | Set all 8 digits in scorecolors |
 | Background wrong color | COLUBK set in main loop | Remove COLUBK, use bkcolors |
 | Bands not covering screen | Wrong number of bkcolors entries | Match entries to visible scanlines |
