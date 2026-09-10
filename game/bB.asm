@@ -771,9 +771,9 @@ ret_point1
 .
  ;;line 155;; 
 
-.L056 ;;line 156;;  COLUBK = $02
+.L056 ;;line 156;;  COLUBK = $04
 
-	LDA #$02
+	LDA #$04
 	STA COLUBK
 .L057 ;;line 157;;  COLUPF = $28
 
@@ -787,9 +787,9 @@ ret_point1
 
 	LDA #$1C
 	STA COLUP1
-.L060 ;;line 160;;  scorecolor = $04
+.L060 ;;line 160;;  scorecolor = $00
 
-	LDA #$04
+	LDA #$00
 	STA scorecolor
 .
  ;;line 161;; 

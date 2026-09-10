@@ -153,11 +153,11 @@ main
  if c <= 0 then gosub GameOver
 
  ; Colors - set every frame
- COLUBK = $02
+ COLUBK = $04
  COLUPF = $28
  COLUP0 = $C6
  COLUP1 = $1C
- scorecolor = $04
+ scorecolor = $00
 
  drawscreen
  goto main
