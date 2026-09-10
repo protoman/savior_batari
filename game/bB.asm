@@ -715,23 +715,10 @@ ret_point1
 .
  ;;line 151;; 
 
-.L053 ;;line 152;;  if d = 1 then c = c  -  1
+.L053 ;;line 152;;  rem if d = 1 then c = c - 1
 
-	LDA d
-	CMP #1
-     BNE .skipL053
-.condpart33
-	DEC c
-.skipL053
-.L054 ;;line 153;;  if c  <=  0 then gosub GameOver
+.L054 ;;line 153;;  rem if c <= 0 then gosub GameOver
 
-	LDA #0
-	CMP c
-     BCC .skipL054
-.condpart34
- jsr .GameOver
-
-.skipL054
 .
  ;;line 154;; 
 
@@ -841,7 +828,7 @@ ret_point2
 	LDA #0
 	CMP m
      BCC .skipL070
-.condpart35
+.condpart33
  jsr .GameOver
 
 .skipL070

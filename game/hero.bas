@@ -148,9 +148,9 @@ main
  rem if j > 0 then player1x = j
  rem if j > 0 then player1y = 50
 
- ; Power depletion
- if d = 1 then c = c - 1
- if c <= 0 then gosub GameOver
+ ; Power depletion (disabled for testing)
+ rem if d = 1 then c = c - 1
+ rem if c <= 0 then gosub GameOver
 
  ; Colors - set every frame
  COLUPF = $28
