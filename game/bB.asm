@@ -8,458 +8,35 @@ game
 .
  ;;line 3;; 
 
-.
- ;;line 4;; 
+.L00 ;;line 4;;  set romsize 16k
+
+.L01 ;;line 5;;  const pfscore = 1
 
 .
- ;;line 5;; 
-
-.LoadRoom0
- ;;line 6;; LoadRoom0
-
-.L00 ;;line 7;;  pfhline 0 0 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #0
-	LDA #0
- jsr pfhline
-.L01 ;;line 8;;  pfhline 0 1 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #1
-	LDA #0
- jsr pfhline
-.L02 ;;line 9;;  pfhline 30 1 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #1
-	LDA #30
- jsr pfhline
-.L03 ;;line 10;;  pfhline 0 2 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #2
-	LDA #0
- jsr pfhline
-.L04 ;;line 11;;  pfhline 30 2 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #2
-	LDA #30
- jsr pfhline
-.L05 ;;line 12;;  pfhline 0 3 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #3
-	LDA #0
- jsr pfhline
-.L06 ;;line 13;;  pfhline 30 3 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #3
-	LDA #30
- jsr pfhline
-.L07 ;;line 14;;  pfhline 0 4 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #4
-	LDA #0
- jsr pfhline
-.L08 ;;line 15;;  pfhline 30 4 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #4
-	LDA #30
- jsr pfhline
-.L09 ;;line 16;;  pfhline 0 5 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #5
-	LDA #0
- jsr pfhline
-.L010 ;;line 17;;  pfhline 30 5 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #5
-	LDA #30
- jsr pfhline
-.L011 ;;line 18;;  pfhline 0 6 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #6
-	LDA #0
- jsr pfhline
-.L012 ;;line 19;;  pfhline 30 6 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #6
-	LDA #30
- jsr pfhline
-.L013 ;;line 20;;  pfhline 0 7 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #7
-	LDA #0
- jsr pfhline
-.L014 ;;line 21;;  pfhline 30 7 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #7
-	LDA #30
- jsr pfhline
-.L015 ;;line 22;;  pfhline 0 8 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #8
-	LDA #0
- jsr pfhline
-.L016 ;;line 23;;  pfhline 30 8 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #8
-	LDA #30
- jsr pfhline
-.L017 ;;line 24;;  pfhline 0 9 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #9
-	LDA #0
- jsr pfhline
-.L018 ;;line 25;;  pfhline 30 9 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #9
-	LDA #30
- jsr pfhline
-.L019 ;;line 26;;  pfhline 0 10 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #10
-	LDA #0
- jsr pfhline
-.L020 ;;line 27;;  pfhline 30 10 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #10
-	LDA #30
- jsr pfhline
-.L021 ;;line 28;;  pfhline 0 11 11 on
-
-	LDX #0
-	LDA #11
-	STA temp3
-	LDY #11
-	LDA #0
- jsr pfhline
-.L022 ;;line 29;;  pfhline 19 11 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #11
-	LDA #19
- jsr pfhline
-.
- ;;line 30;; 
-
-.LoadRoom1
- ;;line 31;; LoadRoom1
-
-.L023 ;;line 32;;  pfhline 0 0 11 on
-
-	LDX #0
-	LDA #11
-	STA temp3
-	LDY #0
-	LDA #0
- jsr pfhline
-.L024 ;;line 33;;  pfhline 19 0 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #0
-	LDA #19
- jsr pfhline
-.L025 ;;line 34;;  pfhline 0 1 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #1
-	LDA #0
- jsr pfhline
-.L026 ;;line 35;;  pfhline 30 1 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #1
-	LDA #30
- jsr pfhline
-.L027 ;;line 36;;  pfhline 0 2 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #2
-	LDA #0
- jsr pfhline
-.L028 ;;line 37;;  pfhline 30 2 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #2
-	LDA #30
- jsr pfhline
-.L029 ;;line 38;;  pfhline 0 3 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #3
-	LDA #0
- jsr pfhline
-.L030 ;;line 39;;  pfhline 30 3 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #3
-	LDA #30
- jsr pfhline
-.L031 ;;line 40;;  pfhline 0 4 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #4
-	LDA #0
- jsr pfhline
-.L032 ;;line 41;;  pfhline 30 4 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #4
-	LDA #30
- jsr pfhline
-.L033 ;;line 42;;  pfhline 0 5 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #5
-	LDA #0
- jsr pfhline
-.L034 ;;line 43;;  pfhline 30 5 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #5
-	LDA #30
- jsr pfhline
-.L035 ;;line 44;;  pfhline 0 6 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #6
-	LDA #0
- jsr pfhline
-.L036 ;;line 45;;  pfhline 30 6 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #6
-	LDA #30
- jsr pfhline
-.L037 ;;line 46;;  pfhline 0 7 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #7
-	LDA #0
- jsr pfhline
-.L038 ;;line 47;;  pfhline 30 7 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #7
-	LDA #30
- jsr pfhline
-.L039 ;;line 48;;  pfhline 0 8 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #8
-	LDA #0
- jsr pfhline
-.L040 ;;line 49;;  pfhline 30 8 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #8
-	LDA #30
- jsr pfhline
-.L041 ;;line 50;;  pfhline 0 9 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #9
-	LDA #0
- jsr pfhline
-.L042 ;;line 51;;  pfhline 30 9 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #9
-	LDA #30
- jsr pfhline
-.L043 ;;line 52;;  pfhline 0 10 0 on
-
-	LDX #0
-	LDA #0
-	STA temp3
-	LDY #10
-	LDA #0
- jsr pfhline
-.L044 ;;line 53;;  pfhline 30 10 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #10
-	LDA #30
- jsr pfhline
-.L045 ;;line 54;;  pfhline 0 11 31 on
-
-	LDX #0
-	LDA #31
-	STA temp3
-	LDY #11
-	LDA #0
- jsr pfhline
-.
- ;;line 55;; 
+ ;;line 6;; 
 
 .
- ;;line 56;; 
-
-.LoadRoom
- ;;line 57;; LoadRoom
-
-.L046 ;;line 58;;  pfclear
-
-	LDA #0
- jsr pfclear
-.L047 ;;line 59;;  if o = 0 then gosub LoadRoom0
-
-	LDA o
-	CMP #0
-     BNE .skipL047
-.condpart0
- jsr .LoadRoom0
-
-.skipL047
-.L048 ;;line 60;;  if o = 1 then gosub LoadRoom1
-
-	LDA o
-	CMP #1
-     BNE .skipL048
-.condpart1
- jsr .LoadRoom1
-
-.skipL048
-.L049 ;;line 61;;  return
-
-	RTS
-.
- ;;line 62;; 
+ ;;line 7;; 
 
 .
- ;;line 63;; 
-
-.L050 ;;line 64;;  set romsize 16k
-
-.L051 ;;line 65;;  const pfscore = 1
+ ;;line 8;; 
 
 .
- ;;line 66;; 
+ ;;line 9;; 
 
 .
- ;;line 67;; 
+ ;;line 10;; 
 
 .
- ;;line 68;; 
+ ;;line 11;; 
 
 .
- ;;line 69;; 
+ ;;line 12;; 
 
 .
- ;;line 70;; 
+ ;;line 13;; 
 
-.
- ;;line 71;; 
-
-.
- ;;line 72;; 
-
-.
- ;;line 73;; 
-
-.L052 ;;line 74;;  a = 72  :  b = 40  :  c = 100
+.L02 ;;line 14;;  a = 72  :  b = 40  :  c = 100
 
 	LDA #72
 	STA a
@@ -467,7 +44,7 @@ game
 	STA b
 	LDA #100
 	STA c
-.L053 ;;line 75;;  d = 0  :  e = 1  :  f = 0
+.L03 ;;line 15;;  d = 0  :  e = 1  :  f = 0
 
 	LDA #0
 	STA d
@@ -475,14 +52,14 @@ game
 	STA e
 	LDA #0
 	STA f
-.L054 ;;line 76;;  g = 6  :  h = 0  :  i = 0
+.L04 ;;line 16;;  g = 6  :  h = 0  :  i = 0
 
 	LDA #6
 	STA g
 	LDA #0
 	STA h
 	STA i
-.L055 ;;line 77;;  j = 120  :  k =  - 1  :  m = 4
+.L05 ;;line 17;;  j = 120  :  k =  - 1  :  m = 4
 
 	LDA #120
 	STA j
@@ -490,18 +67,18 @@ game
 	STA k
 	LDA #4
 	STA m
-.L056 ;;line 78;;  n = 0  :  o = 0
+.L06 ;;line 18;;  n = 0  :  o = 0
 
 	LDA #0
 	STA n
 	STA o
 .
- ;;line 79;; 
+ ;;line 19;; 
 
 .
- ;;line 80;; 
+ ;;line 20;; 
 
-.L057 ;;line 81;;  playfield:
+.L07 ;;line 21;;  playfield:
 
   ifconst pfres
 	  ldx #(11>pfres)*(pfres*pfwidth-1)+(11<=pfres)*43
@@ -560,306 +137,306 @@ pflabel0
 	dex
 	bpl pflabel0
 .
- ;;line 94;; 
+ ;;line 34;; 
 
-.L058 ;;line 95;;  player0:
+.L08 ;;line 35;;  player0:
 
-	LDX #<playerL058_0
+	LDX #<playerL08_0
 	STX player0pointerlo
-	LDA #>playerL058_0
+	LDA #>playerL08_0
 	STA player0pointerhi
 	LDA #10
 	STA player0height
 .
- ;;line 108;; 
+ ;;line 48;; 
 
-.L059 ;;line 109;;  player1:
+.L09 ;;line 49;;  player1:
 
-	LDX #<playerL059_1
+	LDX #<playerL09_1
 	STX player1pointerlo
-	LDA #>playerL059_1
+	LDA #>playerL09_1
 	STA player1pointerhi
 	LDA #10
 	STA player1height
 .
- ;;line 122;; 
+ ;;line 62;; 
 
 .
- ;;line 123;; 
+ ;;line 63;; 
 
-.L060 ;;line 124;;  gosub LoadRoom
+.L010 ;;line 64;;  gosub LoadRoom
 
  jsr .LoadRoom
 
 .
- ;;line 125;; 
+ ;;line 65;; 
 
-.L061 ;;line 126;;  player0x = 80
+.L011 ;;line 66;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L062 ;;line 127;;  player0y = 30
+.L012 ;;line 67;;  player0y = 30
 
 	LDA #30
 	STA player0y
 .
- ;;line 128;; 
+ ;;line 68;; 
 
 .main
- ;;line 129;; main
+ ;;line 69;; main
 
 .
- ;;line 130;; 
+ ;;line 70;; 
 
-.L063 ;;line 131;;  if f = 1 then if collision(missile0,player1) then j = 0  :  f = 0
+.L013 ;;line 71;;  if f = 1 then if collision(missile0,player1) then j = 0  :  f = 0
 
 	LDA f
 	CMP #1
-     BNE .skipL063
-.condpart2
+     BNE .skipL013
+.condpart0
 	bit 	CXM0P
-	BPL .skip2then
-.condpart3
+	BPL .skip0then
+.condpart1
 	LDA #0
 	STA j
 	STA f
-.skip2then
-.skipL063
+.skip0then
+.skipL013
 .
- ;;line 132;; 
+ ;;line 72;; 
 
 .
- ;;line 133;; 
+ ;;line 73;; 
 
-.L064 ;;line 134;;  if collision(player0,player1) then gosub PlayerHit
+.L014 ;;line 74;;  if collision(player0,player1) then gosub PlayerHit
 
 	bit 	CXPPMM
-	BPL .skipL064
-.condpart4
+	BPL .skipL014
+.condpart2
  jsr .PlayerHit
 
-.skipL064
+.skipL014
 .
- ;;line 135;; 
+ ;;line 75;; 
 
 .
- ;;line 136;; 
+ ;;line 76;; 
 
-.L065 ;;line 137;;  a = player0x
+.L015 ;;line 77;;  a = player0x
 
 	LDA player0x
 	STA a
-.L066 ;;line 138;;  b = player0y
+.L016 ;;line 78;;  b = player0y
 
 	LDA player0y
 	STA b
-.L067 ;;line 139;;  d = 0
+.L017 ;;line 79;;  d = 0
 
 	LDA #0
 	STA d
 .
- ;;line 140;; 
+ ;;line 80;; 
 
 .
- ;;line 141;; 
+ ;;line 81;; 
 
-.L068 ;;line 142;;  if joy0left then player0x = player0x  -  1  :  d = 1  :  e = 0
+.L018 ;;line 82;;  if joy0left then player0x = player0x  -  1  :  d = 1  :  e = 0
 
  bit SWCHA
-	BVS .skipL068
-.condpart5
+	BVS .skipL018
+.condpart3
 	DEC player0x
 	LDA #1
 	STA d
 	LDA #0
 	STA e
-.skipL068
-.L069 ;;line 143;;  if joy0right then player0x = player0x  +  1  :  d = 1  :  e = 1
+.skipL018
+.L019 ;;line 83;;  if joy0right then player0x = player0x  +  1  :  d = 1  :  e = 1
 
  bit SWCHA
-	BMI .skipL069
-.condpart6
+	BMI .skipL019
+.condpart4
 	INC player0x
 	LDA #1
 	STA d
 	STA e
-.skipL069
+.skipL019
 .
- ;;line 144;; 
+ ;;line 84;; 
 
 .
- ;;line 145;; 
+ ;;line 85;; 
 
-.L070 ;;line 146;;  if collision(player0,playfield) then player0x = a
+.L020 ;;line 86;;  if collision(player0,playfield) then player0x = a
 
 	bit 	CXP0FB
-	BPL .skipL070
-.condpart7
+	BPL .skipL020
+.condpart5
 	LDA a
 	STA player0x
-.skipL070
+.skipL020
 .
- ;;line 147;; 
+ ;;line 87;; 
 
 .
- ;;line 148;; 
+ ;;line 88;; 
 
-.L071 ;;line 149;;  if joy0up then player0y = player0y  -  1  :  d = 1  :  n = 0
+.L021 ;;line 89;;  if joy0up then player0y = player0y  -  1  :  d = 1  :  n = 0
 
  lda #$10
  bit SWCHA
-	BNE .skipL071
-.condpart8
+	BNE .skipL021
+.condpart6
 	DEC player0y
 	LDA #1
 	STA d
 	LDA #0
 	STA n
-.skipL071
+.skipL021
 .
- ;;line 150;; 
+ ;;line 90;; 
 
 .
- ;;line 151;; 
+ ;;line 91;; 
 
-.L072 ;;line 152;;  if !joy0up then n = n  +  1
+.L022 ;;line 92;;  if !joy0up then n = n  +  1
 
  lda #$10
  bit SWCHA
-	BEQ .skipL072
-.condpart9
+	BEQ .skipL022
+.condpart7
 	INC n
-.skipL072
-.L073 ;;line 153;;  if !joy0up then if n  >=  4 then player0y = player0y  +  1  :  n = 0
+.skipL022
+.L023 ;;line 93;;  if !joy0up then if n  >=  4 then player0y = player0y  +  1  :  n = 0
 
  lda #$10
  bit SWCHA
-	BEQ .skipL073
-.condpart10
+	BEQ .skipL023
+.condpart8
 	LDA n
 	CMP #4
-     BCC .skip10then
-.condpart11
+     BCC .skip8then
+.condpart9
 	INC player0y
 	LDA #0
 	STA n
-.skip10then
-.skipL073
+.skip8then
+.skipL023
 .
- ;;line 154;; 
+ ;;line 94;; 
 
 .
- ;;line 155;; 
+ ;;line 95;; 
 
-.L074 ;;line 156;;  if collision(player0,playfield) then player0y = b
+.L024 ;;line 96;;  if collision(player0,playfield) then player0y = b
 
 	bit 	CXP0FB
-	BPL .skipL074
-.condpart12
+	BPL .skipL024
+.condpart10
 	LDA b
 	STA player0y
-.skipL074
+.skipL024
 .
- ;;line 157;; 
+ ;;line 97;; 
 
 .
- ;;line 158;; 
+ ;;line 98;; 
 
 .
- ;;line 159;; 
+ ;;line 99;; 
 
-.L075 ;;line 160;;  if player0x  >  150 then if o  <  2 then o = o  +  1  :  gosub LoadRoom  :  player0x = 18
+.L025 ;;line 100;;  if player0x  >  150 then if o  <  2 then o = o  +  1  :  gosub LoadRoom  :  player0x = 18
 
 	LDA #150
 	CMP player0x
-     BCS .skipL075
-.condpart13
+     BCS .skipL025
+.condpart11
 	LDA o
 	CMP #2
-     BCS .skip13then
-.condpart14
+     BCS .skip11then
+.condpart12
 	INC o
  jsr .LoadRoom
 	LDA #18
 	STA player0x
-.skip13then
-.skipL075
+.skip11then
+.skipL025
 .
- ;;line 161;; 
+ ;;line 101;; 
 
-.L076 ;;line 162;;  if player0x  <  18 then if o  >  0 then o = o  -  1  :  gosub LoadRoom  :  player0x = 148
+.L026 ;;line 102;;  if player0x  <  18 then if o  >  0 then o = o  -  1  :  gosub LoadRoom  :  player0x = 148
 
 	LDA player0x
 	CMP #18
-     BCS .skipL076
-.condpart15
+     BCS .skipL026
+.condpart13
 	LDA #0
 	CMP o
-     BCS .skip15then
-.condpart16
+     BCS .skip13then
+.condpart14
 	DEC o
  jsr .LoadRoom
 	LDA #148
 	STA player0x
-.skip15then
-.skipL076
+.skip13then
+.skipL026
 .
- ;;line 163;; 
+ ;;line 103;; 
 
 .
- ;;line 164;; 
+ ;;line 104;; 
 
-.L077 ;;line 165;;  if player0x  <  18 then player0x = 18
+.L027 ;;line 105;;  if player0x  <  18 then player0x = 18
 
 	LDA player0x
 	CMP #18
-     BCS .skipL077
-.condpart17
+     BCS .skipL027
+.condpart15
 	LDA #18
 	STA player0x
-.skipL077
-.L078 ;;line 166;;  if player0x  >  148 then player0x = 148
+.skipL027
+.L028 ;;line 106;;  if player0x  >  148 then player0x = 148
 
 	LDA #148
 	CMP player0x
-     BCS .skipL078
-.condpart18
+     BCS .skipL028
+.condpart16
 	LDA #148
 	STA player0x
-.skipL078
-.L079 ;;line 167;;  if player0y  <  10 then player0y = 10
+.skipL028
+.L029 ;;line 107;;  if player0y  <  10 then player0y = 10
 
 	LDA player0y
 	CMP #10
-     BCS .skipL079
-.condpart19
+     BCS .skipL029
+.condpart17
 	LDA #10
 	STA player0y
-.skipL079
-.L080 ;;line 168;;  if player0y  >  80 then player0y = 80
+.skipL029
+.L030 ;;line 108;;  if player0y  >  80 then player0y = 80
 
 	LDA #80
 	CMP player0y
-     BCS .skipL080
-.condpart20
+     BCS .skipL030
+.condpart18
 	LDA #80
 	STA player0y
-.skipL080
+.skipL030
 .
- ;;line 169;; 
+ ;;line 109;; 
 
 .
- ;;line 170;; 
+ ;;line 110;; 
 
-.L081 ;;line 171;;  if joy0fire then if f = 0 then f = 1  :  missile0x = player0x  +  3  :  missile0y = player0y  +  2
+.L031 ;;line 111;;  if joy0fire then if f = 0 then f = 1  :  missile0x = player0x  +  3  :  missile0y = player0y  +  2
 
  bit INPT4
-	BMI .skipL081
-.condpart21
+	BMI .skipL031
+.condpart19
 	LDA f
 	CMP #0
-     BNE .skip21then
-.condpart22
+     BNE .skip19then
+.condpart20
 	LDA #1
 	STA f
 	LDA player0x
@@ -870,401 +447,401 @@ pflabel0
 	CLC
 	ADC #2
 	STA missile0y
-.skip21then
-.skipL081
-.L082 ;;line 172;;  if f = 1 then if e = 1 then missile0x = missile0x  +  3
+.skip19then
+.skipL031
+.L032 ;;line 112;;  if f = 1 then if e = 1 then missile0x = missile0x  +  3
 
 	LDA f
 	CMP #1
-     BNE .skipL082
-.condpart23
+     BNE .skipL032
+.condpart21
 	LDA e
 	CMP #1
-     BNE .skip23then
-.condpart24
+     BNE .skip21then
+.condpart22
 	LDA missile0x
 	CLC
 	ADC #3
 	STA missile0x
-.skip23then
-.skipL082
-.L083 ;;line 173;;  if f = 1 then if e = 0 then missile0x = missile0x  -  3
+.skip21then
+.skipL032
+.L033 ;;line 113;;  if f = 1 then if e = 0 then missile0x = missile0x  -  3
 
 	LDA f
 	CMP #1
-     BNE .skipL083
-.condpart25
+     BNE .skipL033
+.condpart23
 	LDA e
 	CMP #0
-     BNE .skip25then
-.condpart26
+     BNE .skip23then
+.condpart24
 	LDA missile0x
 	SEC
 	SBC #3
 	STA missile0x
-.skip25then
-.skipL083
-.L084 ;;line 174;;  if f = 1 then if missile0x  <  1 then f = 0
+.skip23then
+.skipL033
+.L034 ;;line 114;;  if f = 1 then if missile0x  <  1 then f = 0
 
 	LDA f
 	CMP #1
-     BNE .skipL084
-.condpart27
+     BNE .skipL034
+.condpart25
 	LDA missile0x
 	CMP #1
+     BCS .skip25then
+.condpart26
+	LDA #0
+	STA f
+.skip25then
+.skipL034
+.L035 ;;line 115;;  if f = 1 then if missile0x  >  150 then f = 0
+
+	LDA f
+	CMP #1
+     BNE .skipL035
+.condpart27
+	LDA #150
+	CMP missile0x
      BCS .skip27then
 .condpart28
 	LDA #0
 	STA f
 .skip27then
-.skipL084
-.L085 ;;line 175;;  if f = 1 then if missile0x  >  150 then f = 0
+.skipL035
+.L036 ;;line 116;;  if f = 1 then if collision(missile0,playfield) then f = 0
 
 	LDA f
 	CMP #1
-     BNE .skipL085
+     BNE .skipL036
 .condpart29
-	LDA #150
-	CMP missile0x
-     BCS .skip29then
+	bit 	CXM0FB
+	BPL .skip29then
 .condpart30
 	LDA #0
 	STA f
 .skip29then
-.skipL085
-.L086 ;;line 176;;  if f = 1 then if collision(missile0,playfield) then f = 0
-
-	LDA f
-	CMP #1
-     BNE .skipL086
-.condpart31
-	bit 	CXM0FB
-	BPL .skip31then
-.condpart32
-	LDA #0
-	STA f
-.skip31then
-.skipL086
-.L087 ;;line 177;;  if !joy0fire then f = 0
+.skipL036
+.L037 ;;line 117;;  if !joy0fire then f = 0
 
  bit INPT4
-	BPL .skipL087
-.condpart33
+	BPL .skipL037
+.condpart31
 	LDA #0
 	STA f
-.skipL087
+.skipL037
 .
- ;;line 178;; 
+ ;;line 118;; 
 
 .
- ;;line 179;; 
+ ;;line 119;; 
 
-.L088 ;;line 180;;  if joy0down then if i = 0 then if g  >  0 then i = 1  :  h = 30  :  g = g  -  1
+.L038 ;;line 120;;  if joy0down then if i = 0 then if g  >  0 then i = 1  :  h = 30  :  g = g  -  1
 
  lda #$20
  bit SWCHA
-	BNE .skipL088
-.condpart34
+	BNE .skipL038
+.condpart32
 	LDA i
 	CMP #0
-     BNE .skip34then
-.condpart35
+     BNE .skip32then
+.condpart33
 	LDA #0
 	CMP g
-     BCS .skip35then
-.condpart36
+     BCS .skip33then
+.condpart34
 	LDA #1
 	STA i
 	LDA #30
 	STA h
 	DEC g
-.skip35then
-.skip34then
-.skipL088
-.L089 ;;line 181;;  if i = 1 then h = h  -  1
+.skip33then
+.skip32then
+.skipL038
+.L039 ;;line 121;;  if i = 1 then h = h  -  1
 
 	LDA i
 	CMP #1
-     BNE .skipL089
-.condpart37
+     BNE .skipL039
+.condpart35
 	DEC h
-.skipL089
-.L090 ;;line 182;;  if h  <=  0 then i = 0
+.skipL039
+.L040 ;;line 122;;  if h  <=  0 then i = 0
 
 	LDA #0
 	CMP h
-     BCC .skipL090
-.condpart38
+     BCC .skipL040
+.condpart36
 	LDA #0
 	STA i
-.skipL090
+.skipL040
 .
- ;;line 183;; 
+ ;;line 123;; 
 
 .
- ;;line 184;; 
+ ;;line 124;; 
 
-.L091 ;;line 185;;  if j  >  0 then j = j  +  k
+.L041 ;;line 125;;  if j  >  0 then j = j  +  k
 
 	LDA #0
 	CMP j
-     BCS .skipL091
-.condpart39
+     BCS .skipL041
+.condpart37
 	LDA j
 	CLC
 	ADC k
 	STA j
-.skipL091
-.L092 ;;line 186;;  if j  <  40 then k = 1
+.skipL041
+.L042 ;;line 126;;  if j  <  40 then k = 1
 
 	LDA j
 	CMP #40
-     BCS .skipL092
-.condpart40
+     BCS .skipL042
+.condpart38
 	LDA #1
 	STA k
-.skipL092
-.L093 ;;line 187;;  if j  >  120 then k =  - 1
+.skipL042
+.L043 ;;line 127;;  if j  >  120 then k =  - 1
 
 	LDA #120
 	CMP j
-     BCS .skipL093
-.condpart41
+     BCS .skipL043
+.condpart39
 	LDA #255
 	STA k
-.skipL093
-.L094 ;;line 188;;  if j  >  0 then player1x = j
+.skipL043
+.L044 ;;line 128;;  if j  >  0 then player1x = j
 
 	LDA #0
 	CMP j
-     BCS .skipL094
-.condpart42
+     BCS .skipL044
+.condpart40
 	LDA j
 	STA player1x
-.skipL094
-.L095 ;;line 189;;  if j  >  0 then player1y = 50
+.skipL044
+.L045 ;;line 129;;  if j  >  0 then player1y = 50
 
 	LDA #0
 	CMP j
-     BCS .skipL095
-.condpart43
+     BCS .skipL045
+.condpart41
 	LDA #50
 	STA player1y
-.skipL095
+.skipL045
 .
- ;;line 190;; 
+ ;;line 130;; 
 
 .
- ;;line 191;; 
+ ;;line 131;; 
 
-.L096 ;;line 192;;  if d = 1 then c = c  -  1
+.L046 ;;line 132;;  if d = 1 then c = c  -  1
 
 	LDA d
 	CMP #1
-     BNE .skipL096
-.condpart44
+     BNE .skipL046
+.condpart42
 	DEC c
-.skipL096
-.L097 ;;line 193;;  if c  <=  0 then gosub GameOver
+.skipL046
+.L047 ;;line 133;;  if c  <=  0 then gosub GameOver
 
 	LDA #0
 	CMP c
-     BCC .skipL097
-.condpart45
+     BCC .skipL047
+.condpart43
  jsr .GameOver
 
-.skipL097
+.skipL047
 .
- ;;line 194;; 
+ ;;line 134;; 
 
 .
- ;;line 195;; 
+ ;;line 135;; 
 
-.L098 ;;line 196;;  pfscore1 = 0
+.L048 ;;line 136;;  pfscore1 = 0
 
 	LDA #0
 	STA pfscore1
-.L099 ;;line 197;;  if m = 4 then pfscore1 = 31
+.L049 ;;line 137;;  if m = 4 then pfscore1 = 31
 
 	LDA m
 	CMP #4
-     BNE .skipL099
-.condpart46
+     BNE .skipL049
+.condpart44
 	LDA #31
 	STA pfscore1
-.skipL099
-.L0100 ;;line 198;;  if m = 3 then pfscore1 = 15
+.skipL049
+.L050 ;;line 138;;  if m = 3 then pfscore1 = 15
 
 	LDA m
 	CMP #3
-     BNE .skipL0100
-.condpart47
+     BNE .skipL050
+.condpart45
 	LDA #15
 	STA pfscore1
-.skipL0100
-.L0101 ;;line 199;;  if m = 2 then pfscore1 = 7
+.skipL050
+.L051 ;;line 139;;  if m = 2 then pfscore1 = 7
 
 	LDA m
 	CMP #2
-     BNE .skipL0101
-.condpart48
+     BNE .skipL051
+.condpart46
 	LDA #7
 	STA pfscore1
-.skipL0101
-.L0102 ;;line 200;;  if m = 1 then pfscore1 = 3
+.skipL051
+.L052 ;;line 140;;  if m = 1 then pfscore1 = 3
 
 	LDA m
 	CMP #1
-     BNE .skipL0102
-.condpart49
+     BNE .skipL052
+.condpart47
 	LDA #3
 	STA pfscore1
-.skipL0102
-.L0103 ;;line 201;;  if m = 0 then pfscore1 = 0
+.skipL052
+.L053 ;;line 141;;  if m = 0 then pfscore1 = 0
 
 	LDA m
 	CMP #0
-     BNE .skipL0103
-.condpart50
+     BNE .skipL053
+.condpart48
 	LDA #0
 	STA pfscore1
-.skipL0103
+.skipL053
 .
- ;;line 202;; 
+ ;;line 142;; 
 
-.L0104 ;;line 203;;  pfscore2 = 0
+.L054 ;;line 143;;  pfscore2 = 0
 
 	LDA #0
 	STA pfscore2
-.L0105 ;;line 204;;  if c  >  87 then pfscore2 = 255
+.L055 ;;line 144;;  if c  >  87 then pfscore2 = 255
 
 	LDA #87
 	CMP c
-     BCS .skipL0105
-.condpart51
+     BCS .skipL055
+.condpart49
 	LDA #255
 	STA pfscore2
-.skipL0105
-.L0106 ;;line 205;;  if c  >  75 then pfscore2 = 224
+.skipL055
+.L056 ;;line 145;;  if c  >  75 then pfscore2 = 224
 
 	LDA #75
 	CMP c
-     BCS .skipL0106
-.condpart52
+     BCS .skipL056
+.condpart50
 	LDA #224
 	STA pfscore2
-.skipL0106
-.L0107 ;;line 206;;  if c  >  62 then pfscore2 = 192
+.skipL056
+.L057 ;;line 146;;  if c  >  62 then pfscore2 = 192
 
 	LDA #62
 	CMP c
-     BCS .skipL0107
-.condpart53
+     BCS .skipL057
+.condpart51
 	LDA #192
 	STA pfscore2
-.skipL0107
-.L0108 ;;line 207;;  if c  >  50 then pfscore2 = 160
+.skipL057
+.L058 ;;line 147;;  if c  >  50 then pfscore2 = 160
 
 	LDA #50
 	CMP c
-     BCS .skipL0108
-.condpart54
+     BCS .skipL058
+.condpart52
 	LDA #160
 	STA pfscore2
-.skipL0108
-.L0109 ;;line 208;;  if c  >  37 then pfscore2 = 128
+.skipL058
+.L059 ;;line 148;;  if c  >  37 then pfscore2 = 128
 
 	LDA #37
 	CMP c
-     BCS .skipL0109
-.condpart55
+     BCS .skipL059
+.condpart53
 	LDA #128
 	STA pfscore2
-.skipL0109
-.L0110 ;;line 209;;  if c  >  25 then pfscore2 = 96
+.skipL059
+.L060 ;;line 149;;  if c  >  25 then pfscore2 = 96
 
 	LDA #25
 	CMP c
-     BCS .skipL0110
-.condpart56
+     BCS .skipL060
+.condpart54
 	LDA #96
 	STA pfscore2
-.skipL0110
-.L0111 ;;line 210;;  if c  >  12 then pfscore2 = 64
+.skipL060
+.L061 ;;line 150;;  if c  >  12 then pfscore2 = 64
 
 	LDA #12
 	CMP c
-     BCS .skipL0111
-.condpart57
+     BCS .skipL061
+.condpart55
 	LDA #64
 	STA pfscore2
-.skipL0111
-.L0112 ;;line 211;;  if c  >  6 then pfscore2 = 32
+.skipL061
+.L062 ;;line 151;;  if c  >  6 then pfscore2 = 32
 
 	LDA #6
 	CMP c
-     BCS .skipL0112
-.condpart58
+     BCS .skipL062
+.condpart56
 	LDA #32
 	STA pfscore2
-.skipL0112
-.L0113 ;;line 212;;  if c  >  3 then pfscore2 = 16
+.skipL062
+.L063 ;;line 152;;  if c  >  3 then pfscore2 = 16
 
 	LDA #3
 	CMP c
-     BCS .skipL0113
-.condpart59
+     BCS .skipL063
+.condpart57
 	LDA #16
 	STA pfscore2
-.skipL0113
-.L0114 ;;line 213;;  if c  >  0 then pfscore2 = 8
+.skipL063
+.L064 ;;line 153;;  if c  >  0 then pfscore2 = 8
 
 	LDA #0
 	CMP c
-     BCS .skipL0114
-.condpart60
+     BCS .skipL064
+.condpart58
 	LDA #8
 	STA pfscore2
-.skipL0114
-.L0115 ;;line 214;;  if c = 0 then pfscore2 = 0
+.skipL064
+.L065 ;;line 154;;  if c = 0 then pfscore2 = 0
 
 	LDA c
 	CMP #0
-     BNE .skipL0115
-.condpart61
+     BNE .skipL065
+.condpart59
 	LDA #0
 	STA pfscore2
-.skipL0115
+.skipL065
 .
- ;;line 215;; 
+ ;;line 155;; 
 
 .
- ;;line 216;; 
+ ;;line 156;; 
 
-.L0116 ;;line 217;;  COLUBK = $02
+.L066 ;;line 157;;  COLUBK = $02
 
 	LDA #$02
 	STA COLUBK
-.L0117 ;;line 218;;  COLUPF = $28
+.L067 ;;line 158;;  COLUPF = $28
 
 	LDA #$28
 	STA COLUPF
-.L0118 ;;line 219;;  COLUP0 = $C6
+.L068 ;;line 159;;  COLUP0 = $C6
 
 	LDA #$C6
 	STA COLUP0
-.L0119 ;;line 220;;  COLUP1 = $1C
+.L069 ;;line 160;;  COLUP1 = $1C
 
 	LDA #$1C
 	STA COLUP1
-.L0120 ;;line 221;;  scorecolor = $36
+.L070 ;;line 161;;  scorecolor = $36
 
 	LDA #$36
 	STA scorecolor
 .
- ;;line 222;; 
+ ;;line 162;; 
 
-.L0121 ;;line 223;;  drawscreen
+.L071 ;;line 163;;  drawscreen
 
  sta temp7
  lda #>(ret_point1-1)
@@ -1282,49 +859,49 @@ pflabel0
  ldx #4
  jmp BS_jsr
 ret_point1
-.L0122 ;;line 224;;  goto main
+.L072 ;;line 164;;  goto main
 
  jmp .main
 
 .
- ;;line 225;; 
+ ;;line 165;; 
 
 .PlayerHit
- ;;line 226;; PlayerHit
+ ;;line 166;; PlayerHit
 
-.L0123 ;;line 227;;  COLUBK = $34
+.L073 ;;line 167;;  COLUBK = $34
 
 	LDA #$34
 	STA COLUBK
-.L0124 ;;line 228;;  m = m  -  1
+.L074 ;;line 168;;  m = m  -  1
 
 	DEC m
-.L0125 ;;line 229;;  player0x = 80
+.L075 ;;line 169;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L0126 ;;line 230;;  player0y = 30
+.L076 ;;line 170;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L0127 ;;line 231;;  j = 0
+.L077 ;;line 171;;  j = 0
 
 	LDA #0
 	STA j
-.L0128 ;;line 232;;  COLUBK = $02
+.L078 ;;line 172;;  COLUBK = $02
 
 	LDA #$02
 	STA COLUBK
-.L0129 ;;line 233;;  if m  <=  0 then gosub GameOver
+.L079 ;;line 173;;  if m  <=  0 then gosub GameOver
 
 	LDA #0
 	CMP m
-     BCC .skipL0129
-.condpart62
+     BCC .skipL079
+.condpart60
  jsr .GameOver
 
-.skipL0129
-.L0130 ;;line 234;;  return
+.skipL079
+.L080 ;;line 174;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1334,40 +911,40 @@ ret_point1
 	JMP BS_return
 	RTS
 .
- ;;line 235;; 
+ ;;line 175;; 
 
 .GameOver
- ;;line 236;; GameOver
+ ;;line 176;; GameOver
 
-.L0131 ;;line 237;;  c = 100
+.L081 ;;line 177;;  c = 100
 
 	LDA #100
 	STA c
-.L0132 ;;line 238;;  g = 6
+.L082 ;;line 178;;  g = 6
 
 	LDA #6
 	STA g
-.L0133 ;;line 239;;  m = 4
+.L083 ;;line 179;;  m = 4
 
 	LDA #4
 	STA m
-.L0134 ;;line 240;;  o = 0
+.L084 ;;line 180;;  o = 0
 
 	LDA #0
 	STA o
-.L0135 ;;line 241;;  player0x = 80
+.L085 ;;line 181;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L0136 ;;line 242;;  player0y = 30
+.L086 ;;line 182;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L0137 ;;line 243;;  gosub LoadRoom
+.L087 ;;line 183;;  gosub LoadRoom
 
  jsr .LoadRoom
 
-.L0138 ;;line 244;;  return
+.L088 ;;line 184;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1376,6 +953,1152 @@ ret_point1
 	beq *+5 ; if equal, do normal return
 	JMP BS_return
 	RTS
+.
+ ;;line 185;; 
+
+.LoadRoom
+ ;;line 186;; LoadRoom
+
+.L089 ;;line 187;;  pfclear
+
+	LDA #0
+ sta temp7
+ lda #>(ret_point2-1)
+ pha
+ lda #<(ret_point2-1)
+ pha
+ lda #>(pfclear-1)
+ pha
+ lda #<(pfclear-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point2
+.L090 ;;line 188;;  if o = 0 then gosub LoadRoom0
+
+	LDA o
+	CMP #0
+     BNE .skipL090
+.condpart61
+ jsr .LoadRoom0
+
+.skipL090
+.L091 ;;line 189;;  if o = 1 then gosub LoadRoom1
+
+	LDA o
+	CMP #1
+     BNE .skipL091
+.condpart62
+ jsr .LoadRoom1
+
+.skipL091
+.L092 ;;line 190;;  return
+
+	tsx
+	lda 2,x ; check return address
+	eor #(>*) ; vs. current PCH
+	and #$E0 ;  mask off all but top 3 bits
+	beq *+5 ; if equal, do normal return
+	JMP BS_return
+	RTS
+.
+ ;;line 191;; 
+
+.
+ ;;line 192;; 
+
+.LoadRoom0
+ ;;line 193;; LoadRoom0
+
+.L093 ;;line 194;;  pfhline 0 0 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #0
+	LDA #0
+ sta temp7
+ lda #>(ret_point3-1)
+ pha
+ lda #<(ret_point3-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point3
+.L094 ;;line 195;;  pfhline 0 1 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #1
+	LDA #0
+ sta temp7
+ lda #>(ret_point4-1)
+ pha
+ lda #<(ret_point4-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point4
+.L095 ;;line 196;;  pfhline 30 1 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #1
+	LDA #30
+ sta temp7
+ lda #>(ret_point5-1)
+ pha
+ lda #<(ret_point5-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point5
+.L096 ;;line 197;;  pfhline 0 2 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #2
+	LDA #0
+ sta temp7
+ lda #>(ret_point6-1)
+ pha
+ lda #<(ret_point6-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point6
+.L097 ;;line 198;;  pfhline 30 2 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #2
+	LDA #30
+ sta temp7
+ lda #>(ret_point7-1)
+ pha
+ lda #<(ret_point7-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point7
+.L098 ;;line 199;;  pfhline 0 3 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #3
+	LDA #0
+ sta temp7
+ lda #>(ret_point8-1)
+ pha
+ lda #<(ret_point8-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point8
+.L099 ;;line 200;;  pfhline 30 3 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #3
+	LDA #30
+ sta temp7
+ lda #>(ret_point9-1)
+ pha
+ lda #<(ret_point9-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point9
+.L0100 ;;line 201;;  pfhline 0 4 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #4
+	LDA #0
+ sta temp7
+ lda #>(ret_point10-1)
+ pha
+ lda #<(ret_point10-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point10
+.L0101 ;;line 202;;  pfhline 30 4 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #4
+	LDA #30
+ sta temp7
+ lda #>(ret_point11-1)
+ pha
+ lda #<(ret_point11-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point11
+.L0102 ;;line 203;;  pfhline 0 5 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #5
+	LDA #0
+ sta temp7
+ lda #>(ret_point12-1)
+ pha
+ lda #<(ret_point12-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point12
+.L0103 ;;line 204;;  pfhline 30 5 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #5
+	LDA #30
+ sta temp7
+ lda #>(ret_point13-1)
+ pha
+ lda #<(ret_point13-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point13
+.L0104 ;;line 205;;  pfhline 0 6 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #6
+	LDA #0
+ sta temp7
+ lda #>(ret_point14-1)
+ pha
+ lda #<(ret_point14-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point14
+.L0105 ;;line 206;;  pfhline 30 6 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #6
+	LDA #30
+ sta temp7
+ lda #>(ret_point15-1)
+ pha
+ lda #<(ret_point15-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point15
+.L0106 ;;line 207;;  pfhline 0 7 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #7
+	LDA #0
+ sta temp7
+ lda #>(ret_point16-1)
+ pha
+ lda #<(ret_point16-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point16
+.L0107 ;;line 208;;  pfhline 30 7 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #7
+	LDA #30
+ sta temp7
+ lda #>(ret_point17-1)
+ pha
+ lda #<(ret_point17-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point17
+.L0108 ;;line 209;;  pfhline 0 8 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #8
+	LDA #0
+ sta temp7
+ lda #>(ret_point18-1)
+ pha
+ lda #<(ret_point18-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point18
+.L0109 ;;line 210;;  pfhline 30 8 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #8
+	LDA #30
+ sta temp7
+ lda #>(ret_point19-1)
+ pha
+ lda #<(ret_point19-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point19
+.L0110 ;;line 211;;  pfhline 0 9 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #9
+	LDA #0
+ sta temp7
+ lda #>(ret_point20-1)
+ pha
+ lda #<(ret_point20-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point20
+.L0111 ;;line 212;;  pfhline 30 9 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #9
+	LDA #30
+ sta temp7
+ lda #>(ret_point21-1)
+ pha
+ lda #<(ret_point21-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point21
+.L0112 ;;line 213;;  pfhline 0 10 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #10
+	LDA #0
+ sta temp7
+ lda #>(ret_point22-1)
+ pha
+ lda #<(ret_point22-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point22
+.L0113 ;;line 214;;  pfhline 30 10 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #10
+	LDA #30
+ sta temp7
+ lda #>(ret_point23-1)
+ pha
+ lda #<(ret_point23-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point23
+.L0114 ;;line 215;;  pfhline 0 11 11 on
+
+	LDX #0
+	LDA #11
+	STA temp3
+	LDY #11
+	LDA #0
+ sta temp7
+ lda #>(ret_point24-1)
+ pha
+ lda #<(ret_point24-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point24
+.L0115 ;;line 216;;  pfhline 19 11 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #11
+	LDA #19
+ sta temp7
+ lda #>(ret_point25-1)
+ pha
+ lda #<(ret_point25-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point25
+.L0116 ;;line 217;;  return
+
+	tsx
+	lda 2,x ; check return address
+	eor #(>*) ; vs. current PCH
+	and #$E0 ;  mask off all but top 3 bits
+	beq *+5 ; if equal, do normal return
+	JMP BS_return
+	RTS
+.
+ ;;line 218;; 
+
+.LoadRoom1
+ ;;line 219;; LoadRoom1
+
+.L0117 ;;line 220;;  pfhline 0 0 11 on
+
+	LDX #0
+	LDA #11
+	STA temp3
+	LDY #0
+	LDA #0
+ sta temp7
+ lda #>(ret_point26-1)
+ pha
+ lda #<(ret_point26-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point26
+.L0118 ;;line 221;;  pfhline 19 0 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #0
+	LDA #19
+ sta temp7
+ lda #>(ret_point27-1)
+ pha
+ lda #<(ret_point27-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point27
+.L0119 ;;line 222;;  pfhline 0 1 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #1
+	LDA #0
+ sta temp7
+ lda #>(ret_point28-1)
+ pha
+ lda #<(ret_point28-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point28
+.L0120 ;;line 223;;  pfhline 30 1 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #1
+	LDA #30
+ sta temp7
+ lda #>(ret_point29-1)
+ pha
+ lda #<(ret_point29-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point29
+.L0121 ;;line 224;;  pfhline 0 2 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #2
+	LDA #0
+ sta temp7
+ lda #>(ret_point30-1)
+ pha
+ lda #<(ret_point30-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point30
+.L0122 ;;line 225;;  pfhline 30 2 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #2
+	LDA #30
+ sta temp7
+ lda #>(ret_point31-1)
+ pha
+ lda #<(ret_point31-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point31
+.L0123 ;;line 226;;  pfhline 0 3 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #3
+	LDA #0
+ sta temp7
+ lda #>(ret_point32-1)
+ pha
+ lda #<(ret_point32-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point32
+.L0124 ;;line 227;;  pfhline 30 3 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #3
+	LDA #30
+ sta temp7
+ lda #>(ret_point33-1)
+ pha
+ lda #<(ret_point33-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point33
+.L0125 ;;line 228;;  pfhline 0 4 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #4
+	LDA #0
+ sta temp7
+ lda #>(ret_point34-1)
+ pha
+ lda #<(ret_point34-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point34
+.L0126 ;;line 229;;  pfhline 30 4 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #4
+	LDA #30
+ sta temp7
+ lda #>(ret_point35-1)
+ pha
+ lda #<(ret_point35-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point35
+.L0127 ;;line 230;;  pfhline 0 5 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #5
+	LDA #0
+ sta temp7
+ lda #>(ret_point36-1)
+ pha
+ lda #<(ret_point36-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point36
+.L0128 ;;line 231;;  pfhline 30 5 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #5
+	LDA #30
+ sta temp7
+ lda #>(ret_point37-1)
+ pha
+ lda #<(ret_point37-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point37
+.L0129 ;;line 232;;  pfhline 0 6 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #6
+	LDA #0
+ sta temp7
+ lda #>(ret_point38-1)
+ pha
+ lda #<(ret_point38-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point38
+.L0130 ;;line 233;;  pfhline 30 6 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #6
+	LDA #30
+ sta temp7
+ lda #>(ret_point39-1)
+ pha
+ lda #<(ret_point39-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point39
+.L0131 ;;line 234;;  pfhline 0 7 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #7
+	LDA #0
+ sta temp7
+ lda #>(ret_point40-1)
+ pha
+ lda #<(ret_point40-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point40
+.L0132 ;;line 235;;  pfhline 30 7 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #7
+	LDA #30
+ sta temp7
+ lda #>(ret_point41-1)
+ pha
+ lda #<(ret_point41-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point41
+.L0133 ;;line 236;;  pfhline 0 8 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #8
+	LDA #0
+ sta temp7
+ lda #>(ret_point42-1)
+ pha
+ lda #<(ret_point42-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point42
+.L0134 ;;line 237;;  pfhline 30 8 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #8
+	LDA #30
+ sta temp7
+ lda #>(ret_point43-1)
+ pha
+ lda #<(ret_point43-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point43
+.L0135 ;;line 238;;  pfhline 0 9 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #9
+	LDA #0
+ sta temp7
+ lda #>(ret_point44-1)
+ pha
+ lda #<(ret_point44-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point44
+.L0136 ;;line 239;;  pfhline 30 9 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #9
+	LDA #30
+ sta temp7
+ lda #>(ret_point45-1)
+ pha
+ lda #<(ret_point45-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point45
+.L0137 ;;line 240;;  pfhline 0 10 0 on
+
+	LDX #0
+	LDA #0
+	STA temp3
+	LDY #10
+	LDA #0
+ sta temp7
+ lda #>(ret_point46-1)
+ pha
+ lda #<(ret_point46-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point46
+.L0138 ;;line 241;;  pfhline 30 10 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #10
+	LDA #30
+ sta temp7
+ lda #>(ret_point47-1)
+ pha
+ lda #<(ret_point47-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point47
+.L0139 ;;line 242;;  pfhline 0 11 31 on
+
+	LDX #0
+	LDA #31
+	STA temp3
+	LDY #11
+	LDA #0
+ sta temp7
+ lda #>(ret_point48-1)
+ pha
+ lda #<(ret_point48-1)
+ pha
+ lda #>(pfhline-1)
+ pha
+ lda #<(pfhline-1)
+ pha
+ lda temp7
+ pha
+ txa
+ pha
+ ldx #4
+ jmp BS_jsr
+ret_point48
+.L0140 ;;line 243;;  return
+
+	tsx
+	lda 2,x ; check return address
+	eor #(>*) ; vs. current PCH
+	and #$E0 ;  mask off all but top 3 bits
+	beq *+5 ; if equal, do normal return
+	JMP BS_return
+	RTS
+.
+ ;;line 244;; 
+
  if ECHO1
  echo "    ",[(start_bank1 - *)]d , "bytes of ROM space left in bank 1")
  endif
@@ -1562,7 +2285,7 @@ start_bank3 ldx #$ff
 	.byte 0
 	repend
 	endif
-playerL058_0
+playerL08_0
 	.byte  %00111100
 	.byte  %01111110
 	.byte  %01111110
@@ -1579,7 +2302,7 @@ playerL058_0
 	.byte 0
 	repend
 	endif
-playerL059_1
+playerL09_1
 	.byte  %00000000
 	.byte  %01000010
 	.byte  %10100101

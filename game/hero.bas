@@ -1,66 +1,6 @@
 ; Savior - H.E.R.O. Atari 2600 Clone
 ; 16K with bankswitching
 
- ; Include level data FIRST (bB requires includes before other commands)
-; ROOM_CODE_START
-LoadRoom0
-  pfhline 0 0 31 on
-  pfhline 0 1 0 on
-  pfhline 30 1 31 on
-  pfhline 0 2 0 on
-  pfhline 30 2 31 on
-  pfhline 0 3 0 on
-  pfhline 30 3 31 on
-  pfhline 0 4 0 on
-  pfhline 30 4 31 on
-  pfhline 0 5 0 on
-  pfhline 30 5 31 on
-  pfhline 0 6 0 on
-  pfhline 30 6 31 on
-  pfhline 0 7 0 on
-  pfhline 30 7 31 on
-  pfhline 0 8 0 on
-  pfhline 30 8 31 on
-  pfhline 0 9 0 on
-  pfhline 30 9 31 on
-  pfhline 0 10 0 on
-  pfhline 30 10 31 on
-  pfhline 0 11 11 on
-  pfhline 19 11 31 on
-
-LoadRoom1
-  pfhline 0 0 11 on
-  pfhline 19 0 31 on
-  pfhline 0 1 0 on
-  pfhline 30 1 31 on
-  pfhline 0 2 0 on
-  pfhline 30 2 31 on
-  pfhline 0 3 0 on
-  pfhline 30 3 31 on
-  pfhline 0 4 0 on
-  pfhline 30 4 31 on
-  pfhline 0 5 0 on
-  pfhline 30 5 31 on
-  pfhline 0 6 0 on
-  pfhline 30 6 31 on
-  pfhline 0 7 0 on
-  pfhline 30 7 31 on
-  pfhline 0 8 0 on
-  pfhline 30 8 31 on
-  pfhline 0 9 0 on
-  pfhline 30 9 31 on
-  pfhline 0 10 0 on
-  pfhline 30 10 31 on
-  pfhline 0 11 31 on
-
-; Room dispatcher - set 'o' to room index
-LoadRoom
-  pfclear
-  if o = 0 then gosub LoadRoom0
-  if o = 1 then gosub LoadRoom1
-  return
-; ROOM_CODE_END
-
  set romsize 16k
  const pfscore = 1
 
@@ -242,3 +182,63 @@ GameOver
  player0y = 30
  gosub LoadRoom
  return
+
+LoadRoom
+ pfclear
+ if o = 0 then gosub LoadRoom0
+ if o = 1 then gosub LoadRoom1
+ return
+
+; ROOM_CODE_START
+LoadRoom0
+  pfhline 0 0 31 on
+  pfhline 0 1 0 on
+  pfhline 30 1 31 on
+  pfhline 0 2 0 on
+  pfhline 30 2 31 on
+  pfhline 0 3 0 on
+  pfhline 30 3 31 on
+  pfhline 0 4 0 on
+  pfhline 30 4 31 on
+  pfhline 0 5 0 on
+  pfhline 30 5 31 on
+  pfhline 0 6 0 on
+  pfhline 30 6 31 on
+  pfhline 0 7 0 on
+  pfhline 30 7 31 on
+  pfhline 0 8 0 on
+  pfhline 30 8 31 on
+  pfhline 0 9 0 on
+  pfhline 30 9 31 on
+  pfhline 0 10 0 on
+  pfhline 30 10 31 on
+  pfhline 0 11 11 on
+  pfhline 19 11 31 on
+  return
+
+LoadRoom1
+  pfhline 0 0 11 on
+  pfhline 19 0 31 on
+  pfhline 0 1 0 on
+  pfhline 30 1 31 on
+  pfhline 0 2 0 on
+  pfhline 30 2 31 on
+  pfhline 0 3 0 on
+  pfhline 30 3 31 on
+  pfhline 0 4 0 on
+  pfhline 30 4 31 on
+  pfhline 0 5 0 on
+  pfhline 30 5 31 on
+  pfhline 0 6 0 on
+  pfhline 30 6 31 on
+  pfhline 0 7 0 on
+  pfhline 30 7 31 on
+  pfhline 0 8 0 on
+  pfhline 30 8 31 on
+  pfhline 0 9 0 on
+  pfhline 30 9 31 on
+  pfhline 0 10 0 on
+  pfhline 30 10 31 on
+  pfhline 0 11 31 on
+  return
+; ROOM_CODE_END
