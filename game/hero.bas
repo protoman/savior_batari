@@ -1,8 +1,7 @@
 ; Savior - H.E.R.O. Atari 2600 Clone
 ; DPC+ kernel for asymmetric playfield
 
- set kernel DPC+skip constants
- const pfscore = 1
+ set kernel DPC+
 
  ; Variables:
  ; a = lastPlayerX, b = lastPlayerY, c = powerGauge
@@ -74,6 +73,12 @@ end
  player0y = 30
 
 main
+ ; Set DPC+ playfield fractional increments (required each frame)
+ DF0FRACINC = 16
+ DF1FRACINC = 16
+ DF2FRACINC = 16
+ DF3FRACINC = 32
+
  ; Check laser-spider collision
  if f = 1 then if collision(missile0, player1) then j = 0 : f = 0
 
@@ -139,33 +144,11 @@ main
  if d = 1 then c = c - 1
  if c <= 0 then gosub GameOver
 
- ; HUD
- pfscore1 = 0
- if m = 4 then pfscore1 = 31
- if m = 3 then pfscore1 = 15
- if m = 2 then pfscore1 = 7
- if m = 1 then pfscore1 = 3
- if m = 0 then pfscore1 = 0
-
- pfscore2 = 0
- if c > 87 then pfscore2 = 255
- if c > 75 then pfscore2 = 224
- if c > 62 then pfscore2 = 192
- if c > 50 then pfscore2 = 160
- if c > 37 then pfscore2 = 128
- if c > 25 then pfscore2 = 96
- if c > 12 then pfscore2 = 64
- if c > 6 then pfscore2 = 32
- if c > 3 then pfscore2 = 16
- if c > 0 then pfscore2 = 8
- if c = 0 then pfscore2 = 0
-
  ; Colors - set every frame
  COLUBK = $02
  COLUPF = $28
  COLUP0 = $C6
  COLUP1 = $1C
- scorecolor = $36
 
  drawscreen
  goto main
