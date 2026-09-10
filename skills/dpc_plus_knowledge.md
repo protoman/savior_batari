@@ -89,6 +89,7 @@ end
 | Player0 not visible | DPC+ resets player0 pointer each frame | **Move player0: definition into main loop** |
 | Collision not working | Missing kernel_options or wrong order | **Add `set kernel_options collision(playfield,player0)` and use `collision(playfield, player0)` order** |
 | Score not visible | scorecolors overriding scorecolor | Set all 8 digits in scorecolors |
+| Player penetrates walls 1-2px | **Hardware collision reads previous frame** | **Normal 2600 behavior — all games have this** |
 | Background wrong color | COLUBK set in main loop | Remove COLUBK, use bkcolors |
 | Bands not covering screen | Wrong number of bkcolors entries | Match entries to visible scanlines |
 | Playfield too tall/short | Wrong DF0FRACINC value | Adjust (lower=taller, higher=shorter) |
