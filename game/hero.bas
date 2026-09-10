@@ -98,23 +98,24 @@ main
  a = player0x
  b = player0y
  d = 0
+ p = 0
 
  ; Horizontal movement
- if joy0left then player0x = player0x - 1 : d = 1 : e = 0
- if joy0right then player0x = player0x + 1 : d = 1 : e = 1
+ if joy0left then player0x = player0x - 1 : d = 1 : e = 0 : p = 1
+ if joy0right then player0x = player0x + 1 : d = 1 : e = 1 : p = 1
 
- ; Check horizontal collision
- if collision(playfield, player0) then player0x = a
+ ; Check horizontal collision (only if moved)
+ if p = 1 then if collision(playfield, player0) then player0x = a
 
  ; Vertical movement
- if joy0up then player0y = player0y - 1 : d = 1 : n = 0
+ if joy0up then player0y = player0y - 1 : d = 1 : n = 0 : p = 1
 
  ; Gravity
  if !joy0up then n = n + 1
- if !joy0up then if n >= 2 then player0y = player0y + 1 : n = 0
+ if !joy0up then if n >= 2 then player0y = player0y + 1 : n = 0 : p = 1
 
- ; Check vertical collision
- if collision(playfield, player0) then player0y = b
+ ; Check vertical collision (only if moved)
+ if p = 1 then if collision(playfield, player0) then player0y = b
 
  ; Room transitions
  ; Right edge -> next room
