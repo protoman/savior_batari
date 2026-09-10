@@ -103,8 +103,8 @@ main
  if joy0left then player0x = player0x - 1 : d = 1 : e = 0
  if joy0right then player0x = player0x + 1 : d = 1 : e = 1
 
- ; Check horizontal collision (disabled for testing)
- rem if collision(playfield, player0) then player0x = a
+ ; Check horizontal collision
+ if collision(playfield, player0) then player0x = a
 
  ; Vertical movement
  if joy0up then player0y = player0y - 1 : d = 1 : n = 0
@@ -113,8 +113,8 @@ main
  if !joy0up then n = n + 1
  if !joy0up then if n >= 2 then player0y = player0y + 1 : n = 0
 
- ; Check vertical collision (disabled for testing)
- rem if collision(playfield, player0) then player0y = b
+ ; Check vertical collision
+ if collision(playfield, player0) then player0y = b
 
  ; Room transitions
  ; Right edge -> next room
@@ -349,25 +349,18 @@ LoadRoom
 LoadRoom0
   pfhline 0 0 31 on
   pfhline 0 1 0 on
-  pfhline 14 1 17 on
   pfhline 31 1 31 on
   pfhline 0 2 0 on
-  pfhline 14 2 17 on
   pfhline 31 2 31 on
   pfhline 0 3 0 on
-  pfhline 14 3 17 on
   pfhline 31 3 31 on
   pfhline 0 4 0 on
-  pfhline 14 4 17 on
   pfhline 31 4 31 on
   pfhline 0 5 0 on
-  pfhline 14 5 17 on
   pfhline 31 5 31 on
   pfhline 0 6 0 on
-  pfhline 14 6 17 on
   pfhline 31 6 31 on
   pfhline 0 7 3 on
-  pfhline 14 7 17 on
   pfhline 28 7 31 on
   pfhline 0 8 0 on
   pfhline 10 8 21 on
