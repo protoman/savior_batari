@@ -124,6 +124,20 @@ If you remove entries from Band 7, Band 8 shifts UP. If you add entries, Band 8 
 
 **Alignment key:** Blue/gray position is determined by cumulative entry count. To shift blue/gray DOWN, increase black entries. To shift UP, decrease black entries.
 
+**Fine-tuning:** Each entry = 1 scanline = 1 pixel. To shift by N pixels, add/remove N entries from the band before the target band.
+
+**Position calculation method:**
+1. Count pixels from top of screen to playfield bottom (P pixels)
+2. Count pixels from playfield bottom to desired blue-gray transition (T pixels)
+3. Black entries = P
+4. Blue entries = T
+5. Gray entries = Total entries - Black - Blue
+
+Example: If playfield bottom is at 70% of screen (70 entries), and blue should be 6 pixels tall, then:
+- Black = 70 entries
+- Blue = 6 entries
+- Gray = remaining entries
+
 **Warning:** Removing "spacer" bands (like $14 or $02) that were positioned correctly will break alignment. When removing spacer entries, compensate by adding same number of entries to adjacent band.
 
 ### 7. HUD Pool Band (Water/Lava)
