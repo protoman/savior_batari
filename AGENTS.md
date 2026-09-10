@@ -9,6 +9,8 @@
 
 Clone of Activision's **H.E.R.O. (Helicopter Emergency Rescue Operation)** for Atari 2600, built with Batari Basic (bB). Must run on original hardware.
 
+**DPC+ Kernel:** See `skills/dpc_plus_knowledge.md` for critical DPC+ development patterns (playfield, bkcolors, score, common pitfalls).
+
 **Original Game (1984):**
 - Designer: John Van Ryzin
 - Genre: Vertical platformer / action-adventure
