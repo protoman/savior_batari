@@ -158,21 +158,21 @@ ret_point1
 	STA DF0LOW
 	lda #((>scoredata) & $0f)
 	STA DF0HI
-	lda #$04
+	lda #$00
 	sta DF0WRITE
-	lda #$04
+	lda #$00
 	sta DF0WRITE
-	lda #$04
+	lda #$00
 	sta DF0WRITE
-	lda #$04
+	lda #$00
 	sta DF0WRITE
-	lda #$04
+	lda #$00
 	sta DF0WRITE
-	lda #$04
+	lda #$00
 	sta DF0WRITE
-	lda #$04
+	lda #$00
 	sta DF0WRITE
-	lda #$04
+	lda #$00
 	sta DF0WRITE
 .
  ;;line 40;; 
@@ -771,9 +771,9 @@ ret_point1
 .
  ;;line 155;; 
 
-.L056 ;;line 156;;  COLUBK = $04
+.L056 ;;line 156;;  COLUBK = $02
 
-	LDA #$04
+	LDA #$02
 	STA COLUBK
 .L057 ;;line 157;;  COLUPF = $28
 

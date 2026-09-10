@@ -3,6 +3,7 @@
 ## IMPORTANT RULES
 
 - **Never change data formats (room dimensions, row counts, column counts, file formats) without explicit user approval first.** Always ask before suggesting format changes.
+- **If you cannot do exactly what the user asked, ask before doing something different.** Do not assume an alternative approach is acceptable.
 
 ## Project Overview
 

@@ -28,14 +28,14 @@ end
 end
 
  scorecolors:
- $04
- $04
- $04
- $04
- $04
- $04
- $04
- $04
+ $00
+ $00
+ $00
+ $00
+ $00
+ $00
+ $00
+ $00
 end
 
  player0:
@@ -153,7 +153,7 @@ main
  if c <= 0 then gosub GameOver
 
  ; Colors - set every frame
- COLUBK = $04
+ COLUBK = $02
  COLUPF = $28
  COLUP0 = $C6
  COLUP1 = $1C
