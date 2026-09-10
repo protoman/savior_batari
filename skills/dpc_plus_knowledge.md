@@ -91,6 +91,37 @@ end
 | Bands not covering screen | Wrong number of bkcolors entries | Match entries to visible scanlines |
 | Playfield too tall/short | Wrong DF0FRACINC value | Adjust (lower=taller, higher=shorter) |
 | Code overflow bank 1 | DPC+ kernel is large | Use `goto bank2` for game code |
+| HUD alignment wrong | Spacer entries changed count | **See Alignment section below** |
+
+### 6. bkcolors Alignment — Critical Lesson
+
+**Problem:** When adjusting bkcolors bands, changing the number of entries in one band shifts all subsequent bands up/down.
+
+**Root Cause:** bkcolors entries are sequential scanlines. Each entry = 1 scanline. The position of each band is determined by the cumulative count of all previous entries.
+
+**Example:**
+```
+Band 1: 10 entries ($00) → scanlines 0-9
+Band 2: 10 entries ($00) → scanlines 10-19
+...
+Band 8: 24 entries ($04) → scanlines XX-YY
+```
+If you remove entries from Band 7, Band 8 shifts UP. If you add entries, Band 8 shifts DOWN.
+
+**How to fix alignment:**
+1. Count total entries needed (screen height in scanlines)
+2. Calculate playfield area entries (playfield_rows × scanlines_per_row)
+3. Remaining entries = HUD area
+4. Do NOT change entry counts in earlier bands when adjusting later bands
+5. If you need to shift a band, change ONLY the band immediately before it
+
+**Current working config (DF0FRACINC=20):**
+- Total entries: 111
+- Black ($00): 80 entries → playfield area
+- Gray ($04): 31 entries → HUD area
+- Gray starts at scanline 80, ends at scanline 111
+
+**Warning:** Removing "spacer" bands (like $14 or $02) that were positioned correctly will break alignment. When removing spacer entries, compensate by adding same number of entries to adjacent band.
 
 ### 6. Memory Map
 
@@ -115,3 +146,21 @@ The HUD area (below playfield) requires:
 2. bkcolors entries for HUD area (gray)
 3. Total entries must fill entire screen (~176 scanlines)
 4. Gray entries start after last playfield row
+
+**Alignment formula:**
+```
+Total entries = Playfield entries + HUD entries
+Playfield entries = playfield_rows × scanlines_per_row
+HUD entries = Total entries - Playfield entries
+```
+
+**For DF0FRACINC=20:**
+- Playfield rows: ~9
+- Scanlines per row: ~13
+- Playfield entries: ~117
+- HUD entries: remaining to fill screen
+
+**To shift HUD band position:**
+- Add N entries to last playfield band → HUD shifts DOWN by N
+- Remove N entries from last playfield band → HUD shifts UP by N
+- Do NOT change earlier bands when adjusting position
