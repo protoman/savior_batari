@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Convert level JSON to bB room subroutines using pfhline (works with DPC+)."""
+"""Convert level JSON to bB room subroutines using pfhline (DPC+ asymmetric playfield).
+
+Editor has 16 columns, mirrored to 32 in display.
+DPC+ playfield is 32 independent columns, so we must mirror left→right.
+"""
 import json, os, sys, re
 
 def is_wall(tile):
@@ -11,7 +15,6 @@ def generate_level_code(json_path):
 
     level = data.get("level", data)
     rooms = level.get("rooms", [])
-    pf_w = 32
 
     lines = []
     for r, room in enumerate(rooms):
@@ -21,21 +24,25 @@ def generate_level_code(json_path):
 
         lines.append("LoadRoom{}".format(r))
         for y in range(room_h):
-            x = 0
-            while x < room_w:
-                idx = y * room_w + x
+            # Build a 32-column bitmap for this row (left half from editor, right half mirrored)
+            row_bits = [0] * 32
+            for gx in range(room_w):
+                idx = y * room_w + gx
                 if idx < len(tiles) and is_wall(tiles[idx]):
+                    # Map grid column to left-half bB column
+                    bx = (gx * 16) // room_w
+                    row_bits[bx] = 1
+                    # Mirror to right half
+                    row_bits[31 - bx] = 1
+
+            # Convert runs of 1s into pfhline calls
+            x = 0
+            while x < 32:
+                if row_bits[x]:
                     start = x
-                    while x < room_w:
-                        idx = y * room_w + x
-                        if idx >= len(tiles) or not is_wall(tiles[idx]):
-                            break
+                    while x < 32 and row_bits[x]:
                         x += 1
-                    end = x
-                    pf_x1 = (start * pf_w) // room_w
-                    pf_x2 = ((end) * pf_w) // room_w - 1
-                    if pf_x2 >= pf_x1:
-                        lines.append("  pfhline {} {} {} on".format(pf_x1, y, pf_x2))
+                    lines.append("  pfhline {} {} {} on".format(start, y, x - 1))
                 else:
                     x += 1
         lines.append("  return")

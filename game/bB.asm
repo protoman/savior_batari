@@ -909,7 +909,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L078 ;;line 177;;  pfhline 0 1 1 on
+.L078 ;;line 177;;  pfhline 0 1 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -917,7 +917,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #1
 	STY DF0WRITE
@@ -925,7 +925,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L079 ;;line 178;;  pfhline 6 1 7 on
+.L079 ;;line 178;;  pfhline 3 1 3 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -933,367 +933,15 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #7
+	LDA #3
 	STA DF0WRITE
 	LDY #1
 	STY DF0WRITE
-	LDA #6
+	LDA #3
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L080 ;;line 179;;  pfhline 22 1 23 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #23
-	STA DF0WRITE
-	LDY #1
-	STY DF0WRITE
-	LDA #22
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L081 ;;line 180;;  pfhline 30 1 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #1
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L082 ;;line 181;;  pfhline 0 2 1 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #1
-	STA DF0WRITE
-	LDY #2
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L083 ;;line 182;;  pfhline 6 2 7 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #7
-	STA DF0WRITE
-	LDY #2
-	STY DF0WRITE
-	LDA #6
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L084 ;;line 183;;  pfhline 22 2 23 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #23
-	STA DF0WRITE
-	LDY #2
-	STY DF0WRITE
-	LDA #22
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L085 ;;line 184;;  pfhline 30 2 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #2
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L086 ;;line 185;;  pfhline 0 3 1 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #1
-	STA DF0WRITE
-	LDY #3
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L087 ;;line 186;;  pfhline 30 3 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #3
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L088 ;;line 187;;  pfhline 0 4 7 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #7
-	STA DF0WRITE
-	LDY #4
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L089 ;;line 188;;  pfhline 30 4 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #4
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L090 ;;line 189;;  pfhline 0 5 1 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #1
-	STA DF0WRITE
-	LDY #5
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L091 ;;line 190;;  pfhline 30 5 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #5
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L092 ;;line 191;;  pfhline 0 6 1 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #1
-	STA DF0WRITE
-	LDY #6
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L093 ;;line 192;;  pfhline 30 6 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #6
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L094 ;;line 193;;  pfhline 0 7 7 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #7
-	STA DF0WRITE
-	LDY #7
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L095 ;;line 194;;  pfhline 30 7 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #7
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L096 ;;line 195;;  pfhline 0 8 1 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #1
-	STA DF0WRITE
-	LDY #8
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L097 ;;line 196;;  pfhline 20 8 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #8
-	STY DF0WRITE
-	LDA #20
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L098 ;;line 197;;  pfhline 0 9 1 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #1
-	STA DF0WRITE
-	LDY #9
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L099 ;;line 198;;  pfhline 30 9 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #9
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L0100 ;;line 199;;  pfhline 0 10 1 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #1
-	STA DF0WRITE
-	LDY #10
-	STY DF0WRITE
-	LDA #0
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L0101 ;;line 200;;  pfhline 30 10 31 on
-
-	lda #<C_function
-	sta DF0LOW
-	lda #(>C_function) & $0F
-	sta DF0HI
-	LDX #8
-	STX DF0WRITE
-	LDA #31
-	STA DF0WRITE
-	LDY #10
-	STY DF0WRITE
-	LDA #30
-	STA DF0WRITE
-	lda #255
-	sta CALLFUNCTION
-.L0102 ;;line 201;;  pfhline 0 11 11 on
+.L080 ;;line 179;;  pfhline 11 1 11 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1303,13 +951,605 @@ ret_point2
 	STX DF0WRITE
 	LDA #11
 	STA DF0WRITE
+	LDY #1
+	STY DF0WRITE
+	LDA #11
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L081 ;;line 180;;  pfhline 15 1 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #1
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L082 ;;line 181;;  pfhline 20 1 20 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #20
+	STA DF0WRITE
+	LDY #1
+	STY DF0WRITE
+	LDA #20
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L083 ;;line 182;;  pfhline 28 1 28 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #28
+	STA DF0WRITE
+	LDY #1
+	STY DF0WRITE
+	LDA #28
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L084 ;;line 183;;  pfhline 31 1 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #1
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L085 ;;line 184;;  pfhline 0 2 0 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L086 ;;line 185;;  pfhline 3 2 3 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #3
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #3
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L087 ;;line 186;;  pfhline 11 2 11 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #11
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #11
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L088 ;;line 187;;  pfhline 15 2 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L089 ;;line 188;;  pfhline 20 2 20 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #20
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #20
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L090 ;;line 189;;  pfhline 28 2 28 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #28
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #28
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L091 ;;line 190;;  pfhline 31 2 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L092 ;;line 191;;  pfhline 0 3 0 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	LDY #3
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L093 ;;line 192;;  pfhline 15 3 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #3
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L094 ;;line 193;;  pfhline 31 3 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #3
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L095 ;;line 194;;  pfhline 0 4 3 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #3
+	STA DF0WRITE
+	LDY #4
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L096 ;;line 195;;  pfhline 15 4 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #4
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L097 ;;line 196;;  pfhline 28 4 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #4
+	STY DF0WRITE
+	LDA #28
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L098 ;;line 197;;  pfhline 0 5 0 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	LDY #5
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L099 ;;line 198;;  pfhline 15 5 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #5
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0100 ;;line 199;;  pfhline 31 5 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #5
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0101 ;;line 200;;  pfhline 0 6 0 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	LDY #6
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0102 ;;line 201;;  pfhline 15 6 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #6
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0103 ;;line 202;;  pfhline 31 6 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #6
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0104 ;;line 203;;  pfhline 0 7 3 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #3
+	STA DF0WRITE
+	LDY #7
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0105 ;;line 204;;  pfhline 15 7 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #7
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0106 ;;line 205;;  pfhline 28 7 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #7
+	STY DF0WRITE
+	LDA #28
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0107 ;;line 206;;  pfhline 0 8 0 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	LDY #8
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0108 ;;line 207;;  pfhline 10 8 21 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #21
+	STA DF0WRITE
+	LDY #8
+	STY DF0WRITE
+	LDA #10
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0109 ;;line 208;;  pfhline 31 8 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #8
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0110 ;;line 209;;  pfhline 0 9 0 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	LDY #9
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0111 ;;line 210;;  pfhline 15 9 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #9
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0112 ;;line 211;;  pfhline 31 9 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #9
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0113 ;;line 212;;  pfhline 0 10 0 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	LDY #10
+	STY DF0WRITE
+	LDA #0
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0114 ;;line 213;;  pfhline 15 10 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #10
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0115 ;;line 214;;  pfhline 31 10 31 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	LDY #10
+	STY DF0WRITE
+	LDA #31
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0116 ;;line 215;;  pfhline 0 11 5 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #5
+	STA DF0WRITE
 	LDY #11
 	STY DF0WRITE
 	LDA #0
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0103 ;;line 202;;  pfhline 20 11 31 on
+.L0117 ;;line 216;;  pfhline 10 11 21 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #21
+	STA DF0WRITE
+	LDY #11
+	STY DF0WRITE
+	LDA #10
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0118 ;;line 217;;  pfhline 26 11 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1321,11 +1561,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #11
 	STY DF0WRITE
-	LDA #20
+	LDA #26
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0104 ;;line 203;;  return
+.L0119 ;;line 218;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1335,12 +1575,12 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 204;; 
+ ;;line 219;; 
 
 .LoadRoom1
- ;;line 205;; LoadRoom1
+ ;;line 220;; LoadRoom1
 
-.L0105 ;;line 206;;  pfhline 0 0 11 on
+.L0120 ;;line 221;;  pfhline 0 0 5 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1348,7 +1588,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #11
+	LDA #5
 	STA DF0WRITE
 	LDY #0
 	STY DF0WRITE
@@ -1356,7 +1596,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0106 ;;line 207;;  pfhline 20 0 31 on
+.L0121 ;;line 222;;  pfhline 10 0 21 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #21
+	STA DF0WRITE
+	LDY #0
+	STY DF0WRITE
+	LDA #10
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0122 ;;line 223;;  pfhline 26 0 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1368,11 +1624,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #0
 	STY DF0WRITE
-	LDA #20
+	LDA #26
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0107 ;;line 208;;  pfhline 0 1 1 on
+.L0123 ;;line 224;;  pfhline 0 1 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1380,7 +1636,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #1
 	STY DF0WRITE
@@ -1388,7 +1644,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0108 ;;line 209;;  pfhline 30 1 31 on
+.L0124 ;;line 225;;  pfhline 15 1 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #1
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0125 ;;line 226;;  pfhline 31 1 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1400,11 +1672,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #1
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0109 ;;line 210;;  pfhline 0 2 1 on
+.L0126 ;;line 227;;  pfhline 0 2 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1412,7 +1684,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #2
 	STY DF0WRITE
@@ -1420,7 +1692,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0110 ;;line 211;;  pfhline 30 2 31 on
+.L0127 ;;line 228;;  pfhline 15 2 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #2
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0128 ;;line 229;;  pfhline 31 2 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1432,11 +1720,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #2
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0111 ;;line 212;;  pfhline 0 3 1 on
+.L0129 ;;line 230;;  pfhline 0 3 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1444,7 +1732,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #3
 	STY DF0WRITE
@@ -1452,7 +1740,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0112 ;;line 213;;  pfhline 30 3 31 on
+.L0130 ;;line 231;;  pfhline 15 3 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #3
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0131 ;;line 232;;  pfhline 31 3 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1464,11 +1768,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #3
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0113 ;;line 214;;  pfhline 0 4 1 on
+.L0132 ;;line 233;;  pfhline 0 4 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1476,7 +1780,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #4
 	STY DF0WRITE
@@ -1484,7 +1788,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0114 ;;line 215;;  pfhline 30 4 31 on
+.L0133 ;;line 234;;  pfhline 15 4 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #4
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0134 ;;line 235;;  pfhline 31 4 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1496,11 +1816,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #4
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0115 ;;line 216;;  pfhline 0 5 1 on
+.L0135 ;;line 236;;  pfhline 0 5 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1508,7 +1828,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #5
 	STY DF0WRITE
@@ -1516,7 +1836,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0116 ;;line 217;;  pfhline 30 5 31 on
+.L0136 ;;line 237;;  pfhline 15 5 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #5
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0137 ;;line 238;;  pfhline 31 5 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1528,11 +1864,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #5
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0117 ;;line 218;;  pfhline 0 6 1 on
+.L0138 ;;line 239;;  pfhline 0 6 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1540,7 +1876,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #6
 	STY DF0WRITE
@@ -1548,7 +1884,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0118 ;;line 219;;  pfhline 30 6 31 on
+.L0139 ;;line 240;;  pfhline 15 6 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #6
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0140 ;;line 241;;  pfhline 31 6 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1560,11 +1912,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #6
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0119 ;;line 220;;  pfhline 0 7 1 on
+.L0141 ;;line 242;;  pfhline 0 7 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1572,7 +1924,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #7
 	STY DF0WRITE
@@ -1580,7 +1932,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0120 ;;line 221;;  pfhline 30 7 31 on
+.L0142 ;;line 243;;  pfhline 15 7 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #7
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0143 ;;line 244;;  pfhline 31 7 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1592,11 +1960,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #7
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0121 ;;line 222;;  pfhline 0 8 1 on
+.L0144 ;;line 245;;  pfhline 0 8 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1604,7 +1972,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #8
 	STY DF0WRITE
@@ -1612,7 +1980,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0122 ;;line 223;;  pfhline 30 8 31 on
+.L0145 ;;line 246;;  pfhline 15 8 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #8
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0146 ;;line 247;;  pfhline 31 8 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1624,11 +2008,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #8
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0123 ;;line 224;;  pfhline 0 9 1 on
+.L0147 ;;line 248;;  pfhline 0 9 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1636,7 +2020,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #9
 	STY DF0WRITE
@@ -1644,7 +2028,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0124 ;;line 225;;  pfhline 30 9 31 on
+.L0148 ;;line 249;;  pfhline 15 9 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #9
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0149 ;;line 250;;  pfhline 31 9 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1656,11 +2056,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #9
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0125 ;;line 226;;  pfhline 0 10 1 on
+.L0150 ;;line 251;;  pfhline 0 10 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1668,7 +2068,7 @@ ret_point2
 	sta DF0HI
 	LDX #8
 	STX DF0WRITE
-	LDA #1
+	LDA #0
 	STA DF0WRITE
 	LDY #10
 	STY DF0WRITE
@@ -1676,7 +2076,23 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0126 ;;line 227;;  pfhline 30 10 31 on
+.L0151 ;;line 252;;  pfhline 15 10 16 on
+
+	lda #<C_function
+	sta DF0LOW
+	lda #(>C_function) & $0F
+	sta DF0HI
+	LDX #8
+	STX DF0WRITE
+	LDA #16
+	STA DF0WRITE
+	LDY #10
+	STY DF0WRITE
+	LDA #15
+	STA DF0WRITE
+	lda #255
+	sta CALLFUNCTION
+.L0152 ;;line 253;;  pfhline 31 10 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1688,11 +2104,11 @@ ret_point2
 	STA DF0WRITE
 	LDY #10
 	STY DF0WRITE
-	LDA #30
+	LDA #31
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0127 ;;line 228;;  pfhline 0 11 31 on
+.L0153 ;;line 254;;  pfhline 0 11 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1708,7 +2124,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0128 ;;line 229;;  return
+.L0154 ;;line 255;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1718,9 +2134,9 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 230;; 
+ ;;line 256;; 
 
-.L0129 ;;line 231;;  return
+.L0155 ;;line 257;;  return
 
 	tsx
 	lda 2,x ; check return address
