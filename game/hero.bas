@@ -159,6 +159,7 @@ main
  COLUP0 = $C6
  COLUP1 = $1C
  scorecolor = $36
+ CTRLPF = $01
 
  drawscreen
  goto main
