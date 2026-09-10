@@ -2,6 +2,7 @@
 ; DPC+ kernel with dynamic room loading
 
  set kernel DPC+
+ set kernel_options collision(playfield,player0)
 
  goto start bank2
 
@@ -103,7 +104,7 @@ main
  if joy0right then player0x = player0x + 1 : d = 1 : e = 1
 
  ; Check horizontal collision
- if collision(player0, playfield) then player0x = a
+ if collision(playfield, player0) then player0x = a
 
  ; Vertical movement
  if joy0up then player0y = player0y - 1 : d = 1 : n = 0
@@ -113,7 +114,7 @@ main
  if !joy0up then if n >= 4 then player0y = player0y + 1 : n = 0
 
  ; Check vertical collision
- if collision(player0, playfield) then player0y = b
+ if collision(playfield, player0) then player0y = b
 
  ; Room transitions
  ; Right edge -> next room
