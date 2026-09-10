@@ -293,12 +293,20 @@ end
 
  drawscreen
 
- ; Check collision AFTER drawscreen (like the example)
- ; When moving straight up and hitting ceiling, only undo vertical (allows sliding sideways)
- ; When moving diagonally, undo both to prevent passing through side walls
- if collision(player0, playfield) then if d = 255 && p = 0 then player0y = player0y - d
- if collision(player0, playfield) then if d <> 255 || p <> 0 then player0x = player0x - p
- if collision(player0, playfield) then if d <> 255 || p <> 0 then player0y = player0y - d
+ ; Read collision ONCE after drawscreen, store in flag
+ ; (DPC+ collision register may only be reliable on first read)
+ q = 0
+ if collision(player0, playfield) then q = 1
+
+ ; j = last frame's collision (0=was free, 1=was already touching)
+ ; New collision (j=0): undo both axes — walked into something
+ if j = 0 then if q = 1 then player0x = player0x - p
+ if j = 0 then if q = 1 then player0y = player0y - d
+ ; Ongoing collision (j=1): undo vertical only — gravity on platform is expected
+ if j = 1 then if q = 1 then player0y = player0y - d
+
+ ; Save collision state for next frame
+ j = q
 
  ; Boundaries
  if player0x < 18 then player0x = 18
