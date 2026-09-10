@@ -82,10 +82,10 @@ end
 
 main
  ; Set DPC+ playfield fractional increments
- DF0FRACINC = 16
- DF1FRACINC = 16
- DF2FRACINC = 16
- DF3FRACINC = 16
+ DF0FRACINC = 20
+ DF1FRACINC = 20
+ DF2FRACINC = 20
+ DF3FRACINC = 20
 
  ; Check laser-spider collision
  if f = 1 then if collision(missile0, player1) then j = 0 : f = 0

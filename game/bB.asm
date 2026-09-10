@@ -280,21 +280,21 @@ ret_point1
 .
  ;;line 84;; 
 
-.L017 ;;line 85;;  DF0FRACINC = 16
+.L017 ;;line 85;;  DF0FRACINC = 20
 
-	LDA #16
+	LDA #20
 	STA DF0FRACINC
-.L018 ;;line 86;;  DF1FRACINC = 16
+.L018 ;;line 86;;  DF1FRACINC = 20
 
-	LDA #16
+	LDA #20
 	STA DF1FRACINC
-.L019 ;;line 87;;  DF2FRACINC = 16
+.L019 ;;line 87;;  DF2FRACINC = 20
 
-	LDA #16
+	LDA #20
 	STA DF2FRACINC
-.L020 ;;line 88;;  DF3FRACINC = 16
+.L020 ;;line 88;;  DF3FRACINC = 20
 
-	LDA #16
+	LDA #20
 	STA DF3FRACINC
 .
  ;;line 89;; 
