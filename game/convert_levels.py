@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Convert level JSON to bB room subroutines using pfhline."""
+"""Convert level JSON to bB room subroutines using pfhline (works with DPC+)."""
 import json, os, sys, re
 
 def is_wall(tile):
@@ -77,7 +77,7 @@ def main():
     if inject_level(hero_path, level_code):
         print("Injected OK")
     else:
-        print("Inject FAILED (markers not found - already injected)")
+        print("Inject FAILED (markers not found)")
 
 if __name__ == '__main__':
     main()

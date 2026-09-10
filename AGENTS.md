@@ -1,5 +1,9 @@
 # Savior - H.E.R.O. Atari 2600 Clone
 
+## IMPORTANT RULES
+
+- **Never change data formats (room dimensions, row counts, column counts, file formats) without explicit user approval first.** Always ask before suggesting format changes.
+
 ## Project Overview
 
 Clone of Activision's **H.E.R.O. (Helicopter Emergency Rescue Operation)** for Atari 2600, built with Batari Basic (bB). Must run on original hardware.

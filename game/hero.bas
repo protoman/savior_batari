@@ -1,7 +1,7 @@
 ; Savior - H.E.R.O. Atari 2600 Clone
-; 16K with bankswitching
+; DPC+ kernel for asymmetric playfield
 
- set romsize 16k
+ set kernel DPC+skip constants
  const pfscore = 1
 
  ; Variables:
@@ -11,11 +11,10 @@
  ; j = spiderX, k = spiderDir, m = lives
  ; n = gravityTimer, o = currentRoom
 
- a = 72 : b = 40 : c = 100
- d = 0 : e = 1 : f = 0
- g = 6 : h = 0 : i = 0
- j = 120 : k = -1 : m = 4
- n = 0 : o = 0
+ goto start bank2
+
+ bank 2
+start
 
  ; Default playfield
  playfield:
@@ -60,6 +59,13 @@ end
  %00000000
  %00000000
 end
+
+ ; Variables init
+ a = 72 : b = 40 : c = 100
+ d = 0 : e = 1 : f = 0
+ g = 6 : h = 0 : i = 0
+ j = 120 : k = -1 : m = 4
+ n = 0 : o = 0
 
  ; Load first room
  gosub LoadRoom
@@ -186,11 +192,7 @@ GameOver
 
 LoadRoom
  pfclear
- if o = 0 then gosub LoadRoom0
- if o = 1 then gosub LoadRoom1
- return
-
-; ROOM_CODE_START
+ ; ROOM_CODE_START
 LoadRoom0
   pfhline 0 0 31 on
   pfhline 0 1 1 on
@@ -247,3 +249,4 @@ LoadRoom1
   pfhline 0 11 31 on
   return
 ; ROOM_CODE_END
+ return
