@@ -177,36 +177,55 @@ ret_point1
 .
  ;;line 40;; 
 
-.L06 ;;line 41;;  player0:
+.L06 ;;line 41;;  bkcolors:
 
-	LDX #<playerL06_0
+	LDA #<BKCOLS
+	STA DF0LOW
+	LDA #(>BKCOLS) & $0F
+	STA DF0HI
+	LDA #<backgroundcolorL06
+	STA PARAMETER
+	LDA #((>backgroundcolorL06) & $0f) | (((>backgroundcolorL06) / 2) & $70)
+	STA PARAMETER
+	LDA #0
+	STA PARAMETER
+	LDA #24
+	STA PARAMETER
+	LDA #1
+	STA CALLFUNCTION
+.
+ ;;line 67;; 
+
+.L07 ;;line 68;;  player0:
+
+	LDX #<playerL07_0
 	STX player0pointerlo
-	LDA #((>playerL06_0) & $0f) | (((>playerL06_0) / 2) & $70)
+	LDA #((>playerL07_0) & $0f) | (((>playerL07_0) / 2) & $70)
 	STA player0pointerhi
 	LDA #11
 	STA player0height
 .
- ;;line 54;; 
+ ;;line 81;; 
 
-.L07 ;;line 55;;  player1:
+.L08 ;;line 82;;  player1:
 
 	lda #<(playerpointers+0)
 	sta DF0LOW
 	lda #(>(playerpointers+0)) & $0F
 	sta DF0HI
-	LDX #<playerL07_1
+	LDX #<playerL08_1
 	STX DF0WRITE
-	LDA #((>playerL07_1) & $0f) | (((>playerL07_1) / 2) & $70)
+	LDA #((>playerL08_1) & $0f) | (((>playerL08_1) / 2) & $70)
 	STA DF0WRITE
 	LDA #11
 	STA player1height
 .
- ;;line 68;; 
+ ;;line 95;; 
 
 .
- ;;line 69;; 
+ ;;line 96;; 
 
-.L08 ;;line 70;;  a = 72  :  b = 40  :  c = 100
+.L09 ;;line 97;;  a = 72  :  b = 40  :  c = 100
 
 	LDA #72
 	STA a
@@ -214,7 +233,7 @@ ret_point1
 	STA b
 	LDA #100
 	STA c
-.L09 ;;line 71;;  d = 0  :  e = 1  :  f = 0
+.L010 ;;line 98;;  d = 0  :  e = 1  :  f = 0
 
 	LDA #0
 	STA d
@@ -222,14 +241,14 @@ ret_point1
 	STA e
 	LDA #0
 	STA f
-.L010 ;;line 72;;  g = 6  :  h = 0  :  i = 0
+.L011 ;;line 99;;  g = 6  :  h = 0  :  i = 0
 
 	LDA #6
 	STA g
 	LDA #0
 	STA h
 	STA i
-.L011 ;;line 73;;  j = 120  :  k =  - 1  :  m = 4
+.L012 ;;line 100;;  j = 120  :  k =  - 1  :  m = 4
 
 	LDA #120
 	STA j
@@ -237,12 +256,12 @@ ret_point1
 	STA k
 	LDA #4
 	STA m
-.L012 ;;line 74;;  n = 0  :  o = 0
+.L013 ;;line 101;;  n = 0  :  o = 0
 
 	LDA #0
 	STA n
 	STA o
-.L013 ;;line 75;;  score = 123456
+.L014 ;;line 102;;  score = 123456
 
 	LDA #$56
 	STA score+2
@@ -251,62 +270,62 @@ ret_point1
 	LDA #$12
 	STA score
 .
- ;;line 76;; 
+ ;;line 103;; 
 
 .
- ;;line 77;; 
+ ;;line 104;; 
 
-.L014 ;;line 78;;  gosub LoadRoom
+.L015 ;;line 105;;  gosub LoadRoom
 
  jsr .LoadRoom
 
 .
- ;;line 79;; 
+ ;;line 106;; 
 
-.L015 ;;line 80;;  player0x = 80
+.L016 ;;line 107;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L016 ;;line 81;;  player0y = 30
+.L017 ;;line 108;;  player0y = 30
 
 	LDA #30
 	STA player0y
 .
- ;;line 82;; 
+ ;;line 109;; 
 
 .main
- ;;line 83;; main
+ ;;line 110;; main
 
 .
- ;;line 84;; 
+ ;;line 111;; 
 
-.L017 ;;line 85;;  DF0FRACINC = 20
+.L018 ;;line 112;;  DF0FRACINC = 20
 
 	LDA #20
 	STA DF0FRACINC
-.L018 ;;line 86;;  DF1FRACINC = 20
+.L019 ;;line 113;;  DF1FRACINC = 20
 
 	LDA #20
 	STA DF1FRACINC
-.L019 ;;line 87;;  DF2FRACINC = 20
+.L020 ;;line 114;;  DF2FRACINC = 20
 
 	LDA #20
 	STA DF2FRACINC
-.L020 ;;line 88;;  DF3FRACINC = 20
+.L021 ;;line 115;;  DF3FRACINC = 20
 
 	LDA #20
 	STA DF3FRACINC
 .
- ;;line 89;; 
+ ;;line 116;; 
 
 .
- ;;line 90;; 
+ ;;line 117;; 
 
-.L021 ;;line 91;;  if f = 1 then if collision(missile0,player1) then j = 0  :  f = 0
+.L022 ;;line 118;;  if f = 1 then if collision(missile0,player1) then j = 0  :  f = 0
 
 	LDA f
 	CMP #1
-     BNE .skipL021
+     BNE .skipL022
 .condpart0
 	bit 	CXM0P
 	BPL .skip0then
@@ -315,117 +334,117 @@ ret_point1
 	STA j
 	STA f
 .skip0then
-.skipL021
+.skipL022
 .
- ;;line 92;; 
+ ;;line 119;; 
 
 .
- ;;line 93;; 
+ ;;line 120;; 
 
-.L022 ;;line 94;;  if collision(player0,player1) then gosub PlayerHit
+.L023 ;;line 121;;  if collision(player0,player1) then gosub PlayerHit
 
 	bit 	CXPPMM
-	BPL .skipL022
+	BPL .skipL023
 .condpart2
  jsr .PlayerHit
 
-.skipL022
+.skipL023
 .
- ;;line 95;; 
+ ;;line 122;; 
 
 .
- ;;line 96;; 
+ ;;line 123;; 
 
-.L023 ;;line 97;;  a = player0x
+.L024 ;;line 124;;  a = player0x
 
 	LDA player0x
 	STA a
-.L024 ;;line 98;;  b = player0y
+.L025 ;;line 125;;  b = player0y
 
 	LDA player0y
 	STA b
-.L025 ;;line 99;;  d = 0
+.L026 ;;line 126;;  d = 0
 
 	LDA #0
 	STA d
 .
- ;;line 100;; 
+ ;;line 127;; 
 
 .
- ;;line 101;; 
+ ;;line 128;; 
 
-.L026 ;;line 102;;  if joy0left then player0x = player0x  -  1  :  d = 1  :  e = 0
+.L027 ;;line 129;;  if joy0left then player0x = player0x  -  1  :  d = 1  :  e = 0
 
  bit SWCHA
-	BVS .skipL026
+	BVS .skipL027
 .condpart3
 	DEC player0x
 	LDA #1
 	STA d
 	LDA #0
 	STA e
-.skipL026
-.L027 ;;line 103;;  if joy0right then player0x = player0x  +  1  :  d = 1  :  e = 1
+.skipL027
+.L028 ;;line 130;;  if joy0right then player0x = player0x  +  1  :  d = 1  :  e = 1
 
  bit SWCHA
-	BMI .skipL027
+	BMI .skipL028
 .condpart4
 	INC player0x
 	LDA #1
 	STA d
 	STA e
-.skipL027
+.skipL028
 .
- ;;line 104;; 
+ ;;line 131;; 
 
 .
- ;;line 105;; 
+ ;;line 132;; 
 
-.L028 ;;line 106;;  if collision(player0,playfield) then player0x = a
+.L029 ;;line 133;;  if collision(player0,playfield) then player0x = a
 
 	bit 	CXP0FB
-	BPL .skipL028
+	BPL .skipL029
 .condpart5
 	LDA a
 	STA player0x
-.skipL028
+.skipL029
 .
- ;;line 107;; 
+ ;;line 134;; 
 
 .
- ;;line 108;; 
+ ;;line 135;; 
 
-.L029 ;;line 109;;  if joy0up then player0y = player0y  -  1  :  d = 1  :  n = 0
+.L030 ;;line 136;;  if joy0up then player0y = player0y  -  1  :  d = 1  :  n = 0
 
  lda #$10
  bit SWCHA
-	BNE .skipL029
+	BNE .skipL030
 .condpart6
 	DEC player0y
 	LDA #1
 	STA d
 	LDA #0
 	STA n
-.skipL029
-.
- ;;line 110;; 
-
-.
- ;;line 111;; 
-
-.L030 ;;line 112;;  if !joy0up then n = n  +  1
-
- lda #$10
- bit SWCHA
-	BEQ .skipL030
-.condpart7
-	INC n
 .skipL030
-.L031 ;;line 113;;  if !joy0up then if n  >=  4 then player0y = player0y  +  1  :  n = 0
+.
+ ;;line 137;; 
+
+.
+ ;;line 138;; 
+
+.L031 ;;line 139;;  if !joy0up then n = n  +  1
 
  lda #$10
  bit SWCHA
 	BEQ .skipL031
+.condpart7
+	INC n
+.skipL031
+.L032 ;;line 140;;  if !joy0up then if n  >=  4 then player0y = player0y  +  1  :  n = 0
+
+ lda #$10
+ bit SWCHA
+	BEQ .skipL032
 .condpart8
 	LDA n
 	CMP #4
@@ -435,35 +454,35 @@ ret_point1
 	LDA #0
 	STA n
 .skip8then
-.skipL031
+.skipL032
 .
- ;;line 114;; 
+ ;;line 141;; 
 
 .
- ;;line 115;; 
+ ;;line 142;; 
 
-.L032 ;;line 116;;  if collision(player0,playfield) then player0y = b
+.L033 ;;line 143;;  if collision(player0,playfield) then player0y = b
 
 	bit 	CXP0FB
-	BPL .skipL032
+	BPL .skipL033
 .condpart10
 	LDA b
 	STA player0y
-.skipL032
+.skipL033
 .
- ;;line 117;; 
+ ;;line 144;; 
 
 .
- ;;line 118;; 
+ ;;line 145;; 
 
 .
- ;;line 119;; 
+ ;;line 146;; 
 
-.L033 ;;line 120;;  if player0x  >  150 then if o  <  2 then o = o  +  1  :  gosub LoadRoom  :  player0x = 18
+.L034 ;;line 147;;  if player0x  >  150 then if o  <  2 then o = o  +  1  :  gosub LoadRoom  :  player0x = 18
 
 	LDA #150
 	CMP player0x
-     BCS .skipL033
+     BCS .skipL034
 .condpart11
 	LDA o
 	CMP #2
@@ -474,15 +493,15 @@ ret_point1
 	LDA #18
 	STA player0x
 .skip11then
-.skipL033
+.skipL034
 .
- ;;line 121;; 
+ ;;line 148;; 
 
-.L034 ;;line 122;;  if player0x  <  18 then if o  >  0 then o = o  -  1  :  gosub LoadRoom  :  player0x = 148
+.L035 ;;line 149;;  if player0x  <  18 then if o  >  0 then o = o  -  1  :  gosub LoadRoom  :  player0x = 148
 
 	LDA player0x
 	CMP #18
-     BCS .skipL034
+     BCS .skipL035
 .condpart13
 	LDA #0
 	CMP o
@@ -493,59 +512,59 @@ ret_point1
 	LDA #148
 	STA player0x
 .skip13then
-.skipL034
+.skipL035
 .
- ;;line 123;; 
+ ;;line 150;; 
 
 .
- ;;line 124;; 
+ ;;line 151;; 
 
-.L035 ;;line 125;;  if player0x  <  18 then player0x = 18
+.L036 ;;line 152;;  if player0x  <  18 then player0x = 18
 
 	LDA player0x
 	CMP #18
-     BCS .skipL035
+     BCS .skipL036
 .condpart15
 	LDA #18
 	STA player0x
-.skipL035
-.L036 ;;line 126;;  if player0x  >  148 then player0x = 148
+.skipL036
+.L037 ;;line 153;;  if player0x  >  148 then player0x = 148
 
 	LDA #148
 	CMP player0x
-     BCS .skipL036
+     BCS .skipL037
 .condpart16
 	LDA #148
 	STA player0x
-.skipL036
-.L037 ;;line 127;;  if player0y  <  10 then player0y = 10
+.skipL037
+.L038 ;;line 154;;  if player0y  <  10 then player0y = 10
 
 	LDA player0y
 	CMP #10
-     BCS .skipL037
+     BCS .skipL038
 .condpart17
 	LDA #10
 	STA player0y
-.skipL037
-.L038 ;;line 128;;  if player0y  >  80 then player0y = 80
+.skipL038
+.L039 ;;line 155;;  if player0y  >  80 then player0y = 80
 
 	LDA #80
 	CMP player0y
-     BCS .skipL038
+     BCS .skipL039
 .condpart18
 	LDA #80
 	STA player0y
-.skipL038
+.skipL039
 .
- ;;line 129;; 
+ ;;line 156;; 
 
 .
- ;;line 130;; 
+ ;;line 157;; 
 
-.L039 ;;line 131;;  if joy0fire then if f = 0 then f = 1  :  missile0x = player0x  +  3  :  missile0y = player0y  +  2
+.L040 ;;line 158;;  if joy0fire then if f = 0 then f = 1  :  missile0x = player0x  +  3  :  missile0y = player0y  +  2
 
  bit INPT4
-	BMI .skipL039
+	BMI .skipL040
 .condpart19
 	LDA f
 	CMP #0
@@ -562,12 +581,12 @@ ret_point1
 	ADC #2
 	STA missile0y
 .skip19then
-.skipL039
-.L040 ;;line 132;;  if f = 1 then if e = 1 then missile0x = missile0x  +  3
+.skipL040
+.L041 ;;line 159;;  if f = 1 then if e = 1 then missile0x = missile0x  +  3
 
 	LDA f
 	CMP #1
-     BNE .skipL040
+     BNE .skipL041
 .condpart21
 	LDA e
 	CMP #1
@@ -578,12 +597,12 @@ ret_point1
 	ADC #3
 	STA missile0x
 .skip21then
-.skipL040
-.L041 ;;line 133;;  if f = 1 then if e = 0 then missile0x = missile0x  -  3
+.skipL041
+.L042 ;;line 160;;  if f = 1 then if e = 0 then missile0x = missile0x  -  3
 
 	LDA f
 	CMP #1
-     BNE .skipL041
+     BNE .skipL042
 .condpart23
 	LDA e
 	CMP #0
@@ -594,12 +613,12 @@ ret_point1
 	SBC #3
 	STA missile0x
 .skip23then
-.skipL041
-.L042 ;;line 134;;  if f = 1 then if missile0x  <  1 then f = 0
+.skipL042
+.L043 ;;line 161;;  if f = 1 then if missile0x  <  1 then f = 0
 
 	LDA f
 	CMP #1
-     BNE .skipL042
+     BNE .skipL043
 .condpart25
 	LDA missile0x
 	CMP #1
@@ -608,12 +627,12 @@ ret_point1
 	LDA #0
 	STA f
 .skip25then
-.skipL042
-.L043 ;;line 135;;  if f = 1 then if missile0x  >  150 then f = 0
+.skipL043
+.L044 ;;line 162;;  if f = 1 then if missile0x  >  150 then f = 0
 
 	LDA f
 	CMP #1
-     BNE .skipL043
+     BNE .skipL044
 .condpart27
 	LDA #150
 	CMP missile0x
@@ -622,12 +641,12 @@ ret_point1
 	LDA #0
 	STA f
 .skip27then
-.skipL043
-.L044 ;;line 136;;  if f = 1 then if collision(missile0,playfield) then f = 0
+.skipL044
+.L045 ;;line 163;;  if f = 1 then if collision(missile0,playfield) then f = 0
 
 	LDA f
 	CMP #1
-     BNE .skipL044
+     BNE .skipL045
 .condpart29
 	bit 	CXM0FB
 	BPL .skip29then
@@ -635,26 +654,26 @@ ret_point1
 	LDA #0
 	STA f
 .skip29then
-.skipL044
-.L045 ;;line 137;;  if !joy0fire then f = 0
+.skipL045
+.L046 ;;line 164;;  if !joy0fire then f = 0
 
  bit INPT4
-	BPL .skipL045
+	BPL .skipL046
 .condpart31
 	LDA #0
 	STA f
-.skipL045
+.skipL046
 .
- ;;line 138;; 
+ ;;line 165;; 
 
 .
- ;;line 139;; 
+ ;;line 166;; 
 
-.L046 ;;line 140;;  if joy0down then if i = 0 then if g  >  0 then i = 1  :  h = 30  :  g = g  -  1
+.L047 ;;line 167;;  if joy0down then if i = 0 then if g  >  0 then i = 1  :  h = 30  :  g = g  -  1
 
  lda #$20
  bit SWCHA
-	BNE .skipL046
+	BNE .skipL047
 .condpart32
 	LDA i
 	CMP #0
@@ -671,130 +690,134 @@ ret_point1
 	DEC g
 .skip33then
 .skip32then
-.skipL046
-.L047 ;;line 141;;  if i = 1 then h = h  -  1
+.skipL047
+.L048 ;;line 168;;  if i = 1 then h = h  -  1
 
 	LDA i
 	CMP #1
-     BNE .skipL047
+     BNE .skipL048
 .condpart35
 	DEC h
-.skipL047
-.L048 ;;line 142;;  if h  <=  0 then i = 0
+.skipL048
+.L049 ;;line 169;;  if h  <=  0 then i = 0
 
 	LDA #0
 	CMP h
-     BCC .skipL048
+     BCC .skipL049
 .condpart36
 	LDA #0
 	STA i
-.skipL048
+.skipL049
 .
- ;;line 143;; 
+ ;;line 170;; 
 
 .
- ;;line 144;; 
+ ;;line 171;; 
 
-.L049 ;;line 145;;  if j  >  0 then j = j  +  k
+.L050 ;;line 172;;  if j  >  0 then j = j  +  k
 
 	LDA #0
 	CMP j
-     BCS .skipL049
+     BCS .skipL050
 .condpart37
 	LDA j
 	CLC
 	ADC k
 	STA j
-.skipL049
-.L050 ;;line 146;;  if j  <  40 then k = 1
+.skipL050
+.L051 ;;line 173;;  if j  <  40 then k = 1
 
 	LDA j
 	CMP #40
-     BCS .skipL050
+     BCS .skipL051
 .condpart38
 	LDA #1
 	STA k
-.skipL050
-.L051 ;;line 147;;  if j  >  120 then k =  - 1
+.skipL051
+.L052 ;;line 174;;  if j  >  120 then k =  - 1
 
 	LDA #120
 	CMP j
-     BCS .skipL051
+     BCS .skipL052
 .condpart39
 	LDA #255
 	STA k
-.skipL051
-.L052 ;;line 148;;  if j  >  0 then player1x = j
-
-	LDA #0
-	CMP j
-     BCS .skipL052
-.condpart40
-	LDA j
-	STA player1x
 .skipL052
-.L053 ;;line 149;;  if j  >  0 then player1y = 50
+.L053 ;;line 175;;  if j  >  0 then player1x = j
 
 	LDA #0
 	CMP j
      BCS .skipL053
+.condpart40
+	LDA j
+	STA player1x
+.skipL053
+.L054 ;;line 176;;  if j  >  0 then player1y = 50
+
+	LDA #0
+	CMP j
+     BCS .skipL054
 .condpart41
 	LDA #50
 	STA player1y
-.skipL053
+.skipL054
 .
- ;;line 150;; 
+ ;;line 177;; 
 
 .
- ;;line 151;; 
+ ;;line 178;; 
 
-.L054 ;;line 152;;  if d = 1 then c = c  -  1
+.L055 ;;line 179;;  if d = 1 then c = c  -  1
 
 	LDA d
 	CMP #1
-     BNE .skipL054
+     BNE .skipL055
 .condpart42
 	DEC c
-.skipL054
-.L055 ;;line 153;;  if c  <=  0 then gosub GameOver
+.skipL055
+.L056 ;;line 180;;  if c  <=  0 then gosub GameOver
 
 	LDA #0
 	CMP c
-     BCC .skipL055
+     BCC .skipL056
 .condpart43
  jsr .GameOver
 
-.skipL055
+.skipL056
 .
- ;;line 154;; 
+ ;;line 181;; 
 
 .
- ;;line 155;; 
+ ;;line 182;; 
 
-.L056 ;;line 156;;  COLUBK = $02
+.L057 ;;line 183;;  COLUBK = $02
 
 	LDA #$02
 	STA COLUBK
-.L057 ;;line 157;;  COLUPF = $28
+.L058 ;;line 184;;  COLUPF = $28
 
 	LDA #$28
 	STA COLUPF
-.L058 ;;line 158;;  COLUP0 = $C6
+.L059 ;;line 185;;  COLUP0 = $C6
 
 	LDA #$C6
 	STA COLUP0
-.L059 ;;line 159;;  COLUP1 = $1C
+.L060 ;;line 186;;  COLUP1 = $1C
 
 	LDA #$1C
 	STA COLUP1
-.L060 ;;line 160;;  scorecolor = $00
+.L061 ;;line 187;;  scorecolor = $00
 
 	LDA #$00
 	STA scorecolor
-.
- ;;line 161;; 
+.L062 ;;line 188;;  DF6FRACINC = 255
 
-.L061 ;;line 162;;  drawscreen
+	LDA #255
+	STA DF6FRACINC
+.
+ ;;line 189;; 
+
+.L063 ;;line 190;;  drawscreen
 
  sta temp7
  lda #>(ret_point2-1)
@@ -812,49 +835,49 @@ ret_point1
  ldx #1
  jmp BS_jsr
 ret_point2
-.L062 ;;line 163;;  goto main
+.L064 ;;line 191;;  goto main
 
  jmp .main
 
 .
- ;;line 164;; 
+ ;;line 192;; 
 
 .PlayerHit
- ;;line 165;; PlayerHit
+ ;;line 193;; PlayerHit
 
-.L063 ;;line 166;;  COLUBK = $34
+.L065 ;;line 194;;  COLUBK = $34
 
 	LDA #$34
 	STA COLUBK
-.L064 ;;line 167;;  m = m  -  1
+.L066 ;;line 195;;  m = m  -  1
 
 	DEC m
-.L065 ;;line 168;;  player0x = 80
+.L067 ;;line 196;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L066 ;;line 169;;  player0y = 30
+.L068 ;;line 197;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L067 ;;line 170;;  j = 0
+.L069 ;;line 198;;  j = 0
 
 	LDA #0
 	STA j
-.L068 ;;line 171;;  COLUBK = $02
+.L070 ;;line 199;;  COLUBK = $02
 
 	LDA #$02
 	STA COLUBK
-.L069 ;;line 172;;  if m  <=  0 then gosub GameOver
+.L071 ;;line 200;;  if m  <=  0 then gosub GameOver
 
 	LDA #0
 	CMP m
-     BCC .skipL069
+     BCC .skipL071
 .condpart44
  jsr .GameOver
 
-.skipL069
-.L070 ;;line 173;;  return
+.skipL071
+.L072 ;;line 201;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -864,40 +887,40 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 174;; 
+ ;;line 202;; 
 
 .GameOver
- ;;line 175;; GameOver
+ ;;line 203;; GameOver
 
-.L071 ;;line 176;;  c = 100
+.L073 ;;line 204;;  c = 100
 
 	LDA #100
 	STA c
-.L072 ;;line 177;;  g = 6
+.L074 ;;line 205;;  g = 6
 
 	LDA #6
 	STA g
-.L073 ;;line 178;;  m = 4
+.L075 ;;line 206;;  m = 4
 
 	LDA #4
 	STA m
-.L074 ;;line 179;;  o = 0
+.L076 ;;line 207;;  o = 0
 
 	LDA #0
 	STA o
-.L075 ;;line 180;;  player0x = 80
+.L077 ;;line 208;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L076 ;;line 181;;  player0y = 30
+.L078 ;;line 209;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L077 ;;line 182;;  gosub LoadRoom
+.L079 ;;line 210;;  gosub LoadRoom
 
  jsr .LoadRoom
 
-.L078 ;;line 183;;  return
+.L080 ;;line 211;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -907,12 +930,12 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 184;; 
+ ;;line 212;; 
 
 .LoadRoom
- ;;line 185;; LoadRoom
+ ;;line 213;; LoadRoom
 
-.L079 ;;line 186;;  pfclear
+.L081 ;;line 214;;  pfclear
 
 	lda #<C_function
 	sta DF0LOW
@@ -925,12 +948,12 @@ ret_point2
 	lda #255
 	sta CALLFUNCTION
 .
- ;;line 187;; 
+ ;;line 215;; 
 
 .LoadRoom0
- ;;line 188;; LoadRoom0
+ ;;line 216;; LoadRoom0
 
-.L080 ;;line 189;;  pfhline 0 0 31 on
+.L082 ;;line 217;;  pfhline 0 0 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -946,7 +969,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L081 ;;line 190;;  pfhline 0 1 0 on
+.L083 ;;line 218;;  pfhline 0 1 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -962,7 +985,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L082 ;;line 191;;  pfhline 31 1 31 on
+.L084 ;;line 219;;  pfhline 31 1 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -978,7 +1001,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L083 ;;line 192;;  pfhline 0 2 0 on
+.L085 ;;line 220;;  pfhline 0 2 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -994,7 +1017,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L084 ;;line 193;;  pfhline 31 2 31 on
+.L086 ;;line 221;;  pfhline 31 2 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1010,7 +1033,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L085 ;;line 194;;  pfhline 0 3 0 on
+.L087 ;;line 222;;  pfhline 0 3 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1026,7 +1049,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L086 ;;line 195;;  pfhline 31 3 31 on
+.L088 ;;line 223;;  pfhline 31 3 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1042,7 +1065,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L087 ;;line 196;;  pfhline 0 4 0 on
+.L089 ;;line 224;;  pfhline 0 4 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1058,7 +1081,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L088 ;;line 197;;  pfhline 31 4 31 on
+.L090 ;;line 225;;  pfhline 31 4 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1074,7 +1097,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L089 ;;line 198;;  pfhline 0 5 0 on
+.L091 ;;line 226;;  pfhline 0 5 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1090,7 +1113,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L090 ;;line 199;;  pfhline 31 5 31 on
+.L092 ;;line 227;;  pfhline 31 5 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1106,7 +1129,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L091 ;;line 200;;  pfhline 0 6 0 on
+.L093 ;;line 228;;  pfhline 0 6 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1122,7 +1145,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L092 ;;line 201;;  pfhline 31 6 31 on
+.L094 ;;line 229;;  pfhline 31 6 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1138,7 +1161,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L093 ;;line 202;;  pfhline 0 7 3 on
+.L095 ;;line 230;;  pfhline 0 7 3 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1154,7 +1177,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L094 ;;line 203;;  pfhline 28 7 31 on
+.L096 ;;line 231;;  pfhline 28 7 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1170,7 +1193,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L095 ;;line 204;;  pfhline 0 8 0 on
+.L097 ;;line 232;;  pfhline 0 8 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1186,7 +1209,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L096 ;;line 205;;  pfhline 10 8 21 on
+.L098 ;;line 233;;  pfhline 10 8 21 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1202,7 +1225,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L097 ;;line 206;;  pfhline 31 8 31 on
+.L099 ;;line 234;;  pfhline 31 8 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1218,7 +1241,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L098 ;;line 207;;  pfhline 0 9 0 on
+.L0100 ;;line 235;;  pfhline 0 9 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1234,7 +1257,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L099 ;;line 208;;  pfhline 31 9 31 on
+.L0101 ;;line 236;;  pfhline 31 9 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1250,7 +1273,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0100 ;;line 209;;  pfhline 0 10 0 on
+.L0102 ;;line 237;;  pfhline 0 10 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1266,7 +1289,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0101 ;;line 210;;  pfhline 31 10 31 on
+.L0103 ;;line 238;;  pfhline 31 10 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1282,7 +1305,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0102 ;;line 211;;  pfhline 0 11 5 on
+.L0104 ;;line 239;;  pfhline 0 11 5 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1298,7 +1321,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0103 ;;line 212;;  pfhline 10 11 21 on
+.L0105 ;;line 240;;  pfhline 10 11 21 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1314,7 +1337,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0104 ;;line 213;;  pfhline 26 11 31 on
+.L0106 ;;line 241;;  pfhline 26 11 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1330,7 +1353,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0105 ;;line 214;;  return
+.L0107 ;;line 242;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1340,12 +1363,12 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 215;; 
+ ;;line 243;; 
 
 .LoadRoom1
- ;;line 216;; LoadRoom1
+ ;;line 244;; LoadRoom1
 
-.L0106 ;;line 217;;  pfhline 0 0 5 on
+.L0108 ;;line 245;;  pfhline 0 0 5 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1361,7 +1384,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0107 ;;line 218;;  pfhline 10 0 21 on
+.L0109 ;;line 246;;  pfhline 10 0 21 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1377,7 +1400,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0108 ;;line 219;;  pfhline 26 0 31 on
+.L0110 ;;line 247;;  pfhline 26 0 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1393,7 +1416,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0109 ;;line 220;;  pfhline 0 1 0 on
+.L0111 ;;line 248;;  pfhline 0 1 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1409,7 +1432,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0110 ;;line 221;;  pfhline 15 1 16 on
+.L0112 ;;line 249;;  pfhline 15 1 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1425,7 +1448,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0111 ;;line 222;;  pfhline 31 1 31 on
+.L0113 ;;line 250;;  pfhline 31 1 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1441,7 +1464,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0112 ;;line 223;;  pfhline 0 2 0 on
+.L0114 ;;line 251;;  pfhline 0 2 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1457,7 +1480,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0113 ;;line 224;;  pfhline 15 2 16 on
+.L0115 ;;line 252;;  pfhline 15 2 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1473,7 +1496,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0114 ;;line 225;;  pfhline 31 2 31 on
+.L0116 ;;line 253;;  pfhline 31 2 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1489,7 +1512,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0115 ;;line 226;;  pfhline 0 3 0 on
+.L0117 ;;line 254;;  pfhline 0 3 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1505,7 +1528,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0116 ;;line 227;;  pfhline 15 3 16 on
+.L0118 ;;line 255;;  pfhline 15 3 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1521,7 +1544,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0117 ;;line 228;;  pfhline 31 3 31 on
+.L0119 ;;line 256;;  pfhline 31 3 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1537,7 +1560,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0118 ;;line 229;;  pfhline 0 4 0 on
+.L0120 ;;line 257;;  pfhline 0 4 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1553,7 +1576,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0119 ;;line 230;;  pfhline 15 4 16 on
+.L0121 ;;line 258;;  pfhline 15 4 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1569,7 +1592,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0120 ;;line 231;;  pfhline 31 4 31 on
+.L0122 ;;line 259;;  pfhline 31 4 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1585,7 +1608,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0121 ;;line 232;;  pfhline 0 5 0 on
+.L0123 ;;line 260;;  pfhline 0 5 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1601,7 +1624,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0122 ;;line 233;;  pfhline 15 5 16 on
+.L0124 ;;line 261;;  pfhline 15 5 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1617,7 +1640,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0123 ;;line 234;;  pfhline 31 5 31 on
+.L0125 ;;line 262;;  pfhline 31 5 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1633,7 +1656,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0124 ;;line 235;;  pfhline 0 6 0 on
+.L0126 ;;line 263;;  pfhline 0 6 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1649,7 +1672,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0125 ;;line 236;;  pfhline 15 6 16 on
+.L0127 ;;line 264;;  pfhline 15 6 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1665,7 +1688,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0126 ;;line 237;;  pfhline 31 6 31 on
+.L0128 ;;line 265;;  pfhline 31 6 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1681,7 +1704,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0127 ;;line 238;;  pfhline 0 7 0 on
+.L0129 ;;line 266;;  pfhline 0 7 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1697,7 +1720,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0128 ;;line 239;;  pfhline 15 7 16 on
+.L0130 ;;line 267;;  pfhline 15 7 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1713,7 +1736,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0129 ;;line 240;;  pfhline 31 7 31 on
+.L0131 ;;line 268;;  pfhline 31 7 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1729,7 +1752,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0130 ;;line 241;;  pfhline 0 8 0 on
+.L0132 ;;line 269;;  pfhline 0 8 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1745,7 +1768,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0131 ;;line 242;;  pfhline 15 8 16 on
+.L0133 ;;line 270;;  pfhline 15 8 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1761,7 +1784,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0132 ;;line 243;;  pfhline 31 8 31 on
+.L0134 ;;line 271;;  pfhline 31 8 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1777,7 +1800,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0133 ;;line 244;;  pfhline 0 9 0 on
+.L0135 ;;line 272;;  pfhline 0 9 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1793,7 +1816,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0134 ;;line 245;;  pfhline 15 9 16 on
+.L0136 ;;line 273;;  pfhline 15 9 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1809,7 +1832,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0135 ;;line 246;;  pfhline 31 9 31 on
+.L0137 ;;line 274;;  pfhline 31 9 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1825,7 +1848,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0136 ;;line 247;;  pfhline 0 10 0 on
+.L0138 ;;line 275;;  pfhline 0 10 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1841,7 +1864,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0137 ;;line 248;;  pfhline 15 10 16 on
+.L0139 ;;line 276;;  pfhline 15 10 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1857,7 +1880,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0138 ;;line 249;;  pfhline 31 10 31 on
+.L0140 ;;line 277;;  pfhline 31 10 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1873,7 +1896,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0139 ;;line 250;;  pfhline 0 11 31 on
+.L0141 ;;line 278;;  pfhline 0 11 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1889,7 +1912,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0140 ;;line 251;;  return
+.L0142 ;;line 279;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1899,9 +1922,9 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 252;; 
+ ;;line 280;; 
 
-.L0141 ;;line 253;;  return
+.L0143 ;;line 281;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -2277,7 +2300,32 @@ PF_data1
 	.byte %00000000
 playfieldcolorL04
 	.byte  $28
-playerL06_0
+backgroundcolorL06
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $02,$02,$02,$02,$02,$02,$02,$02
+	.byte  $04,$04,$04,$04,$04,$04,$04,$04
+	.byte  $04,$04,$04,$04,$04,$04,$04,$04
+playerL07_0
 	.byte  %00111100
 	.byte  %01111110
 	.byte  %01111110
@@ -2289,7 +2337,7 @@ playerL06_0
 	.byte  %00111100
 	.byte  %00111100
 	.byte  %00011000
-playerL07_1
+playerL08_1
 	.byte  %00000000
 	.byte  %01000010
 	.byte  %10100101
