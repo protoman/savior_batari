@@ -38,15 +38,15 @@
 
 namespace editor {
 
-// Savannah Atari prototype room dims: 20 tiles wide (mirrored to 40), 12 tall
-// (the bottom 4 rows are the grey HUD band).
-static constexpr int kRoomWidth = 20;
+// bB symmetric playfield: 16 unique columns mirrored to 32
+static constexpr int kRoomWidth = 16;
 static constexpr int kRoomHeight = 12;
 // Centered passages carved for room connections.
-static constexpr int kVertExitA = 8;   // vertical exit column range
-static constexpr int kVertExitB = 11;
-static constexpr int kHorizExitA = 6;  // horizontal exit row range
-static constexpr int kHorizExitB = 9;
+// bB 16-col symmetric playfield exit positions
+static constexpr int kVertExitA = 6;   // vertical exit column range (center of 16)
+static constexpr int kVertExitB = 9;
+static constexpr int kHorizExitA = 4;  // horizontal exit row range
+static constexpr int kHorizExitB = 7;
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     SetupUI();

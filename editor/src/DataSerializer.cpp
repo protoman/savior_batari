@@ -78,18 +78,18 @@ static RoomData CreateStandardRoom(int roomId, int wallType = 1) {    RoomData r
     room.room_id = roomId;
     room.room_x = 0;
     room.room_y = roomId;
-    room.width = 20;
-    room.height = 16;
-    room.tiles.resize(20 * 16, (int)TileType::AIR);
+    room.width = 16;
+    room.height = 12;
+    room.tiles.resize(16 * 12, (int)TileType::AIR);
 
     // Standard border walls
-    for (int x = 0; x < 20; ++x) {
-        room.tiles[0 * 20 + x] = (int)TileType::SOLID_WALL; // Top wall default
-        room.tiles[15 * 20 + x] = (int)TileType::SOLID_WALL; // Bottom wall default
+    for (int x = 0; x < 16; ++x) {
+        room.tiles[0 * 16 + x] = (int)TileType::SOLID_WALL; // Top wall default
+        room.tiles[11 * 16 + x] = (int)TileType::SOLID_WALL; // Bottom wall default
     }
-    for (int y = 0; y < 16; ++y) {
-        room.tiles[y * 20 + 0] = (int)TileType::SOLID_WALL; // Left wall
-        room.tiles[y * 20 + 19] = (int)TileType::SOLID_WALL; // Right wall
+    for (int y = 0; y < 12; ++y) {
+        room.tiles[y * 16 + 0] = (int)TileType::SOLID_WALL; // Left wall
+        room.tiles[y * 16 + 15] = (int)TileType::SOLID_WALL; // Right wall
     }
     return room;
 }
@@ -122,14 +122,14 @@ void DataSerializer::GenerateAll20DefaultLevels(const std::string& outputDirecto
             // Open shaft connection between vertical rooms
             if (r < numRooms - 1) {
                 // Open bottom center for shaft drop
-                for (int x = 8; x <= 11; ++x) {
-                    room.tiles[15 * 20 + x] = (int)TileType::AIR;
+                for (int x = 6; x <= 9; ++x) {
+                    room.tiles[11 * 16 + x] = (int)TileType::AIR;
                 }
             }
             if (r > 0) {
                 // Open top center for shaft entry
-                for (int x = 8; x <= 11; ++x) {
-                    room.tiles[0 * 20 + x] = (int)TileType::AIR;
+                for (int x = 6; x <= 9; ++x) {
+                    room.tiles[0 * 16 + x] = (int)TileType::AIR;
                 }
             }
 

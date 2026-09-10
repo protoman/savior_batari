@@ -83,7 +83,7 @@ struct RoomData {
     int room_id = 0;
     int room_x = 0;
     int room_y = 0;
-    int width = 20;      // Savannah Atari prototype: 20 tiles wide (mirrored to a 40-col screen)
+    int width = 16;      // bB symmetric playfield: 16 unique columns mirrored to 32
     int height = 12;     // 12 playable rows; rows 12-15 render as the grey HUD band
     std::vector<int> tiles;
     std::vector<EnemyData> enemies;

@@ -23,16 +23,12 @@
 
 namespace editor {
 
-// The Savannah Atari prototype renders rooms as a mirrored playfield (the TIA
-// reflects the playfield). The editor shows the full mirrored stage and maps
-// canvas column q to the room's data column: q for q<width, else 2*width-1-q.
-// Editing either half edits the mirrored original tile, keeping rooms symmetric
-// by construction (required by the reflected playfield).
-// Entities (enemies, lamps) are deliberately EXEMPT from the mirror rule: they
-// are positioned/stored/rendered in full-stage columns 0..2*width-1 so each
-// screen half can have its own objects.
-// All geometry is derived from the loaded room's width/height so the editor
-// stays correct for any room size the game data may contain.
+// bB symmetric playfield: 16 unique columns mirrored to 32. The editor shows
+// the full mirrored stage and maps canvas column q to the room's data column:
+// q for q<width, else 2*width-1-q. Editing either half edits the mirrored
+// original tile, keeping rooms symmetric by construction.
+// Entities are EXEMPT from the mirror rule: they are stored in full-stage
+// columns 0..2*width-1 so each screen half can have its own objects.
 
 static int DisplayColumnsFor(int roomWidth) { return roomWidth * 2; }
 
@@ -52,7 +48,7 @@ static int CellHeightFor(int cellWidth, int displayCols, int roomHeight) {
 
 MapCanvas::MapCanvas(QWidget* parent) : QWidget(parent) {
     setMouseTracking(true);
-    // Default 20x12 stage until a room is loaded. The map area only: the grey
+    // Default 16x12 stage until a room is loaded. The map area only: the grey
     // HUD band is drawn by the game kernel and is not shown/edited here.
     setFixedSize(DisplayColumnsFor(kDefaultRoomWidth) * m_tileSize,
                  kDefaultRoomHeight * CellHeightFor(m_tileSize,
