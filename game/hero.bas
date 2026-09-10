@@ -27,6 +27,17 @@ end
  $28
 end
 
+ scorecolors:
+ $04
+ $04
+ $04
+ $04
+ $04
+ $04
+ $04
+ $04
+end
+
  player0:
  %00111100
  %01111110
@@ -61,6 +72,7 @@ end
  g = 6 : h = 0 : i = 0
  j = 120 : k = -1 : m = 4
  n = 0 : o = 0
+ score = 123456
 
  ; Load first room
  gosub LoadRoom
@@ -176,42 +188,25 @@ LoadRoom
 LoadRoom0
   pfhline 0 0 31 on
   pfhline 0 1 0 on
-  pfhline 3 1 3 on
-  pfhline 11 1 11 on
-  pfhline 15 1 16 on
-  pfhline 20 1 20 on
-  pfhline 28 1 28 on
   pfhline 31 1 31 on
   pfhline 0 2 0 on
-  pfhline 3 2 3 on
-  pfhline 11 2 11 on
-  pfhline 15 2 16 on
-  pfhline 20 2 20 on
-  pfhline 28 2 28 on
   pfhline 31 2 31 on
   pfhline 0 3 0 on
-  pfhline 15 3 16 on
   pfhline 31 3 31 on
-  pfhline 0 4 3 on
-  pfhline 15 4 16 on
-  pfhline 28 4 31 on
+  pfhline 0 4 0 on
+  pfhline 31 4 31 on
   pfhline 0 5 0 on
-  pfhline 15 5 16 on
   pfhline 31 5 31 on
   pfhline 0 6 0 on
-  pfhline 15 6 16 on
   pfhline 31 6 31 on
   pfhline 0 7 3 on
-  pfhline 15 7 16 on
   pfhline 28 7 31 on
   pfhline 0 8 0 on
   pfhline 10 8 21 on
   pfhline 31 8 31 on
   pfhline 0 9 0 on
-  pfhline 15 9 16 on
   pfhline 31 9 31 on
   pfhline 0 10 0 on
-  pfhline 15 10 16 on
   pfhline 31 10 31 on
   pfhline 0 11 5 on
   pfhline 10 11 21 on
