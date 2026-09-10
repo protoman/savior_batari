@@ -39,17 +39,17 @@ end
  end
 
  player0:
- %00111100
- %01111110
- %01111110
- %00111100
- %00100100
- %00100100
- %01111110
- %00111100
- %00111100
- %00111100
- %00011000
+ %11111111
+ %11111111
+ %11111111
+ %11111111
+ %11111111
+ %11111111
+ %11111111
+ %11111111
+ %11111111
+ %11111111
+ %11111111
 end
 
  player1:
@@ -77,8 +77,8 @@ end
  ; Load first room
  gosub LoadRoom
  ; Start player inside room (center)
- player0x = 80
- player0y = 30
+ player0x = 50
+ player0y = 80
 
 main
  ; Set DPC+ playfield fractional increments
@@ -154,8 +154,9 @@ main
 
  ; Colors - set every frame
  COLUPF = $28
- COLUP0 = $C6
+ COLUP0 = $0E
  COLUP1 = $1C
+ CTRLPF = $04
  scorecolor = $0E
  DF6FRACINC = 255
  bkcolors:
