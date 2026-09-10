@@ -73,7 +73,7 @@ main
  DF0FRACINC = 16
  DF1FRACINC = 16
  DF2FRACINC = 16
- DF3FRACINC = 32
+ DF3FRACINC = 16
 
  ; Check laser-spider collision
  if f = 1 then if collision(missile0, player1) then j = 0 : f = 0

@@ -259,9 +259,9 @@ ret_point1
 
 	LDA #16
 	STA DF2FRACINC
-.L018 ;;line 76;;  DF3FRACINC = 32
+.L018 ;;line 76;;  DF3FRACINC = 16
 
-	LDA #32
+	LDA #16
 	STA DF3FRACINC
 .
  ;;line 77;; 
