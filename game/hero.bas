@@ -103,8 +103,8 @@ main
  if joy0left then player0x = player0x - 1 : d = 1 : e = 0
  if joy0right then player0x = player0x + 1 : d = 1 : e = 1
 
- ; Check horizontal collision
- if collision(playfield, player0) then player0x = a
+ ; Check horizontal collision (disabled for testing)
+ rem if collision(playfield, player0) then player0x = a
 
  ; Vertical movement
  if joy0up then player0y = player0y - 1 : d = 1 : n = 0
@@ -113,8 +113,8 @@ main
  if !joy0up then n = n + 1
  if !joy0up then if n >= 4 then player0y = player0y + 1 : n = 0
 
- ; Check vertical collision
- if collision(playfield, player0) then player0y = b
+ ; Check vertical collision (disabled for testing)
+ rem if collision(playfield, player0) then player0y = b
 
  ; Room transitions
  ; Right edge -> next room
