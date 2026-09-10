@@ -12,22 +12,20 @@ set(CMAKE_AUTOUIC ON)
 # Find Qt6
 find_package(Qt6 REQUIRED COMPONENTS Widgets Core Gui)
 
-# Fetch Cereal for JSON serialization if not already present
-if (NOT TARGET cereal)
-    set(JUST_INSTALL_CEREAL ON CACHE BOOL "" FORCE)
-    set(BUILD_SANDBOX OFF CACHE BOOL "" FORCE)
-    set(BUILD_DOC OFF CACHE BOOL "" FORCE)
-    set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
-    set(SKIP_PORTABILITY_TEST ON CACHE BOOL "" FORCE)
-
-    include(FetchContent)
-    FetchContent_Declare(
-        cereal
-        GIT_REPOSITORY https://github.com/USCiLab/cereal.git
-        GIT_TAG        v1.3.2
-    )
-    FetchContent_MakeAvailable(cereal)
-endif()
+# Fetch Cereal for JSON serialization
+include(FetchContent)
+FetchContent_Declare(
+    cereal
+    GIT_REPOSITORY https://github.com/USCiLab/cereal.git
+    GIT_TAG        v1.3.2
+    GIT_SHALLOW    TRUE
+)
+set(JUST_INSTALL_CEREAL ON CACHE BOOL "" FORCE)
+set(BUILD_SANDBOX OFF CACHE BOOL "" FORCE)
+set(BUILD_DOC OFF CACHE BOOL "" FORCE)
+set(BUILD_TESTS OFF CACHE BOOL "" FORCE)
+set(SKIP_PORTABILITY_TEST ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(cereal)
 
 file(GLOB EDITOR_SOURCES
     "src/*.cpp"
@@ -44,5 +42,8 @@ target_link_libraries(savior_editor PRIVATE
     Qt6::Widgets
     Qt6::Core
     Qt6::Gui
-    cereal
 )
+
+# Cereal is header-only; just need the include path
+FetchContent_GetProperties(cereal)
+target_include_directories(savior_editor PRIVATE ${cereal_SOURCE_DIR}/include)

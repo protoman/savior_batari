@@ -1,5 +1,5 @@
 ; Savior - H.E.R.O. Atari 2600 Clone
-; 16K with bankswitching + inline level data
+; 16K with bankswitching
 
  set romsize 16k
  const pfscore = 1
@@ -10,27 +10,26 @@
  ; g = dynamiteCount, h = dynamiteFuse, i = dynamiteActive
  ; j = spiderX, k = spiderDir, m = lives
  ; n = gravityTimer, o = currentRoom
- ; q = tempRow
 
  a = 72 : b = 40 : c = 100
  d = 0 : e = 1 : f = 0
  g = 6 : h = 0 : i = 0
  j = 120 : k = -1 : m = 4
- n = 0 : o = 0 : q = 0
+ n = 0 : o = 0
 
  ; Default playfield
  playfield:
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- X..............................X
- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ ................................
+ ................................
+ ................................
+ ................................
+ ................................
+ ................................
+ ................................
+ ................................
+ ................................
+ ................................
+ ................................
 end
 
  player0:
@@ -63,12 +62,13 @@ end
 
  ; Load first room
  gosub LoadRoom
- player0x = 72
- player0y = 40
+ ; Start player inside room (column 8 = center)
+ player0x = 42
+ player0y = 30
 
 main
  ; Check laser-spider collision
- if f = 1 then if collision(missile0, player1) then j = -100 : f = 0
+ if f = 1 then if collision(missile0, player1) then j = 0 : f = 0
 
  ; Check player-spider collision
  if collision(player0, player1) then gosub PlayerHit
@@ -96,14 +96,16 @@ main
  if collision(player0, playfield) then player0y = b
 
  ; Room transitions
- if player0x < 10 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 135
- if player0x > 140 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 12
+ ; Right edge -> next room
+ if player0x > 80 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 14
+ ; Left edge -> previous room
+ if player0x < 12 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 78
 
- ; Boundaries
- if player0x < 9 then player0x = 9
- if player0x > 143 then player0x = 143
- if player0y < 9 then player0y = 9
- if player0y > 81 then player0y = 81
+ ; Boundaries (keep player in visible area)
+ if player0x < 12 then player0x = 12
+ if player0x > 80 then player0x = 80
+ if player0y < 10 then player0y = 10
+ if player0y > 80 then player0y = 80
 
  ; Laser
  if joy0fire then if f = 0 then f = 1 : missile0x = player0x + 3 : missile0y = player0y + 2
@@ -119,13 +121,12 @@ main
  if i = 1 then h = h - 1
  if h <= 0 then i = 0
 
- ; Spider - reset when room changes
- if j < 0 then j = 120 : k = -1
+ ; Spider
  if j > 0 then j = j + k
- if j < 80 then k = 1
- if j > 130 then k = -1
+ if j < 30 then k = 1
+ if j > 70 then k = -1
  if j > 0 then player1x = j
- if j > 0 then player1y = 70
+ if j > 0 then player1y = 50
 
  ; Power depletion
  if d = 1 then c = c - 1
@@ -162,112 +163,82 @@ main
  drawscreen
  goto main
 
+; ============================================
+; LoadRoom - Draw room using playfield commands
+; Room is 16 columns (0-15) × 11 rows (0-10)
+; ============================================
 LoadRoom
  pfclear
  if o = 0 then gosub LoadRoom0
  if o = 1 then gosub LoadRoom1
  if o = 2 then gosub LoadRoom2
- ; Set spider start based on room
- if o = 0 then j = 120 : k = -1
- if o = 1 then j = 100 : k = -1
- if o = 2 then j = 80 : k = 1
+ ; Reset spider position for room
+ if o = 0 then j = 60 : k = -1
+ if o = 1 then j = 40 : k = -1
+ if o = 2 then j = 50 : k = 1
  return
 
+; Room 0: Simple mine shaft with platforms
 LoadRoom0
- ; Top border
- pfhline 0 2 15 on
- ; Left and right walls rows 3-9
- q = 3
- gosub DrawBorder
- q = 4
- gosub DrawBorder
- q = 5
- gosub DrawBorder
- pfpixel 5 5 on
- pfpixel 6 5 on
- q = 6
- gosub DrawBorder
- q = 7
- gosub DrawBorder
- pfpixel 9 7 on
- pfpixel 10 7 on
- q = 8
- gosub DrawBorder
- q = 9
- gosub DrawBorder
- ; Bottom border
+ ; Top border (row 0)
+ pfhline 0 0 15 on
+ ; Left wall (column 0, rows 1-10)
+ pfvline 0 1 10 on
+ ; Right wall (column 15, rows 1-10)
+ pfvline 15 1 10 on
+ ; Bottom border (row 10)
  pfhline 0 10 15 on
+ ; Platform at row 4, columns 4-6
+ pfhline 4 4 6 on
+ ; Platform at row 7, columns 9-11
+ pfhline 9 7 11 on
  return
 
+; Room 1: Shaft with opening top/bottom
 LoadRoom1
- ; Top border with shaft opening
- pfhline 0 2 5 on
- pfhline 10 2 15 on
- ; Left and right walls rows 3-9
- q = 3
- gosub DrawBorder
- pfpixel 3 3 on
- pfpixel 4 3 on
- q = 4
- gosub DrawBorder
- q = 5
- gosub DrawBorder
- q = 6
- gosub DrawBorder
- pfpixel 7 6 on
- pfpixel 8 6 on
- q = 7
- gosub DrawBorder
- q = 8
- gosub DrawBorder
- pfpixel 11 8 on
- pfpixel 12 8 on
- q = 9
- gosub DrawBorder
- ; Bottom border with shaft opening
+ ; Top border with shaft opening (columns 6-9 open)
+ pfhline 0 0 5 on
+ pfhline 10 0 15 on
+ ; Left wall
+ pfvline 0 1 10 on
+ ; Right wall
+ pfvline 15 1 10 on
+ ; Bottom border with shaft opening (columns 6-9 open)
  pfhline 0 10 5 on
  pfhline 10 10 15 on
+ ; Platform at row 3, columns 2-4
+ pfhline 2 3 4 on
+ ; Platform at row 6, columns 7-9
+ pfhline 7 6 9 on
+ ; Platform at row 8, columns 11-13
+ pfhline 11 8 13 on
  return
 
+; Room 2: Miner room
 LoadRoom2
- ; Top border with shaft opening
- pfhline 0 2 5 on
- pfhline 10 2 15 on
- ; Left and right walls rows 3-9
- q = 3
- gosub DrawBorder
- q = 4
- gosub DrawBorder
- q = 5
- gosub DrawBorder
- pfpixel 6 5 on
- pfpixel 7 5 on
- q = 6
- gosub DrawBorder
- q = 7
- gosub DrawBorder
- pfpixel 4 7 on
- pfpixel 5 7 on
- q = 8
- gosub DrawBorder
- q = 9
- gosub DrawBorder
+ ; Top border with shaft opening (columns 6-9 open)
+ pfhline 0 0 5 on
+ pfhline 10 0 15 on
+ ; Left wall
+ pfvline 0 1 10 on
+ ; Right wall
+ pfvline 15 1 10 on
  ; Bottom border
  pfhline 0 10 15 on
- return
-
-DrawBorder
- pfpixel 0 q on
- pfpixel 15 q on
+ ; Platform at row 4, columns 5-7
+ pfhline 5 4 7 on
+ ; Platform at row 7, columns 3-5
+ pfhline 3 7 5 on
+ ; Fragile wall at row 5-6, columns 10-10 (single column)
+ pfvline 10 5 6 on
  return
 
 PlayerHit
  COLUBK = $34
  m = m - 1
- player0x = 72
- player0y = 40
- j = 120
- k = -1
+ player0x = 42
+ player0y = 30
+ j = 0
  COLUBK = $02
  if m <= 0 then gosub GameOver
  return
@@ -277,8 +248,7 @@ GameOver
  g = 6
  m = 4
  o = 0
- player0x = 72
- player0y = 40
- j = 120
+ player0x = 42
+ player0y = 30
  gosub LoadRoom
  return
