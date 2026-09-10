@@ -116,11 +116,13 @@ If you remove entries from Band 7, Band 8 shifts UP. If you add entries, Band 8 
 5. If you need to shift a band, change ONLY the band immediately before it
 
 **Current working config (DF0FRACINC=20):**
-- Total entries: 142
-- Black ($00): 70 entries → playfield area
-- Blue ($74): 41 entries → pool/water/lava area (dynamic based on room flag)
-- Gray ($04): 31 entries → rest of HUD
-- Gray starts at scanline 70+41=111, ends at scanline 142
+- Total entries: 135
+- Black ($00): 75 entries → playfield area
+- Blue ($74): 10 entries → pool/water/lava area (dynamic based on room flag)
+- Gray ($04): 50 entries → rest of HUD with score
+- Blue starts at entry 75, gray starts at entry 85
+
+**Alignment key:** Blue/gray position is determined by cumulative entry count. To shift blue/gray DOWN, increase black entries. To shift UP, decrease black entries.
 
 **Warning:** Removing "spacer" bands (like $14 or $02) that were positioned correctly will break alignment. When removing spacer entries, compensate by adding same number of entries to adjacent band.
 
