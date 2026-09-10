@@ -293,20 +293,9 @@ end
 
  drawscreen
 
- ; Read collision ONCE after drawscreen, store in flag
- ; (DPC+ collision register may only be reliable on first read)
- q = 0
- if collision(player0, playfield) then q = 1
-
- ; j = last frame's collision (0=was free, 1=was already touching)
- ; New collision (j=0): undo both axes — walked into something
- if j = 0 then if q = 1 then player0x = player0x - p
- if j = 0 then if q = 1 then player0y = player0y - d
- ; Ongoing collision (j=1): undo vertical only — gravity on platform is expected
- if j = 1 then if q = 1 then player0y = player0y - d
-
- ; Save collision state for next frame
- j = q
+ ; Simple collision check after drawscreen (matches the example)
+ if collision(player0, playfield) then player0x = player0x - p
+ if collision(player0, playfield) then player0y = player0y - d
 
  ; Boundaries
  if player0x < 18 then player0x = 18
