@@ -1,6 +1,66 @@
 ; Savior - H.E.R.O. Atari 2600 Clone
 ; 16K with bankswitching
 
+ ; Include level data FIRST (bB requires includes before other commands)
+; ROOM_CODE_START
+LoadRoom0
+  pfhline 0 0 31 on
+  pfhline 0 1 0 on
+  pfhline 30 1 31 on
+  pfhline 0 2 0 on
+  pfhline 30 2 31 on
+  pfhline 0 3 0 on
+  pfhline 30 3 31 on
+  pfhline 0 4 0 on
+  pfhline 30 4 31 on
+  pfhline 0 5 0 on
+  pfhline 30 5 31 on
+  pfhline 0 6 0 on
+  pfhline 30 6 31 on
+  pfhline 0 7 0 on
+  pfhline 30 7 31 on
+  pfhline 0 8 0 on
+  pfhline 30 8 31 on
+  pfhline 0 9 0 on
+  pfhline 30 9 31 on
+  pfhline 0 10 0 on
+  pfhline 30 10 31 on
+  pfhline 0 11 11 on
+  pfhline 19 11 31 on
+
+LoadRoom1
+  pfhline 0 0 11 on
+  pfhline 19 0 31 on
+  pfhline 0 1 0 on
+  pfhline 30 1 31 on
+  pfhline 0 2 0 on
+  pfhline 30 2 31 on
+  pfhline 0 3 0 on
+  pfhline 30 3 31 on
+  pfhline 0 4 0 on
+  pfhline 30 4 31 on
+  pfhline 0 5 0 on
+  pfhline 30 5 31 on
+  pfhline 0 6 0 on
+  pfhline 30 6 31 on
+  pfhline 0 7 0 on
+  pfhline 30 7 31 on
+  pfhline 0 8 0 on
+  pfhline 30 8 31 on
+  pfhline 0 9 0 on
+  pfhline 30 9 31 on
+  pfhline 0 10 0 on
+  pfhline 30 10 31 on
+  pfhline 0 11 31 on
+
+; Room dispatcher - set 'o' to room index
+LoadRoom
+  pfclear
+  if o = 0 then gosub LoadRoom0
+  if o = 1 then gosub LoadRoom1
+  return
+; ROOM_CODE_END
+
  set romsize 16k
  const pfscore = 1
 
@@ -162,131 +222,6 @@ main
 
  drawscreen
  goto main
-
-; ============================================
-; LoadRoom - Draw room using playfield commands
-; Room is 16 columns (0-15) × 11 rows (0-10)
-; ============================================
-LoadRoom
- pfclear
- if o = 0 then gosub LoadRoom0
- if o = 1 then gosub LoadRoom1
- if o = 2 then gosub LoadRoom2
- ; Reset spider position for room
- if o = 0 then j = 100 : k = -1
- if o = 1 then j = 80 : k = -1
- if o = 2 then j = 120 : k = 1
- return
-
-; Room 0: Simple mine shaft with platforms
-LoadRoom0
- ; Top border (row 0) - full width
- pfhline 0 0 31 on
- ; Bottom border (row 10) - full width
- pfhline 0 10 31 on
- ; Left wall (column 1, rows 1-9) - shift in from edge
- ; Right wall (column 30, rows 1-9) - shift in from edge
- ; Draw walls row by row using pfhline for solid appearance
- q = 1
- gosub DrawWalls
- q = 2
- gosub DrawWalls
- q = 3
- gosub DrawWalls
- q = 4
- gosub DrawWalls
- q = 5
- gosub DrawWalls
- q = 6
- gosub DrawWalls
- q = 7
- gosub DrawWalls
- q = 8
- gosub DrawWalls
- q = 9
- gosub DrawWalls
- ; Platform at row 4, columns 10-14
- pfhline 10 4 14 on
- ; Platform at row 7, columns 18-22
- pfhline 18 7 22 on
- return
-
-DrawWalls
- ; Left wall pixel
- pfpixel 1 q on
- ; Right wall pixel
- pfpixel 30 q on
- return
-
-; Room 1: Shaft with opening top/bottom
-LoadRoom1
- ; Top border with shaft opening (columns 14-17 open)
- pfhline 0 0 13 on
- pfhline 18 0 31 on
- ; Bottom border with shaft opening (columns 14-17 open)
- pfhline 0 10 13 on
- pfhline 18 10 31 on
- ; Walls row by row
- q = 1
- gosub DrawWalls
- q = 2
- gosub DrawWalls
- q = 3
- gosub DrawWalls
- q = 4
- gosub DrawWalls
- q = 5
- gosub DrawWalls
- q = 6
- gosub DrawWalls
- q = 7
- gosub DrawWalls
- q = 8
- gosub DrawWalls
- q = 9
- gosub DrawWalls
- ; Platform at row 3, columns 5-9
- pfhline 5 3 9 on
- ; Platform at row 6, columns 14-18
- pfhline 14 6 18 on
- ; Platform at row 8, columns 22-26
- pfhline 22 8 26 on
- return
-
-; Room 2: Miner room
-LoadRoom2
- ; Top border with shaft opening (columns 14-17 open)
- pfhline 0 0 13 on
- pfhline 18 0 31 on
- ; Bottom border - full width
- pfhline 0 10 31 on
- ; Walls row by row
- q = 1
- gosub DrawWalls
- q = 2
- gosub DrawWalls
- q = 3
- gosub DrawWalls
- q = 4
- gosub DrawWalls
- q = 5
- gosub DrawWalls
- q = 6
- gosub DrawWalls
- q = 7
- gosub DrawWalls
- q = 8
- gosub DrawWalls
- q = 9
- gosub DrawWalls
- ; Platform at row 4, columns 10-14
- pfhline 10 4 14 on
- ; Platform at row 7, columns 6-10
- pfhline 6 7 10 on
- ; Fragile wall at row 5-6, columns 20-20
- pfpixel 20 5 on
- pfpixel 20 6 on
- return
 
 PlayerHit
  COLUBK = $34

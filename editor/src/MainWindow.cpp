@@ -280,7 +280,6 @@ void MainWindow::SetupUI() {
     fileMenu->addAction("&Set Game Data Directory...", this, &MainWindow::SelectGameDataDir);
     fileMenu->addSeparator();
     fileMenu->addAction("&Generate Default Levels...", this, &MainWindow::GenerateDefaultLevels);
-    fileMenu->addAction("&Export to bB Format...", this, &MainWindow::ExportToBb);
     fileMenu->addSeparator();
     fileMenu->addAction("E&xit", QKeySequence::Quit, qApp, &QApplication::quit);
 
@@ -634,9 +633,18 @@ void MainWindow::SaveLevel() {
         SaveLevelAs();
     } else {
         if (hero::DataSerializer::SaveLevelToFile(m_levelData, m_currentFilePath.toStdString())) {
+            // Also export to bB format alongside the JSON
+            QString bbPath = m_currentFilePath;
+            bbPath.replace(".json", ".asm");
+            // If saving to a rooms/ directory, put bB file in game/levels/ instead
+            if (bbPath.contains("/rooms/")) {
+                bbPath.replace("/rooms/", "/game/levels/");
+            }
+            hero::DataSerializer::ExportBbLevel(m_levelData, bbPath.toStdString());
+
             m_history.SetClean();
             UpdateWindowTitleAndUndoState();
-            statusBar()->showMessage("Saved " + m_currentFilePath, 3000);
+            statusBar()->showMessage("Saved " + m_currentFilePath + " + bB export", 3000);
         } else {
             QMessageBox::critical(this, "Error", "Failed to save level file!");
         }
@@ -889,25 +897,6 @@ void MainWindow::GenerateDefaultLevels() {
         QString("Default levels generated in:\n%1").arg(dir));
 
     PopulateStageCombo();
-}
-
-void MainWindow::ExportToBb() {
-    // Export current level to bB format
-    QString filepath = QFileDialog::getSaveFileName(this,
-        "Export Level to bB Format",
-        m_gameDataDir + "/level_" +
-        QString::number(m_levelData.level_id).rightJustified(2, '0') + ".asm",
-        "bB Assembly (*.asm);;All Files (*)");
-
-    if (filepath.isEmpty()) return;
-
-    if (hero::DataSerializer::ExportBbLevel(m_levelData, filepath.toStdString())) {
-        QMessageBox::information(this, "Export Complete",
-            QString("Level exported to:\n%1").arg(filepath));
-    } else {
-        QMessageBox::warning(this, "Export Failed",
-            "Failed to export level to bB format.");
-    }
 }
 
 } // namespace editor
