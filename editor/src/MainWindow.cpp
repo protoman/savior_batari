@@ -40,7 +40,7 @@ namespace editor {
 
 // bB symmetric playfield: 16 unique columns mirrored to 32
 static constexpr int kRoomWidth = 16;
-static constexpr int kRoomHeight = 12;
+static constexpr int kRoomHeight = 12; // bB playfield: 12 rows (0-11)
 // Centered passages carved for room connections.
 // bB 16-col symmetric playfield exit positions
 static constexpr int kVertExitA = 6;   // vertical exit column range (center of 16)

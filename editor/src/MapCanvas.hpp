@@ -52,7 +52,7 @@ public:
 
     // Fallback size used until a room is loaded.
     static constexpr int kDefaultRoomWidth = 16;
-    static constexpr int kDefaultRoomHeight = 12;  // playable rows
+    static constexpr int kDefaultRoomHeight = 12;  // bB playfield: 12 rows (0-11)
 
     void SetLevelData(hero::LevelData* levelData, int activeRoomIndex);
     void SetActiveRoom(int roomIndex);

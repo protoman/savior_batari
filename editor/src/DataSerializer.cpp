@@ -332,7 +332,7 @@ import_levels:
                 room.room_x = 0;
                 room.room_y = roomIdx;
                 room.width = 16;
-                room.height = 12;
+    room.height = 11;
                 room.tiles.assign(16 * 12, (int)TileType::AIR);
 
                 // Decode structure with 19 -> 16 column compression

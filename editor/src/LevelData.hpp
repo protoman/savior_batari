@@ -84,7 +84,7 @@ struct RoomData {
     int room_x = 0;
     int room_y = 0;
     int width = 16;      // bB symmetric playfield: 16 unique columns mirrored to 32
-    int height = 12;     // 12 playable rows; rows 12-15 render as the grey HUD band
+    int height = 12;     // bB playfield: 12 rows (0-11)
     std::vector<int> tiles;
     std::vector<EnemyData> enemies;
     std::vector<LampData> lamps;

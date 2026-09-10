@@ -1,7 +1,10 @@
 #!/bin/bash
 set -e
 
-# Compile bB game (level code already injected by convert_levels.py)
+# Convert level JSON and inject into hero.bas
+python3 convert_levels.py
+
+# Compile bB game
 export bB=/mnt/ExtraData/programas/bB
 export PATH=$PATH:$bB
 $bB/2600basic.sh hero.bas

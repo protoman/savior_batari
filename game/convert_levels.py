@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Convert level JSON to bB room subroutines."""
+"""Convert level JSON to bB room subroutines using pfhline."""
 import json, os, sys, re
 
 def is_wall(tile):
@@ -17,10 +17,10 @@ def generate_level_code(json_path):
     for r, room in enumerate(rooms):
         tiles = room.get("tiles", [])
         room_w = room.get("width", 16)
-        room_h = room.get("height", 12)
+        room_h = min(room.get("height", 12), 12)
 
         lines.append("LoadRoom{}".format(r))
-        for y in range(min(room_h, 12)):
+        for y in range(room_h):
             x = 0
             while x < room_w:
                 idx = y * room_w + x
@@ -77,7 +77,7 @@ def main():
     if inject_level(hero_path, level_code):
         print("Injected OK")
     else:
-        print("Inject FAILED")
+        print("Inject FAILED (markers not found - already injected)")
 
 if __name__ == '__main__':
     main()
