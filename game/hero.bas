@@ -82,10 +82,10 @@ end
 
 main
  ; Set DPC+ playfield fractional increments
- DF0FRACINC = 128
- DF1FRACINC = 128
- DF2FRACINC = 128
- DF3FRACINC = 128
+ DF0FRACINC = 20
+ DF1FRACINC = 20
+ DF2FRACINC = 20
+ DF3FRACINC = 20
 
  ; Check laser-spider collision
  if f = 1 then if collision(missile0, player1) then j = 0 : f = 0
@@ -153,11 +153,10 @@ main
  if c <= 0 then gosub GameOver
 
  ; Colors - set every frame
- COLUBK = $00
  COLUPF = $28
  COLUP0 = $C6
  COLUP1 = $1C
- scorecolor = $00
+ scorecolor = $0E
  DF6FRACINC = 255
  bkcolors:
  $44
@@ -170,10 +169,6 @@ main
  $44
  $44
  $44
- $44
- $44
- $46
- $46
  $46
  $46
  $46
@@ -194,10 +189,6 @@ main
  $48
  $48
  $48
- $48
- $48
- $84
- $84
  $84
  $84
  $84
@@ -218,8 +209,6 @@ main
  $C4
  $C4
  $C4
- $C4
- $C4
  $24
  $24
  $24
@@ -230,10 +219,6 @@ main
  $24
  $24
  $24
- $24
- $24
- $14
- $14
  $14
  $14
  $14
