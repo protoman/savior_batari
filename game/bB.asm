@@ -665,14 +665,14 @@ ret_point1
 	STA PARAMETER
 	LDA #0
 	STA PARAMETER
-	LDA #176
+	LDA #75
 	STA PARAMETER
 	LDA #1
 	STA CALLFUNCTION
 .
- ;;line 467;; 
+ ;;line 366;; 
 
-.L047 ;;line 468;;  drawscreen
+.L047 ;;line 367;;  drawscreen
 
  sta temp7
  lda #>(ret_point2-1)
@@ -691,12 +691,12 @@ ret_point1
  jmp BS_jsr
 ret_point2
 .
- ;;line 469;; 
+ ;;line 368;; 
 
 .
- ;;line 470;; 
+ ;;line 369;; 
 
-.L048 ;;line 471;;  if collision(player0,playfield) then player0x = player0x  -  p
+.L048 ;;line 370;;  if collision(player0,playfield) then player0x = player0x  -  p
 
 	bit 	CXP0FB
 	BPL .skipL048
@@ -706,7 +706,7 @@ ret_point2
 	SBC p
 	STA player0x
 .skipL048
-.L049 ;;line 472;;  if collision(player0,playfield) then player0y = player0y  -  d
+.L049 ;;line 371;;  if collision(player0,playfield) then player0y = player0y  -  d
 
 	bit 	CXP0FB
 	BPL .skipL049
@@ -717,16 +717,16 @@ ret_point2
 	STA player0y
 .skipL049
 .
- ;;line 473;; 
+ ;;line 372;; 
 
 .
- ;;line 474;; 
+ ;;line 373;; 
 
-.L050 ;;line 475;;  j = 0
+.L050 ;;line 374;;  j = 0
 
 	LDA #0
 	STA j
-.L051 ;;line 476;;  if collision(player0,playfield) then j = 1
+.L051 ;;line 375;;  if collision(player0,playfield) then j = 1
 
 	bit 	CXP0FB
 	BPL .skipL051
@@ -735,12 +735,12 @@ ret_point2
 	STA j
 .skipL051
 .
- ;;line 477;; 
+ ;;line 376;; 
 
 .
- ;;line 478;; 
+ ;;line 377;; 
 
-.L052 ;;line 479;;  if player0x  >  148 then player0x = 148
+.L052 ;;line 378;;  if player0x  >  148 then player0x = 148
 
 	LDA #148
 	CMP player0x
@@ -750,42 +750,42 @@ ret_point2
 	STA player0x
 .skipL052
 .
- ;;line 480;; 
+ ;;line 379;; 
 
-.L053 ;;line 481;;  goto main
+.L053 ;;line 380;;  goto main
 
  jmp .main
 
 .
- ;;line 482;; 
+ ;;line 381;; 
 
 .PlayerHit
- ;;line 483;; PlayerHit
+ ;;line 382;; PlayerHit
 
-.L054 ;;line 484;;  COLUBK = $34
+.L054 ;;line 383;;  COLUBK = $34
 
 	LDA #$34
 	STA COLUBK
-.L055 ;;line 485;;  m = m  -  1
+.L055 ;;line 384;;  m = m  -  1
 
 	DEC m
-.L056 ;;line 486;;  player0x = 80
+.L056 ;;line 385;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L057 ;;line 487;;  player0y = 30
+.L057 ;;line 386;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L058 ;;line 488;;  j = 0
+.L058 ;;line 387;;  j = 0
 
 	LDA #0
 	STA j
-.L059 ;;line 489;;  COLUBK = $02
+.L059 ;;line 388;;  COLUBK = $02
 
 	LDA #$02
 	STA COLUBK
-.L060 ;;line 490;;  if m  <=  0 then gosub GameOver
+.L060 ;;line 389;;  if m  <=  0 then gosub GameOver
 
 	LDA #0
 	CMP m
@@ -794,7 +794,7 @@ ret_point2
  jsr .GameOver
 
 .skipL060
-.L061 ;;line 491;;  return
+.L061 ;;line 390;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -804,40 +804,40 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 492;; 
+ ;;line 391;; 
 
 .GameOver
- ;;line 493;; GameOver
+ ;;line 392;; GameOver
 
-.L062 ;;line 494;;  c = 100
+.L062 ;;line 393;;  c = 100
 
 	LDA #100
 	STA c
-.L063 ;;line 495;;  g = 6
+.L063 ;;line 394;;  g = 6
 
 	LDA #6
 	STA g
-.L064 ;;line 496;;  m = 4
+.L064 ;;line 395;;  m = 4
 
 	LDA #4
 	STA m
-.L065 ;;line 497;;  o = 0
+.L065 ;;line 396;;  o = 0
 
 	LDA #0
 	STA o
-.L066 ;;line 498;;  player0x = 80
+.L066 ;;line 397;;  player0x = 80
 
 	LDA #80
 	STA player0x
-.L067 ;;line 499;;  player0y = 30
+.L067 ;;line 398;;  player0y = 30
 
 	LDA #30
 	STA player0y
-.L068 ;;line 500;;  gosub LoadRoom
+.L068 ;;line 399;;  gosub LoadRoom
 
  jsr .LoadRoom
 
-.L069 ;;line 501;;  return
+.L069 ;;line 400;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -847,12 +847,12 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 502;; 
+ ;;line 401;; 
 
 .LoadRoom
- ;;line 503;; LoadRoom
+ ;;line 402;; LoadRoom
 
-.L070 ;;line 504;;  pfclear
+.L070 ;;line 403;;  pfclear
 
 	lda #<C_function
 	sta DF0LOW
@@ -865,9 +865,9 @@ ret_point2
 	lda #255
 	sta CALLFUNCTION
 .LoadRoom0
- ;;line 505;; LoadRoom0
+ ;;line 404;; LoadRoom0
 
-.L071 ;;line 506;;  pfhline 0 0 12 on
+.L071 ;;line 405;;  pfhline 0 0 12 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -883,7 +883,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L072 ;;line 507;;  pfhline 19 0 31 on
+.L072 ;;line 406;;  pfhline 19 0 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -899,7 +899,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L073 ;;line 508;;  pfhline 0 1 0 on
+.L073 ;;line 407;;  pfhline 0 1 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -915,7 +915,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L074 ;;line 509;;  pfhline 31 1 31 on
+.L074 ;;line 408;;  pfhline 31 1 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -931,7 +931,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L075 ;;line 510;;  pfhline 0 2 0 on
+.L075 ;;line 409;;  pfhline 0 2 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -947,7 +947,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L076 ;;line 511;;  pfhline 31 2 31 on
+.L076 ;;line 410;;  pfhline 31 2 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -963,7 +963,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L077 ;;line 512;;  pfhline 0 3 0 on
+.L077 ;;line 411;;  pfhline 0 3 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -979,7 +979,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L078 ;;line 513;;  pfhline 31 3 31 on
+.L078 ;;line 412;;  pfhline 31 3 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -995,7 +995,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L079 ;;line 514;;  pfhline 0 4 1 on
+.L079 ;;line 413;;  pfhline 0 4 1 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1011,7 +1011,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L080 ;;line 515;;  pfhline 31 4 31 on
+.L080 ;;line 414;;  pfhline 31 4 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1027,7 +1027,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L081 ;;line 516;;  pfhline 0 5 0 on
+.L081 ;;line 415;;  pfhline 0 5 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1043,7 +1043,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L082 ;;line 517;;  pfhline 31 5 31 on
+.L082 ;;line 416;;  pfhline 31 5 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1059,7 +1059,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L083 ;;line 518;;  pfhline 0 6 0 on
+.L083 ;;line 417;;  pfhline 0 6 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1075,7 +1075,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L084 ;;line 519;;  pfhline 31 6 31 on
+.L084 ;;line 418;;  pfhline 31 6 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1091,7 +1091,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L085 ;;line 520;;  pfhline 0 7 3 on
+.L085 ;;line 419;;  pfhline 0 7 3 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1107,7 +1107,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L086 ;;line 521;;  pfhline 28 7 31 on
+.L086 ;;line 420;;  pfhline 28 7 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1123,7 +1123,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L087 ;;line 522;;  pfhline 0 8 0 on
+.L087 ;;line 421;;  pfhline 0 8 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1139,7 +1139,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L088 ;;line 523;;  pfhline 10 8 21 on
+.L088 ;;line 422;;  pfhline 10 8 21 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1155,7 +1155,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L089 ;;line 524;;  pfhline 31 8 31 on
+.L089 ;;line 423;;  pfhline 31 8 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1171,7 +1171,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L090 ;;line 525;;  pfhline 0 9 0 on
+.L090 ;;line 424;;  pfhline 0 9 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1187,7 +1187,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L091 ;;line 526;;  pfhline 31 9 31 on
+.L091 ;;line 425;;  pfhline 31 9 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1203,7 +1203,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L092 ;;line 527;;  pfhline 0 10 0 on
+.L092 ;;line 426;;  pfhline 0 10 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1219,7 +1219,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L093 ;;line 528;;  pfhline 31 10 31 on
+.L093 ;;line 427;;  pfhline 31 10 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1235,7 +1235,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L094 ;;line 529;;  pfhline 0 11 5 on
+.L094 ;;line 428;;  pfhline 0 11 5 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1251,7 +1251,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L095 ;;line 530;;  pfhline 10 11 21 on
+.L095 ;;line 429;;  pfhline 10 11 21 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1267,7 +1267,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L096 ;;line 531;;  pfhline 26 11 31 on
+.L096 ;;line 430;;  pfhline 26 11 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1283,7 +1283,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L097 ;;line 532;;  return
+.L097 ;;line 431;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1293,12 +1293,12 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 533;; 
+ ;;line 432;; 
 
 .LoadRoom1
- ;;line 534;; LoadRoom1
+ ;;line 433;; LoadRoom1
 
-.L098 ;;line 535;;  pfhline 0 0 5 on
+.L098 ;;line 434;;  pfhline 0 0 5 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1314,7 +1314,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L099 ;;line 536;;  pfhline 10 0 21 on
+.L099 ;;line 435;;  pfhline 10 0 21 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1330,7 +1330,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0100 ;;line 537;;  pfhline 26 0 31 on
+.L0100 ;;line 436;;  pfhline 26 0 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1346,7 +1346,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0101 ;;line 538;;  pfhline 0 1 0 on
+.L0101 ;;line 437;;  pfhline 0 1 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1362,7 +1362,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0102 ;;line 539;;  pfhline 15 1 16 on
+.L0102 ;;line 438;;  pfhline 15 1 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1378,7 +1378,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0103 ;;line 540;;  pfhline 31 1 31 on
+.L0103 ;;line 439;;  pfhline 31 1 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1394,7 +1394,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0104 ;;line 541;;  pfhline 0 2 0 on
+.L0104 ;;line 440;;  pfhline 0 2 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1410,7 +1410,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0105 ;;line 542;;  pfhline 15 2 16 on
+.L0105 ;;line 441;;  pfhline 15 2 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1426,7 +1426,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0106 ;;line 543;;  pfhline 31 2 31 on
+.L0106 ;;line 442;;  pfhline 31 2 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1442,7 +1442,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0107 ;;line 544;;  pfhline 0 3 0 on
+.L0107 ;;line 443;;  pfhline 0 3 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1458,7 +1458,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0108 ;;line 545;;  pfhline 15 3 16 on
+.L0108 ;;line 444;;  pfhline 15 3 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1474,7 +1474,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0109 ;;line 546;;  pfhline 31 3 31 on
+.L0109 ;;line 445;;  pfhline 31 3 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1490,7 +1490,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0110 ;;line 547;;  pfhline 0 4 0 on
+.L0110 ;;line 446;;  pfhline 0 4 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1506,7 +1506,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0111 ;;line 548;;  pfhline 15 4 16 on
+.L0111 ;;line 447;;  pfhline 15 4 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1522,7 +1522,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0112 ;;line 549;;  pfhline 31 4 31 on
+.L0112 ;;line 448;;  pfhline 31 4 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1538,7 +1538,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0113 ;;line 550;;  pfhline 0 5 0 on
+.L0113 ;;line 449;;  pfhline 0 5 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1554,7 +1554,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0114 ;;line 551;;  pfhline 15 5 16 on
+.L0114 ;;line 450;;  pfhline 15 5 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1570,7 +1570,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0115 ;;line 552;;  pfhline 31 5 31 on
+.L0115 ;;line 451;;  pfhline 31 5 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1586,7 +1586,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0116 ;;line 553;;  pfhline 0 6 0 on
+.L0116 ;;line 452;;  pfhline 0 6 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1602,7 +1602,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0117 ;;line 554;;  pfhline 15 6 16 on
+.L0117 ;;line 453;;  pfhline 15 6 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1618,7 +1618,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0118 ;;line 555;;  pfhline 31 6 31 on
+.L0118 ;;line 454;;  pfhline 31 6 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1634,7 +1634,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0119 ;;line 556;;  pfhline 0 7 0 on
+.L0119 ;;line 455;;  pfhline 0 7 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1650,7 +1650,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0120 ;;line 557;;  pfhline 15 7 16 on
+.L0120 ;;line 456;;  pfhline 15 7 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1666,7 +1666,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0121 ;;line 558;;  pfhline 31 7 31 on
+.L0121 ;;line 457;;  pfhline 31 7 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1682,7 +1682,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0122 ;;line 559;;  pfhline 0 8 0 on
+.L0122 ;;line 458;;  pfhline 0 8 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1698,7 +1698,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0123 ;;line 560;;  pfhline 15 8 16 on
+.L0123 ;;line 459;;  pfhline 15 8 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1714,7 +1714,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0124 ;;line 561;;  pfhline 31 8 31 on
+.L0124 ;;line 460;;  pfhline 31 8 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1730,7 +1730,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0125 ;;line 562;;  pfhline 0 9 0 on
+.L0125 ;;line 461;;  pfhline 0 9 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1746,7 +1746,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0126 ;;line 563;;  pfhline 15 9 16 on
+.L0126 ;;line 462;;  pfhline 15 9 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1762,7 +1762,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0127 ;;line 564;;  pfhline 31 9 31 on
+.L0127 ;;line 463;;  pfhline 31 9 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1778,7 +1778,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0128 ;;line 565;;  pfhline 0 10 0 on
+.L0128 ;;line 464;;  pfhline 0 10 0 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1794,7 +1794,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0129 ;;line 566;;  pfhline 15 10 16 on
+.L0129 ;;line 465;;  pfhline 15 10 16 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1810,7 +1810,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0130 ;;line 567;;  pfhline 31 10 31 on
+.L0130 ;;line 466;;  pfhline 31 10 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1826,7 +1826,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0131 ;;line 568;;  pfhline 0 11 31 on
+.L0131 ;;line 467;;  pfhline 0 11 31 on
 
 	lda #<C_function
 	sta DF0LOW
@@ -1842,7 +1842,7 @@ ret_point2
 	STA DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L0132 ;;line 569;;  return
+.L0132 ;;line 468;;  return
 
 	tsx
 	lda 2,x ; check return address
@@ -1852,10 +1852,10 @@ ret_point2
 	JMP BS_return
 	RTS
 .
- ;;line 570;; 
+ ;;line 469;; 
 
 .return
- ;;line 571;; return
+ ;;line 470;; return
 
  if ECHO2
  echo "    ",[(start_bank2 - *)]d , "bytes of ROM space left in bank 2")
@@ -2443,107 +2443,6 @@ playfieldcolorL046
 	.byte  $B4
 	.byte  $B4
 	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $32
-	.byte  $32
-	.byte  $32
-	.byte  $32
-	.byte  $32
-	.byte  $32
-	.byte  $32
-	.byte  $32
-	.byte  $32
-	.byte  $32
 	.byte  $32
 	.byte  $32
 	.byte  $32
