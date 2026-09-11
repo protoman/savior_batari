@@ -309,14 +309,6 @@ end
  $32
  $32
  $32
- $32
- $32
- $32
- $32
- $32
- $32
- $32
- $32
  $B4
  $B4
  $B4
@@ -501,7 +493,7 @@ LoadRoom0
   pfhline 31 2 31 on
   pfhline 0 3 0 on
   pfhline 31 3 31 on
-  pfhline 0 4 0 on
+  pfhline 0 4 1 on
   pfhline 31 4 31 on
   pfhline 0 5 0 on
   pfhline 31 5 31 on
