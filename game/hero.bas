@@ -121,6 +121,10 @@ main
  if !joy0up then n = n + 1
  if !joy0up then if n >= 1 then player0y = player0y + 1 : d = 1 : n = 0
 
+ ; Jet engine sound when flying
+ if joy0up then AUDC0 = 8 : AUDF0 = 4 : AUDV0 = 8
+ if !joy0up then AUDV0 = 0
+
  ; Room transitions and boundaries
  ; Right edge -> next room (or block)
  if player0x > 150 then if o < maxRoom then o = o + 1 : gosub LoadRoom : player0x = 18
