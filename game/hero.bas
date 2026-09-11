@@ -129,10 +129,14 @@ main
  if player0x < 18 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 148
  if player0x < 14 then player0x = 14
  ; Bottom edge -> next room down (or block)
- if player0y >= 175 then if o < maxRoom then o = o + 1 : gosub LoadRoom : player0y = 20 : COLUBK = $C6
+ if player0y >= 175 then if o < maxRoom then o = o + 1 : gosub LoadRoom
+ if player0y >= 175 then player0y = 20
+ if player0y >= 175 then COLUBK = $C6
  if player0y >= 175 then player0y = 175
  ; Top edge -> previous room up (or block)
- if player0y <= 20 then if o > 0 then o = o - 1 : gosub LoadRoom : player0y = 95 : COLUBK = $C6
+ if player0y <= 20 then if o > 0 then o = o - 1 : gosub LoadRoom
+ if player0y <= 20 then player0y = 95
+ if player0y <= 20 then COLUBK = $C6
  if player0y <= 20 then player0y = 20
 
  ; Laser
