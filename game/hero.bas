@@ -501,10 +501,7 @@ end
  drawscreen
 
  ; Collision check after drawscreen
- ; Only undo horizontal if this is a NEW collision (j=0 = wasn't colliding before)
- ; This lets the player walk on platforms (ongoing collision, j=1)
- if collision(player0, playfield) then if j = 0 then player0x = player0x - p
- ; Always undo vertical (gravity/falling)
+ if collision(player0, playfield) then player0x = player0x - p
  if collision(player0, playfield) then player0y = player0y - d
 
  ; Save collision state for next frame
