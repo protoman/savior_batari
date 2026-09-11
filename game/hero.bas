@@ -501,11 +501,9 @@ end
  drawscreen
 
  ; Collision check after drawscreen
- ; j = previous frame's collision state
- ; If collision and j=0 (new collision): undo movement
- ; If collision and j=1 (ongoing, standing on platform): don't undo
+ ; j=1 means was already colliding (on platform) — skip horizontal undo
  if collision(player0, playfield) then if j = 0 then player0x = player0x - p
- if collision(player0, playfield) then if j = 0 then player0y = player0y - d
+ if collision(player0, playfield) then player0y = player0y - d
 
  ; Save collision state for next frame
  j = 0
