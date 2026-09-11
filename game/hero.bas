@@ -173,6 +173,7 @@ main
  COLUP1 = $1C
  scorecolor = $0E
  DF6FRACINC = 255
+ player0height = 11
  player0:
  %00111100
  %01111110
