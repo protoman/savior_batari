@@ -6,67 +6,51 @@
 LoadRoom0
   pfhline 0 0 12 on
   pfhline 19 0 31 on
-  pfhline 0 1 0 on
-  pfhline 31 1 31 on
-  pfhline 0 2 0 on
-  pfhline 31 2 31 on
-  pfhline 0 3 0 on
-  pfhline 31 3 31 on
+  pfhline 0 1 3 on
+  pfhline 28 1 31 on
+  pfhline 0 2 3 on
+  pfhline 28 2 31 on
+  pfhline 0 3 3 on
+  pfhline 28 3 31 on
   pfhline 0 4 1 on
-  pfhline 31 4 31 on
-  pfhline 0 5 0 on
-  pfhline 31 5 31 on
-  pfhline 0 6 0 on
-  pfhline 31 6 31 on
-  pfhline 0 7 3 on
-  pfhline 28 7 31 on
-  pfhline 0 8 0 on
-  pfhline 10 8 21 on
-  pfhline 31 8 31 on
-  pfhline 0 9 0 on
-  pfhline 31 9 31 on
-  pfhline 0 10 0 on
-  pfhline 31 10 31 on
-  pfhline 0 11 5 on
-  pfhline 10 11 21 on
-  pfhline 26 11 31 on
+  pfhline 30 4 31 on
+  pfhline 0 5 1 on
+  pfhline 30 5 31 on
+  pfhline 0 6 1 on
+  pfhline 30 6 31 on
+  pfhline 0 7 1 on
+  pfhline 30 7 31 on
+  pfhline 0 8 13 on
+  pfhline 19 8 31 on
+  pfhline 0 9 13 on
+  pfhline 19 9 31 on
+  pfhline 0 10 13 on
+  pfhline 19 10 31 on
+  pfhline 0 11 13 on
+  pfhline 19 11 31 on
   return
 
 ; Room 1
 LoadRoom1
-  pfhline 0 0 5 on
-  pfhline 10 0 21 on
-  pfhline 26 0 31 on
-  pfhline 0 1 0 on
-  pfhline 15 1 16 on
-  pfhline 31 1 31 on
-  pfhline 0 2 0 on
-  pfhline 15 2 16 on
-  pfhline 31 2 31 on
-  pfhline 0 3 0 on
-  pfhline 15 3 16 on
-  pfhline 31 3 31 on
-  pfhline 0 4 0 on
-  pfhline 15 4 16 on
-  pfhline 31 4 31 on
-  pfhline 0 5 0 on
-  pfhline 15 5 16 on
-  pfhline 31 5 31 on
-  pfhline 0 6 0 on
-  pfhline 15 6 16 on
-  pfhline 31 6 31 on
-  pfhline 0 7 0 on
-  pfhline 15 7 16 on
-  pfhline 31 7 31 on
-  pfhline 0 8 0 on
-  pfhline 15 8 16 on
-  pfhline 31 8 31 on
-  pfhline 0 9 0 on
-  pfhline 15 9 16 on
-  pfhline 31 9 31 on
-  pfhline 0 10 0 on
-  pfhline 15 10 16 on
-  pfhline 31 10 31 on
+  pfhline 0 0 13 on
+  pfhline 18 0 31 on
+  pfhline 0 1 13 on
+  pfhline 18 1 31 on
+  pfhline 0 2 13 on
+  pfhline 18 2 31 on
+  pfhline 0 3 13 on
+  pfhline 18 3 31 on
+  pfhline 0 4 3 on
+  pfhline 28 4 31 on
+  pfhline 0 5 3 on
+  pfhline 28 5 31 on
+  pfhline 0 6 3 on
+  pfhline 28 6 31 on
+  pfhline 0 7 3 on
+  pfhline 28 7 31 on
+  pfhline 0 8 31 on
+  pfhline 0 9 31 on
+  pfhline 0 10 31 on
   pfhline 0 11 31 on
   return
 

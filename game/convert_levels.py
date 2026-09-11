@@ -5,7 +5,7 @@ Editor stores 32 independent columns. Each column maps directly to a bB
 playfield column — no mirroring needed.
 
 Also generates pfcolors entries using the level's 2 wall colors in a
-3-band pattern (rows 0-3: color1, rows 4-7: color2, rows 8-11: color1).
+3-band pattern.
 """
 import json, os, sys, re
 
@@ -30,11 +30,7 @@ PALETTE = [
 ]
 
 def nearest_ntsc_byte(r, g, b):
-    """Find the nearest Atari NTSC color byte for an RGB color.
-
-    Emulator-aware encoding for Stella 7.0: (hue << 4) | (luma << 1).
-    NOT the classic (luma << 4) | hue which scrambles colors.
-    """
+    """Find the nearest Atari NTSC color byte for an RGB color."""
     best_byte = 0
     best_dist = float('inf')
     for hue in range(16):
@@ -88,13 +84,7 @@ def generate_level_code(json_path):
     return "\n".join(lines), len(rooms)
 
 def generate_pfcolors(json_path):
-    """Generate per-scanline pfcolors block from level wall colors.
-
-    DF0FRACINC=20 gives ~9 playfield rows in 176 visible scanlines.
-    Each row ~ 176/9 = ~20 scanlines.
-    3 bands: rows 0-2 (color1, ~60 scanlines), rows 3-5 (color2, ~60 scanlines),
-             rows 6-8 (color1, ~56 scanlines).
-    """
+    """Generate per-scanline pfcolors block from level wall colors."""
     with open(json_path) as f:
         data = json.load(f)
 
@@ -109,15 +99,45 @@ def generate_pfcolors(json_path):
     c1 = nearest_ntsc_byte(r1, g1, b1)
     c2 = nearest_ntsc_byte(r2, g2, b2)
 
-    # 176 visible scanlines, 3 bands
-    # Adjusted to make color2 start sooner
-    band1 = 25  # color1
-    band2 = 26  # color2
-    band3 = 125  # color1
+    band1 = 25
+    band2 = 26
+    band3 = 125
     entries = [c1] * band1 + [c2] * band2 + [c1] * band3
     return "\n".join(" ${:02X}".format(e) for e in entries)
 
-def inject_level(hero_path, level_code, pfcolors_code):
+def generate_level_metadata(json_path):
+    """Generate level metadata: player start, miner, room count, num rooms per transition."""
+    with open(json_path) as f:
+        data = json.load(f)
+
+    level = data.get("level", data)
+    rooms = level.get("rooms", [])
+    num_rooms = len(rooms)
+
+    start_room = level.get("start_room", 0)
+    start_x = int(level.get("start_x", 8.0) * 4) + 18  # Convert grid col to screen x
+    start_y = int(level.get("start_y", 2.0) * 16)        # Convert grid row to screen y
+
+    miner_room = level.get("miner_room", num_rooms - 1)
+    miner_x = int(level.get("miner_x", 13.0) * 4) + 18
+    miner_y = int(level.get("miner_y", 10.0) * 16)
+
+    lines = []
+    lines.append("; Level metadata (auto-generated from JSON)")
+    lines.append("; Player start")
+    lines.append("  startRoom = {}".format(start_room))
+    lines.append("  startX = {}".format(start_x))
+    lines.append("  startY = {}".format(start_y))
+    lines.append("; Miner goal")
+    lines.append("  minerRoom = {}".format(miner_room))
+    lines.append("  minerX = {}".format(miner_x))
+    lines.append("  minerY = {}".format(miner_y))
+    lines.append("; Room count for transitions")
+    lines.append("  maxRoom = {}".format(num_rooms - 1))
+
+    return "\n".join(lines)
+
+def inject_level(hero_path, level_code, pfcolors_code, metadata_code):
     with open(hero_path, 'r') as f:
         content = f.read()
 
@@ -130,6 +150,11 @@ def inject_level(hero_path, level_code, pfcolors_code):
     pf_pattern = r'pfcolors:\s*\n(?:\s*\$[0-9A-Fa-f]+\s*\n)+end'
     pf_replacement = "pfcolors:\n" + pfcolors_code + "\nend"
     new_content = re.sub(pf_pattern, pf_replacement, new_content)
+
+    # Inject level metadata (before main loop)
+    meta_pattern = r'; LEVEL_METADATA_START.*?; LEVEL_METADATA_END'
+    meta_replacement = "; LEVEL_METADATA_START\n" + metadata_code + "\n; LEVEL_METADATA_END"
+    new_content = re.sub(meta_pattern, meta_replacement, new_content, flags=re.DOTALL)
 
     if new_content == content:
         return False
@@ -153,9 +178,10 @@ def main():
 
     level_code, num_rooms = generate_level_code(json_path)
     pfcolors_code = generate_pfcolors(json_path)
+    metadata_code = generate_level_metadata(json_path)
     print("Level {} ({} rooms)".format(os.path.basename(json_path), num_rooms))
 
-    if inject_level(hero_path, level_code, pfcolors_code):
+    if inject_level(hero_path, level_code, pfcolors_code, metadata_code):
         print("Injected OK")
     else:
         print("Inject FAILED (no changes)")

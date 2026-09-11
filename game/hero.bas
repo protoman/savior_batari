@@ -64,18 +64,39 @@ end
 end
 
  ; Variables init
+ dim startRoom = k
+ dim startX = l
+ dim startY = m
+ dim minerRoom = q
+ dim minerX = r
+ dim minerY = s
+ dim maxRoom = t
  a = 72 : b = 40 : c = 100
  d = 0 : e = 1 : f = 0
  g = 6 : h = 0 : i = 0
- j = 0 : k = -1 : m = 4
- n = 0 : o = 0
+ j = 0 : n = 0 : o = 0
  score = 123456
 
+; LEVEL_METADATA_START
+; Level metadata (auto-generated from JSON)
+; Player start
+  startRoom = 0
+  startX = 50
+  startY = 32
+; Miner goal
+  minerRoom = 1
+  minerX = 132
+  minerY = 160
+; Room count for transitions
+  maxRoom = 1
+; LEVEL_METADATA_END
+
  ; Load first room
+ o = startRoom
  gosub LoadRoom
- ; Start player inside room (center)
- player0x = 80
- player0y = 30
+ ; Start player at editor-defined position
+ player0x = startX
+ player0y = startY
 
 main
  ; Set DPC+ playfield fractional increments
@@ -102,7 +123,7 @@ main
 
  ; Room transitions (before drawscreen, like the example)
  ; Right edge -> next room
- if player0x > 150 then if o < 2 then o = o + 1 : gosub LoadRoom : player0x = 18
+ if player0x > 150 then if o < maxRoom then o = o + 1 : gosub LoadRoom : player0x = 18
  ; Left edge -> previous room
  if player0x < 18 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 148
 
@@ -505,30 +526,28 @@ LoadRoom
 LoadRoom0
   pfhline 0 0 12 on
   pfhline 19 0 31 on
-  pfhline 0 1 0 on
-  pfhline 31 1 31 on
-  pfhline 0 2 0 on
-  pfhline 31 2 31 on
-  pfhline 0 3 0 on
-  pfhline 31 3 31 on
+  pfhline 0 1 3 on
+  pfhline 28 1 31 on
+  pfhline 0 2 3 on
+  pfhline 28 2 31 on
+  pfhline 0 3 3 on
+  pfhline 28 3 31 on
   pfhline 0 4 1 on
-  pfhline 31 4 31 on
-  pfhline 0 5 0 on
-  pfhline 31 5 31 on
-  pfhline 0 6 0 on
-  pfhline 31 6 31 on
-  pfhline 0 7 3 on
-  pfhline 28 7 31 on
-  pfhline 0 8 0 on
-  pfhline 10 8 21 on
-  pfhline 31 8 31 on
-  pfhline 0 9 0 on
-  pfhline 31 9 31 on
-  pfhline 0 10 0 on
-  pfhline 31 10 31 on
-  pfhline 0 11 5 on
-  pfhline 10 11 21 on
-  pfhline 26 11 31 on
+  pfhline 30 4 31 on
+  pfhline 0 5 1 on
+  pfhline 30 5 31 on
+  pfhline 0 6 1 on
+  pfhline 30 6 31 on
+  pfhline 0 7 1 on
+  pfhline 30 7 31 on
+  pfhline 0 8 13 on
+  pfhline 19 8 31 on
+  pfhline 0 9 13 on
+  pfhline 19 9 31 on
+  pfhline 0 10 13 on
+  pfhline 19 10 31 on
+  pfhline 0 11 13 on
+  pfhline 19 11 31 on
   return
 
 LoadRoom1
