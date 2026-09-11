@@ -4,7 +4,7 @@
 
 ; Room 0
 LoadRoom0
-  pfhline 0 0 31 on
+  pfhline 0 0 25 on
   pfhline 0 1 1 on
   pfhline 0 2 1 on
   pfhline 0 3 1 on

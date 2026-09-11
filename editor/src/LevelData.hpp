@@ -83,7 +83,7 @@ struct RoomData {
     int room_id = 0;
     int room_x = 0;
     int room_y = 0;
-    int width = 16;      // bB symmetric playfield: 16 unique columns mirrored to 32
+    int width = 32;      // bB DPC+ asymmetric playfield: 32 independent columns
     int height = 12;     // bB playfield: 12 rows
     std::vector<int> tiles;
     std::vector<EnemyData> enemies;

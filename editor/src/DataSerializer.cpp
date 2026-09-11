@@ -78,18 +78,18 @@ static RoomData CreateStandardRoom(int roomId, int wallType = 1) {    RoomData r
     room.room_id = roomId;
     room.room_x = 0;
     room.room_y = roomId;
-    room.width = 16;
+    room.width = 32;
     room.height = 12;
-    room.tiles.resize(16 * 12, (int)TileType::AIR);
+    room.tiles.resize(32 * 12, (int)TileType::AIR);
 
-    // Standard border walls
-    for (int x = 0; x < 16; ++x) {
-        room.tiles[0 * 16 + x] = (int)TileType::SOLID_WALL; // Top wall default
-        room.tiles[11 * 16 + x] = (int)TileType::SOLID_WALL; // Bottom wall default
+    // Standard border walls (full 32-column asymmetric)
+    for (int x = 0; x < 32; ++x) {
+        room.tiles[0 * 32 + x] = (int)TileType::SOLID_WALL; // Top wall default
+        room.tiles[11 * 32 + x] = (int)TileType::SOLID_WALL; // Bottom wall default
     }
     for (int y = 0; y < 12; ++y) {
-        room.tiles[y * 16 + 0] = (int)TileType::SOLID_WALL; // Left wall
-        room.tiles[y * 16 + 15] = (int)TileType::SOLID_WALL; // Right wall
+        room.tiles[y * 32 + 0] = (int)TileType::SOLID_WALL; // Left wall
+        room.tiles[y * 32 + 31] = (int)TileType::SOLID_WALL; // Right wall
     }
     return room;
 }
@@ -122,14 +122,14 @@ void DataSerializer::GenerateAll20DefaultLevels(const std::string& outputDirecto
             // Open shaft connection between vertical rooms
             if (r < numRooms - 1) {
                 // Open bottom center for shaft drop
-                for (int x = 6; x <= 9; ++x) {
-                    room.tiles[11 * 16 + x] = (int)TileType::AIR;
+                for (int x = 13; x <= 18; ++x) {
+                    room.tiles[11 * 32 + x] = (int)TileType::AIR;
                 }
             }
             if (r > 0) {
                 // Open top center for shaft entry
-                for (int x = 6; x <= 9; ++x) {
-                    room.tiles[0 * 16 + x] = (int)TileType::AIR;
+                for (int x = 13; x <= 18; ++x) {
+                    room.tiles[0 * 32 + x] = (int)TileType::AIR;
                 }
             }
 
@@ -138,14 +138,14 @@ void DataSerializer::GenerateAll20DefaultLevels(const std::string& outputDirecto
                 // Initial drop room
                 // Add fragile wall blocking shaft
                 for (int y = 4; y <= 7; ++y) {
-                    room.tiles[y * 16 + 6] = (int)TileType::FRAGILE_WALL;
+                    room.tiles[y * 32 + 12] = (int)TileType::FRAGILE_WALL;
                 }
                 EnemyData spider;
                 spider.type = (int)EnemyType::SPIDER;
-                spider.x = 10.0f;
+                spider.x = 20.0f;
                 spider.y = 3.0f;
-                spider.range_min = 2.0f;
-                spider.range_max = 8.0f;
+                spider.range_min = 4.0f;
+                spider.range_max = 16.0f;
                 spider.speed = 1.0f + (l * 0.1f);
                 spider.dir = 1;
                 room.enemies.push_back(spider);
@@ -154,18 +154,18 @@ void DataSerializer::GenerateAll20DefaultLevels(const std::string& outputDirecto
                 // Barrier before miner
                 for (int y = 7; y <= 10; ++y) {
                     if (l % 2 == 0) {
-                        room.tiles[y * 16 + 10] = (int)TileType::REINFORCED_WALL; // Requires Dynamite
+                        room.tiles[y * 32 + 20] = (int)TileType::REINFORCED_WALL;
                     } else {
-                        room.tiles[y * 16 + 10] = (int)TileType::FRAGILE_WALL;
+                        room.tiles[y * 32 + 20] = (int)TileType::FRAGILE_WALL;
                     }
                 }
                 // Snake guarding floor near miner
                 EnemyData snake;
                 snake.type = (int)EnemyType::SNAKE;
-                snake.x = 8.0f;
+                snake.x = 16.0f;
                 snake.y = 10.0f;
-                snake.range_min = 6.0f;
-                snake.range_max = 12.0f;
+                snake.range_min = 12.0f;
+                snake.range_max = 24.0f;
                 snake.speed = 1.2f + (l * 0.1f);
                 snake.dir = 1;
                 room.enemies.push_back(snake);
@@ -173,15 +173,15 @@ void DataSerializer::GenerateAll20DefaultLevels(const std::string& outputDirecto
                 // Middle rooms
                 // Lava hazard on floor
                 if (r % 2 == 1) {
-                    for (int x = 1; x <= 5; ++x) {
-                        room.tiles[10 * 16 + x] = (int)TileType::LAVA;
+                    for (int x = 2; x <= 10; ++x) {
+                        room.tiles[10 * 32 + x] = (int)TileType::LAVA;
                     }
                     EnemyData bat;
                     bat.type = (int)EnemyType::BAT;
-                    bat.x = 4.0f;
+                    bat.x = 8.0f;
                     bat.y = 4.0f;
-                    bat.range_min = 2.0f;
-                    bat.range_max = 13.0f;
+                    bat.range_min = 4.0f;
+                    bat.range_max = 26.0f;
                     bat.speed = 1.5f + (l * 0.15f);
                     bat.dir = 1;
                     room.enemies.push_back(bat);
@@ -189,32 +189,31 @@ void DataSerializer::GenerateAll20DefaultLevels(const std::string& outputDirecto
                 
                 if (l >= 4 && r % 3 == 0) {
                     // Magma fall or Water
-                    for (int x = 10; x <= 14; ++x) {
-                        room.tiles[10 * 16 + x] = (int)TileType::WATER;
+                    for (int x = 20; x <= 28; ++x) {
+                        room.tiles[10 * 32 + x] = (int)TileType::WATER;
                     }
                     // Raft
                     EnemyData tentacle;
                     tentacle.type = (int)EnemyType::TENTACLE;
-                    tentacle.x = 12.0f;
+                    tentacle.x = 24.0f;
                     tentacle.y = 9.0f;
-                    tentacle.range_min = 8.0f;
-                    tentacle.range_max = 10.0f;
+                    tentacle.range_min = 16.0f;
+                    tentacle.range_max = 20.0f;
                     tentacle.speed = 1.0f;
                     tentacle.dir = 1;
                     room.enemies.push_back(tentacle);
                 }
 
                 // Fragile & Solid rock formations
-                room.tiles[5 * 16 + 4] = (int)TileType::SOLID_WALL;
-                room.tiles[5 * 16 + 5] = (int)TileType::FRAGILE_WALL;
-                room.tiles[5 * 16 + 11] = (int)TileType::FRAGILE_WALL;
-                room.tiles[5 * 16 + 12] = (int)TileType::SOLID_WALL;
+                room.tiles[5 * 32 + 8] = (int)TileType::SOLID_WALL;
+                room.tiles[5 * 32 + 10] = (int)TileType::FRAGILE_WALL;
+                room.tiles[5 * 32 + 22] = (int)TileType::FRAGILE_WALL;
+                room.tiles[5 * 32 + 24] = (int)TileType::SOLID_WALL;
 
-                // Lantern guarding deeper levels: touching/shooting it
-                // plunges the room into darkness
+                // Lantern guarding deeper levels
                 if (l >= 2 && r % 2 == 0) {
                     LampData lamp;
-                    lamp.x = 3.5f;
+                    lamp.x = 7.0f;
                     lamp.y = 10.5f;
                     room.lamps.push_back(lamp);
                 }
@@ -274,7 +273,8 @@ struct AuthFile {
 
 // Maps a 16-wide engine column onto the 19-wide source map column
 static int SrcCol(int c) {
-    int s = (int)(((c + 0.5f) * 19.0f / 16.0f) - 0.5f);
+    // Map 32-column grid to 19-wide source map
+    int s = (int)(((c + 0.5f) * 19.0f / 32.0f) - 0.5f);
     return std::max(0, std::min(18, s));
 }
 
@@ -331,11 +331,11 @@ import_levels:
                 room.room_id = roomIdx;
                 room.room_x = 0;
                 room.room_y = roomIdx;
-                room.width = 16;
+                room.width = 32;
     room.height = 11;
-                room.tiles.assign(16 * 12, (int)TileType::AIR);
+                room.tiles.assign(32 * 12, (int)TileType::AIR);
 
-                // Decode structure with 19 -> 16 column compression
+                // Decode structure with 19 -> 32 column mapping
                 static const std::map<char, int> charToTile = {
                     {'#', (int)TileType::SOLID_WALL},
                     {'F', (int)TileType::FRAGILE_WALL},
@@ -345,11 +345,11 @@ import_levels:
 
                 for (int y = 0; y < 12; ++y) {
                     const std::string& srcLine = srcRoom.grid[y];
-                    for (int x = 0; x < 16; ++x) {
+                    for (int x = 0; x < 32; ++x) {
                         char ch = SrcCol(x) < (int)srcLine.size() ? srcLine[SrcCol(x)] : '.';
                         auto it = charToTile.find(ch);
                         if (it != charToTile.end()) {
-                            room.tiles[y * 16 + x] = it->second;
+                            room.tiles[y * 32 + x] = it->second;
                         }
                     }
                 }
@@ -359,41 +359,39 @@ import_levels:
                     if (y == 0) return Passable(srcRoom.grid[0][SrcCol(x)]) && Passable(srcRoom.grid[1][SrcCol(x)]) && Passable(srcRoom.grid[2][SrcCol(x)]);
                     if (y == 11) return Passable(srcRoom.grid[11][SrcCol(x)]) && Passable(srcRoom.grid[10][SrcCol(x)]) && Passable(srcRoom.grid[9][SrcCol(x)]);
                     if (x == 0) return Passable(srcRoom.grid[y][0]) && Passable(srcRoom.grid[y][1]) && Passable(srcRoom.grid[y][2]);
-                    if (x == 15) return Passable(srcRoom.grid[y][18]) && Passable(srcRoom.grid[y][17]) && Passable(srcRoom.grid[y][16]);
+                    if (x == 31) return Passable(srcRoom.grid[y][18]) && Passable(srcRoom.grid[y][17]) && Passable(srcRoom.grid[y][16]);
                     return false;
                 };
-                for (int x = 0; x < 16; ++x) {
+                for (int x = 0; x < 32; ++x) {
                     room.tiles[x] = borderIsOpen(0, x) ? (int)TileType::AIR : (int)TileType::SOLID_WALL;
-                    room.tiles[11 * 16 + x] = borderIsOpen(11, x) ? (int)TileType::AIR : (int)TileType::SOLID_WALL;
+                    room.tiles[11 * 32 + x] = borderIsOpen(11, x) ? (int)TileType::AIR : (int)TileType::SOLID_WALL;
                 }
                 for (int y = 1; y < 11; ++y) {
-                    room.tiles[y * 16] = borderIsOpen(y, 0) ? (int)TileType::AIR : (int)TileType::SOLID_WALL;
-                    room.tiles[y * 16 + 15] = borderIsOpen(y, 15) ? (int)TileType::AIR : (int)TileType::SOLID_WALL;
+                    room.tiles[y * 32] = borderIsOpen(y, 0) ? (int)TileType::AIR : (int)TileType::SOLID_WALL;
+                    room.tiles[y * 32 + 31] = borderIsOpen(y, 31) ? (int)TileType::AIR : (int)TileType::SOLID_WALL;
                 }
 
-                // Guard against degenerate hollow bands (open shaft zones in
-                // the source art): give them minimal cave structure
+                // Guard against degenerate hollow bands
                 int solids = 0;
                 for (int t : room.tiles) {
                     if (t == (int)TileType::SOLID_WALL) solids++;
                 }
                 if (solids < 30) {
                     for (int y = 1; y < 11; ++y) {
-                        room.tiles[y * 16] = (int)TileType::SOLID_WALL;
-                        room.tiles[y * 16 + 15] = (int)TileType::SOLID_WALL;
+                        room.tiles[y * 32] = (int)TileType::SOLID_WALL;
+                        room.tiles[y * 32 + 31] = (int)TileType::SOLID_WALL;
                     }
-                    int cx = 7 + (roomIdx % 2);
+                    int cx = 15 + (roomIdx % 2);
                     room.tiles[cx] = (int)TileType::AIR;
-                    room.tiles[11 * 16 + cx] = (int)TileType::AIR;
+                    room.tiles[11 * 32 + cx] = (int)TileType::AIR;
                 }
 
-                // Connectivity: stacked rooms must link vertically. Align this
-                // room's ceiling openings with the floor openings above it.
+                // Connectivity: stacked rooms must link vertically
                 if (roomIdx > 0 && !lvl.rooms.empty()) {
                     auto& prev = lvl.rooms.back();
                     std::vector<int> prevOpen;
-                    for (int x = 0; x < 16; ++x) {
-                        if (prev.tiles[11 * 16 + x] == (int)TileType::AIR) prevOpen.push_back(x);
+                    for (int x = 0; x < 32; ++x) {
+                        if (prev.tiles[11 * 32 + x] == (int)TileType::AIR) prevOpen.push_back(x);
                     }
                     bool linked = false;
                     for (int x : prevOpen) {
@@ -403,8 +401,8 @@ import_levels:
                         if (!prevOpen.empty()) {
                             for (int x : prevOpen) room.tiles[x] = (int)TileType::AIR;
                         } else {
-                            for (int x = 7; x <= 8; ++x) {
-                                prev.tiles[11 * 16 + x] = (int)TileType::AIR;
+                            for (int x = 14; x <= 17; ++x) {
+                                prev.tiles[11 * 32 + x] = (int)TileType::AIR;
                                 room.tiles[x] = (int)TileType::AIR;
                             }
                         }
@@ -509,12 +507,11 @@ bool DataSerializer::ExportBbLevel(const LevelData& level, const std::string& fi
         os << "; DO NOT EDIT MANUALLY - regenerate from .json\n\n";
 
         int numRooms = (int)level.rooms.size();
-        int roomWidth = 32; // bB playfield is 32 columns
 
         // Generate a subroutine for each room
         for (int r = 0; r < numRooms; ++r) {
             const auto& room = level.rooms[r];
-            int gridWidth = room.width;
+            int gridWidth = room.width;   // 32 columns (DPC+ asymmetric)
             int gridHeight = room.height;
 
             os << "; Room " << r << "\n";
@@ -536,11 +533,9 @@ bool DataSerializer::ExportBbLevel(const LevelData& level, const std::string& fi
                             x++;
                         }
                         int runEnd = x - 1;
-                        // Map grid coords to bB playfield coords (scale to 32 cols)
-                        int pfX1 = (runStart * roomWidth) / gridWidth;
-                        int pfX2 = ((runEnd + 1) * roomWidth) / gridWidth - 1;
-                        if (pfX2 >= pfX1) {
-                            os << "  pfhline " << pfX1 << " " << y << " " << pfX2 << " on\n";
+                        // Grid coords = bB playfield coords directly (32 columns)
+                        if (runEnd >= runStart) {
+                            os << "  pfhline " << runStart << " " << y << " " << runEnd << " on\n";
                         }
                     } else {
                         x++;

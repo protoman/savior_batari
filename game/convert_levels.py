@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Convert level JSON to bB room subroutines using pfhline (DPC+ asymmetric playfield).
 
-Editor has 16 columns, mirrored to 32 in display.
-DPC+ playfield is 32 independent columns, so we must mirror left→right.
+Editor stores 32 independent columns. Each column maps directly to a bB
+playfield column — no mirroring needed.
 """
 import json, os, sys, re
 
@@ -19,21 +19,17 @@ def generate_level_code(json_path):
     lines = []
     for r, room in enumerate(rooms):
         tiles = room.get("tiles", [])
-        room_w = room.get("width", 16)
+        room_w = room.get("width", 32)
         room_h = min(room.get("height", 12), 12)
 
         lines.append("LoadRoom{}".format(r))
         for y in range(room_h):
-            # Build a 32-column bitmap for this row (left half from editor, right half mirrored)
+            # Build a 32-column bitmap for this row (direct mapping, no mirror)
             row_bits = [0] * 32
-            for gx in range(room_w):
+            for gx in range(min(room_w, 32)):
                 idx = y * room_w + gx
                 if idx < len(tiles) and is_wall(tiles[idx]):
-                    # Map grid column to left-half bB column
-                    bx = (gx * 16) // room_w
-                    row_bits[bx] = 1
-                    # Mirror to right half
-                    row_bits[31 - bx] = 1
+                    row_bits[gx] = 1
 
             # Convert runs of 1s into pfhline calls
             x = 0

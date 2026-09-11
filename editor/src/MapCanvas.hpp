@@ -51,7 +51,7 @@ public:
     explicit MapCanvas(QWidget* parent = nullptr);
 
     // Fallback size used until a room is loaded.
-    static constexpr int kDefaultRoomWidth = 16;
+    static constexpr int kDefaultRoomWidth = 32;
     static constexpr int kDefaultRoomHeight = 12;  // bB playfield: 12 rows
 
     void SetLevelData(hero::LevelData* levelData, int activeRoomIndex);

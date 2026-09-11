@@ -23,23 +23,11 @@
 
 namespace editor {
 
-// bB symmetric playfield: 16 unique columns mirrored to 32. The editor shows
-// the full mirrored stage and maps canvas column q to the room's data column:
-// q for q<width, else 2*width-1-q. Editing either half edits the mirrored
-// original tile, keeping rooms symmetric by construction.
-// Entities are EXEMPT from the mirror rule: they are stored in full-stage
-// columns 0..2*width-1 so each screen half can have its own objects.
+// bB DPC+ asymmetric playfield: 32 independent columns. The editor shows
+// all 32 columns directly — no mirroring.
 
-static int DisplayColumnsFor(int roomWidth) { return roomWidth * 2; }
-
-static int MirrorColumn(int displayCol, int roomWidth) {
-    int displayCols = DisplayColumnsFor(roomWidth);
-    return (displayCol < roomWidth) ? displayCol : (displayCols - 1 - displayCol);
-}
-
-// Tile height so the whole visible map (DisplayColumnsFor(roomWidth) columns x
-// roomHeight rows) renders at a 4:3 aspect, matching its proportions on the
-// game screen. Cells are therefore rectangles, not squares.
+// Tile height so the whole visible map (roomWidth columns x roomHeight rows)
+// renders at a 4:3 aspect, matching its proportions on the game screen.
 static int CellHeightFor(int cellWidth, int displayCols, int roomHeight) {
     if (roomHeight <= 0 || displayCols <= 0) return cellWidth;
     return std::max(1, (int)std::lround(cellWidth * (double)displayCols * 3.0 /
@@ -48,11 +36,9 @@ static int CellHeightFor(int cellWidth, int displayCols, int roomHeight) {
 
 MapCanvas::MapCanvas(QWidget* parent) : QWidget(parent) {
     setMouseTracking(true);
-    // Default 16x12 stage until a room is loaded. The map area only: the grey
-    // HUD band is drawn by the game kernel and is not shown/edited here.
-    setFixedSize(DisplayColumnsFor(kDefaultRoomWidth) * m_tileSize,
-                 kDefaultRoomHeight * CellHeightFor(m_tileSize,
-                     DisplayColumnsFor(kDefaultRoomWidth), kDefaultRoomHeight));
+    // Default 32x12 stage until a room is loaded.
+    int cellH = CellHeightFor(m_tileSize, kDefaultRoomWidth, kDefaultRoomHeight);
+    setFixedSize(kDefaultRoomWidth * m_tileSize, kDefaultRoomHeight * cellH);
 }
 
 void MapCanvas::SetLevelData(hero::LevelData* levelData, int activeRoomIndex) {
@@ -84,11 +70,8 @@ void MapCanvas::UpdateSizeForRoom() {
         w = room.width > 0 ? room.width : kDefaultRoomWidth;
         h = room.height > 0 ? room.height : kDefaultRoomHeight;
     }
-    // The canvas shows the room's playable rows only (no grey HUD band; the
-    // game renders that below the cave but the editor doesn't display it).
-    // Tile heights are scaled so the map keeps its on-screen 4:3 format.
-    int cellH = CellHeightFor(m_tileSize, DisplayColumnsFor(w), h);
-    setFixedSize(DisplayColumnsFor(w) * m_tileSize, h * cellH);
+    int cellH = CellHeightFor(m_tileSize, w, h);
+    setFixedSize(w * m_tileSize, h * cellH);
 }
 
 namespace {
@@ -148,18 +131,15 @@ void MapCanvas::paintEvent(QPaintEvent* /*event*/) {
     const auto& room = m_levelData->rooms[m_activeRoomIndex];
     const int roomWidth = RoomWidthOf(room);
     const int roomHeight = RoomHeightOf(room);
-    const int displayCols = DisplayColumnsFor(roomWidth);
-    // Rectangular cells: cell width is m_tileSize, cell height keeps the whole
-    // map at the 4:3 aspect it has on the game screen.
     const int cellW = m_tileSize;
-    const int cellH = CellHeightFor(m_tileSize, displayCols, roomHeight);
+    const int cellH = CellHeightFor(m_tileSize, roomWidth, roomHeight);
 
-    // Render Grid & Tiles (full mirrored stage)
+    // Render Grid & Tiles (direct 32-column asymmetric playfield)
     for (int y = 0; y < roomHeight; ++y) {
-        for (int dcol = 0; dcol < displayCols; ++dcol) {
-            int x = MirrorColumn(dcol, roomWidth);
-            int tileType = room.tiles[y * roomWidth + x];
-            QRect tileRect(dcol * cellW, y * cellH, cellW, cellH);
+        for (int col = 0; col < roomWidth; ++col) {
+            int tileIdx = y * roomWidth + col;
+            int tileType = (tileIdx < (int)room.tiles.size()) ? room.tiles[tileIdx] : 0;
+            QRect tileRect(col * cellW, y * cellH, cellW, cellH);
 
             QColor color = GetTileColor(tileType, y);
             painter.fillRect(tileRect, color);
@@ -178,12 +158,6 @@ void MapCanvas::paintEvent(QPaintEvent* /*event*/) {
             }
         }
     }
-
-    // Draw a seam marker at the mirror axis (between room columns width-1 and width)
-    int seamX = roomWidth * m_tileSize;
-    int canvasHeight = roomHeight * cellH;
-    painter.setPen(QPen(QColor(90, 90, 110), 2));
-    painter.drawLine(seamX, 0, seamX, canvasHeight);
 
     // Render Player Start position if in this room
     if (m_levelData->start_room == m_activeRoomIndex) {
@@ -234,8 +208,6 @@ void MapCanvas::paintEvent(QPaintEvent* /*event*/) {
     for (const auto& enemy : room.enemies) {
         int ex = (int)(enemy.x * cellW);
         int ey = (int)(enemy.y * cellH);
-        // Keep the marker square (based on cell width) centered in the cell so
-        // it reads clearly inside the taller 4:3-scaled grid rectangles.
         int markerSize = qMax(12, m_tileSize - 6);
         QRect enemyRect(ex + (cellW - markerSize) / 2,
                         ey + (cellH - markerSize) / 2,
@@ -262,19 +234,15 @@ void MapCanvas::ApplyBrushAt(int tileX, int entityX, int tileY) {
     if (!m_levelData || m_activeRoomIndex < 0 || m_activeRoomIndex >= (int)m_levelData->rooms.size()) return;
     auto& room = m_levelData->rooms[m_activeRoomIndex];
 
-    // Tiles are edited through the mirrored column (0..width-1): painting either
-    // half edits the original tile so rooms stay symmetric. Entities (enemies,
-    // lamps) are NOT mirrored — they may be placed on any column of the full
-    // 2x-width stage (entityX, 0..2*width-1) so both screens can differ.
-    int displayColumns = DisplayColumnsFor(RoomWidthOf(room));
+    int roomWidth = RoomWidthOf(room);
 
-    if (tileX < 0 || tileX >= room.width || tileY < 0 || tileY >= room.height) return;
+    if (tileX < 0 || tileX >= roomWidth || tileY < 0 || tileY >= room.height) return;
 
     int brushVal = static_cast<int>(m_currentBrush);
 
     if (brushVal >= 0 && brushVal <= 7) {
-        // Tile brush
-        room.tiles[tileY * room.width + tileX] = brushVal;
+        // Tile brush — direct column, no mirroring
+        room.tiles[tileY * roomWidth + tileX] = brushVal;
         emit levelModified();
         update();
     } else if (m_currentBrush == BrushTool::SET_PLAYER_START) {
@@ -292,9 +260,8 @@ void MapCanvas::ApplyBrushAt(int tileX, int entityX, int tileY) {
     } else if (m_currentBrush == BrushTool::ADD_SPIDER || m_currentBrush == BrushTool::ADD_BAT ||
                m_currentBrush == BrushTool::ADD_SNAKE || m_currentBrush == BrushTool::ADD_TENTACLE ||
                m_currentBrush == BrushTool::ADD_MOTH) {
-        // Entity placement: full stage width, no mirroring. Reject the HUD
-        // band (tileY >= room.height) so enemies can't spawn beneath the cave.
-        if (entityX < 0 || entityX >= displayColumns ||
+        // Entity placement: full stage width, no mirroring.
+        if (entityX < 0 || entityX >= roomWidth ||
             tileY < 0 || tileY >= room.height) return;
 
         hero::EnemyData eData;
@@ -307,13 +274,10 @@ void MapCanvas::ApplyBrushAt(int tileX, int entityX, int tileY) {
         eData.x = (float)entityX;
         eData.y = (float)tileY;
         eData.range_min = (float)std::max(0, entityX - 3);
-        eData.range_max = (float)std::min(displayColumns - 1, entityX + 3);
+        eData.range_max = (float)std::min(roomWidth - 1, entityX + 3);
         eData.speed = 1.5f;
         eData.dir = 1;
 
-        // Refuse to stack a second enemy on an occupied tile (same cell, full
-        // stage coordinates) - duplicate records make the shared GRP1 object
-        // flicker worse and are never intentional.
         for (const auto& e : room.enemies) {
             if ((int)std::floor(e.x) == entityX && (int)std::floor(e.y) == tileY)
                 return;
@@ -323,11 +287,9 @@ void MapCanvas::ApplyBrushAt(int tileX, int entityX, int tileY) {
         emit levelModified();
         update();
     } else if (m_currentBrush == BrushTool::ADD_LAMP) {
-        // Entity placement: full stage width, no mirroring. No lamps in the HUD band.
-        if (entityX < 0 || entityX >= displayColumns ||
+        if (entityX < 0 || entityX >= roomWidth ||
             tileY < 0 || tileY >= room.height) return;
 
-        // Replace any lamp already on this tile, otherwise add a new one
         for (auto& lamp : room.lamps) {
             if ((int)std::floor(lamp.x) == entityX && (int)std::floor(lamp.y) == tileY) {
                 lamp.x = (float)entityX + 0.5f;
@@ -347,7 +309,6 @@ void MapCanvas::ApplyBrushAt(int tileX, int entityX, int tileY) {
         emit levelModified();
         update();
     } else if (m_currentBrush == BrushTool::DELETE_ENTITY) {
-        // Entities live in full stage coordinates (no mirroring)
         for (auto it = room.enemies.begin(); it != room.enemies.end(); ++it) {
             if ((int)std::floor(it->x) == entityX && (int)std::floor(it->y) == tileY) {
                 room.enemies.erase(it);
@@ -386,15 +347,12 @@ void MapCanvas::MouseToTile(const QPointF& pos, bool apply) {
         roomHeight = RoomHeightOf(m_levelData->rooms[m_activeRoomIndex]);
     }
 
-    int cellH = CellHeightFor(m_tileSize, DisplayColumnsFor(roomWidth), roomHeight);
-    int displayCol = (int)(pos.x() / m_tileSize);
-    int tileX = MirrorColumn(displayCol, roomWidth);
+    int cellH = CellHeightFor(m_tileSize, roomWidth, roomHeight);
+    int tileX = (int)(pos.x() / m_tileSize);
     int tileY = (int)(pos.y() / cellH);
     emit mouseMovedToTile(tileX, tileY);
     if (apply)
-        // tileX is the mirrored room column for tiles; displayCol is the raw
-        // full-stage column (0..2*width-1) used by ApplyBrushAt for entities.
-        ApplyBrushAt(tileX, displayCol, tileY);
+        ApplyBrushAt(tileX, tileX, tileY);
 }
 
 } // namespace editor
