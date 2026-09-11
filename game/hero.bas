@@ -132,8 +132,8 @@ main
  if player0y >= 150 then if o < maxRoom then o = o + 1 : gosub LoadRoom
  if player0y >= 150 then player0y = 20
  ; Top edge -> previous room up (or block)
- if player0y <= 5 then if o > 0 then o = o - 1 : gosub LoadRoom
- if player0y <= 5 then player0y = 170
+ if player0y <= 20 then if o > 0 then o = o - 1 : gosub LoadRoom
+ if player0y <= 20 then player0y = 130
 
  ; Laser
  if joy0fire then if f = 0 then f = 1 : missile0x = player0x + 3 : missile0y = player0y + 2
