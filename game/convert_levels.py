@@ -61,7 +61,7 @@ def generate_level_code(json_path):
         room_w = room.get("width", 32)
         room_h = min(room.get("height", 12), 12)
 
-        lines.append("LoadRoom{}".format(r))
+        lines.append("Room{}".format(r))
         for y in range(room_h):
             row_bits = [0] * 32
             for gx in range(min(room_w, 32)):
@@ -89,7 +89,7 @@ def generate_loadroom_dispatcher(num_rooms):
     lines.append("LoadRoom")
     lines.append("  pfclear")
     for r in range(num_rooms):
-        lines.append("  if o = {} then gosub LoadRoom{}".format(r, r))
+        lines.append("  if o = {} then gosub Room{}".format(r, r))
     lines.append("  return")
     lines.append("")
     return "\n".join(lines)

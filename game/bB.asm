@@ -987,22 +987,22 @@ ret_point2
 	sta DF0WRITE
 	lda #255
 	sta CALLFUNCTION
-.L090 ;;line 531;;  if o = 0 then gosub LoadRoom0
+.L090 ;;line 531;;  if o = 0 then gosub Room0
 
 	LDA o
 	CMP #0
      BNE .skipL090
 .condpart41
- jsr .LoadRoom0
+ jsr .Room0
 
 .skipL090
-.L091 ;;line 532;;  if o = 1 then gosub LoadRoom1
+.L091 ;;line 532;;  if o = 1 then gosub Room1
 
 	LDA o
 	CMP #1
      BNE .skipL091
 .condpart42
- jsr .LoadRoom1
+ jsr .Room1
 
 .skipL091
 .L092 ;;line 533;;  return
@@ -1014,11 +1014,11 @@ ret_point2
 	beq *+5 ; if equal, do normal return
 	JMP BS_return
 	RTS
-.LoadRoom0
- ;;line 534;; LoadRoom0
+.Room0
+ ;;line 534;; Room0
 
-.LoadRoom0
- ;;line 535;; LoadRoom0
+.Room0Data
+ ;;line 535;; Room0Data
 
 .L093 ;;line 536;;  pfhline 0 0 31 on
 
@@ -1464,8 +1464,8 @@ ret_point2
 .
  ;;line 564;; 
 
-.LoadRoom1
- ;;line 565;; LoadRoom1
+.Room1
+ ;;line 565;; Room1
 
 .L0121 ;;line 566;;  pfhline 0 0 12 on
 
