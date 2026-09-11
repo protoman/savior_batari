@@ -30,11 +30,15 @@ PALETTE = [
 ]
 
 def nearest_ntsc_byte(r, g, b):
-    """Find the nearest Atari NTSC color byte for an RGB color."""
+    """Find the nearest Atari NTSC color byte for an RGB color.
+
+    Emulator-aware encoding for Stella 7.0: (hue << 4) | (luma << 1).
+    NOT the classic (luma << 4) | hue which scrambles colors.
+    """
     best_byte = 0
     best_dist = float('inf')
-    for luma in range(8):
-        for hue in range(16):
+    for hue in range(16):
+        for luma in range(8):
             pr, pg, pb = PALETTE[hue][luma]
             dr = r - pr
             dg = g - pg
@@ -42,7 +46,7 @@ def nearest_ntsc_byte(r, g, b):
             dist = dr*dr + dg*dg + db*db
             if dist < best_dist:
                 best_dist = dist
-                best_byte = (luma << 4) | hue
+                best_byte = (hue << 4) | (luma << 1)
     return best_byte
 
 def is_wall(tile):
@@ -111,8 +115,8 @@ def inject_level(hero_path, level_code, pfcolors_code):
     replacement = "; ROOM_CODE_START\n" + level_code + "; ROOM_CODE_END"
     new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
-    # Inject pfcolors
-    pf_pattern = r'pfcolors:\s*\n\s*\$[0-9A-Fa-f]+\s*\nend'
+    # Inject pfcolors (inside main loop, before drawscreen)
+    pf_pattern = r'pfcolors:\s*\n(?:\s*\$[0-9A-Fa-f]+\s*\n)+end'
     pf_replacement = "pfcolors:\n" + pfcolors_code + "\nend"
     new_content = re.sub(pf_pattern, pf_replacement, new_content)
 
