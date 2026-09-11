@@ -4,46 +4,63 @@
 
 ; Room 0
 LoadRoom0
-  pfhline 0 0 25 on
-  pfhline 0 1 1 on
-  pfhline 0 2 1 on
-  pfhline 0 3 1 on
-  pfhline 0 4 1 on
-  pfhline 0 5 1 on
-  pfhline 0 6 1 on
-  pfhline 0 7 7 on
-  pfhline 0 8 1 on
-  pfhline 20 8 31 on
-  pfhline 0 9 1 on
-  pfhline 0 10 1 on
-  pfhline 0 11 11 on
-  pfhline 20 11 31 on
+  pfhline 0 0 12 on
+  pfhline 19 0 31 on
+  pfhline 0 1 0 on
+  pfhline 31 1 31 on
+  pfhline 0 2 0 on
+  pfhline 31 2 31 on
+  pfhline 0 3 0 on
+  pfhline 31 3 31 on
+  pfhline 0 7 3 on
+  pfhline 28 7 31 on
+  pfhline 0 8 0 on
+  pfhline 10 8 21 on
+  pfhline 31 8 31 on
+  pfhline 0 9 0 on
+  pfhline 31 9 31 on
+  pfhline 0 10 0 on
+  pfhline 31 10 31 on
+  pfhline 0 11 5 on
+  pfhline 10 11 21 on
+  pfhline 26 11 31 on
   return
 
 ; Room 1
 LoadRoom1
-  pfhline 0 0 11 on
-  pfhline 20 0 31 on
-  pfhline 0 1 1 on
-  pfhline 30 1 31 on
-  pfhline 0 2 1 on
-  pfhline 30 2 31 on
-  pfhline 0 3 1 on
-  pfhline 30 3 31 on
-  pfhline 0 4 1 on
-  pfhline 30 4 31 on
-  pfhline 0 5 1 on
-  pfhline 30 5 31 on
-  pfhline 0 6 1 on
-  pfhline 30 6 31 on
-  pfhline 0 7 1 on
-  pfhline 30 7 31 on
-  pfhline 0 8 1 on
-  pfhline 30 8 31 on
-  pfhline 0 9 1 on
-  pfhline 30 9 31 on
-  pfhline 0 10 1 on
-  pfhline 30 10 31 on
+  pfhline 0 0 5 on
+  pfhline 10 0 21 on
+  pfhline 26 0 31 on
+  pfhline 0 1 0 on
+  pfhline 15 1 16 on
+  pfhline 31 1 31 on
+  pfhline 0 2 0 on
+  pfhline 15 2 16 on
+  pfhline 31 2 31 on
+  pfhline 0 3 0 on
+  pfhline 15 3 16 on
+  pfhline 31 3 31 on
+  pfhline 0 4 0 on
+  pfhline 15 4 16 on
+  pfhline 31 4 31 on
+  pfhline 0 5 0 on
+  pfhline 15 5 16 on
+  pfhline 31 5 31 on
+  pfhline 0 6 0 on
+  pfhline 15 6 16 on
+  pfhline 31 6 31 on
+  pfhline 0 7 0 on
+  pfhline 15 7 16 on
+  pfhline 31 7 31 on
+  pfhline 0 8 0 on
+  pfhline 15 8 16 on
+  pfhline 31 8 31 on
+  pfhline 0 9 0 on
+  pfhline 15 9 16 on
+  pfhline 31 9 31 on
+  pfhline 0 10 0 on
+  pfhline 15 10 16 on
+  pfhline 31 10 31 on
   pfhline 0 11 31 on
   return
 
