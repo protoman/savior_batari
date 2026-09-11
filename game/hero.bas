@@ -83,7 +83,7 @@ main
  DF1FRACINC = 20
  DF2FRACINC = 20
  DF3FRACINC = 20
- DF4FRACINC = 20
+ DF4FRACINC = 14
 
  ; Store movement delta (like examples: track how much we moved)
  p = 0
