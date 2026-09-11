@@ -24,21 +24,6 @@ start
 ................................
 end
 
- pfcolors:
- $13
- $13
- $13
- $13
- $2B
- $2B
- $2B
- $2B
- $13
- $13
- $13
- $13
-end
-
  scorecolors:
  $00
  $00
@@ -299,7 +284,21 @@ end
  $04
  $04
  $04
- $04
+end
+
+ pfcolors:
+ $13
+ $13
+ $13
+ $13
+ $2B
+ $2B
+ $2B
+ $2B
+ $13
+ $13
+ $13
+ $13
 end
 
  drawscreen
@@ -348,6 +347,12 @@ LoadRoom0
   pfhline 31 2 31 on
   pfhline 0 3 0 on
   pfhline 31 3 31 on
+  pfhline 0 4 0 on
+  pfhline 31 4 31 on
+  pfhline 0 5 0 on
+  pfhline 31 5 31 on
+  pfhline 0 6 0 on
+  pfhline 31 6 31 on
   pfhline 0 7 3 on
   pfhline 28 7 31 on
   pfhline 0 8 0 on
