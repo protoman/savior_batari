@@ -111,7 +111,7 @@ def generate_pfcolors(json_path):
 
     # 176 visible scanlines, 3 bands
     # Adjusted to make color2 start sooner
-    band1 = 40  # rows 0-2 (color1)
+    band1 = 30  # rows 0-2 (color1)
     band2 = 96  # rows 3-5 (color2) - larger to start sooner
     band3 = 40  # rows 6-8 (color1)
     entries = [c1] * band1 + [c2] * band2 + [c1] * band3
