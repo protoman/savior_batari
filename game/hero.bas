@@ -129,10 +129,10 @@ main
  if player0x < 18 then if o > 0 then o = o - 1 : gosub LoadRoom : player0x = 148
  if player0x < 14 then player0x = 14
  ; Bottom edge -> next room down (or block)
- if player0y >= 175 then if o < maxRoom then o = o + 1 : gosub LoadRoom : player0y = 5
- if player0y >= 175 then player0y = 175
+ if player0y >= 100 then if o < maxRoom then o = o + 1 : gosub LoadRoom : player0y = 5
+ if player0y >= 100 then player0y = 100
  ; Top edge -> previous room up (or block)
- if player0y <= 5 then if o > 0 then o = o - 1 : gosub LoadRoom : player0y = 170
+ if player0y <= 5 then if o > 0 then o = o - 1 : gosub LoadRoom : player0y = 95
  if player0y <= 5 then player0y = 5
 
  ; Laser
@@ -341,32 +341,32 @@ end
  $32
  $32
  $32
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
- $B4
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
+ $34
  $32
  $32
  $32
