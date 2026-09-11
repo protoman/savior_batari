@@ -88,10 +88,12 @@ def generate_level_code(json_path):
     return "\n".join(lines), len(rooms)
 
 def generate_pfcolors(json_path):
-    """Generate 9-entry pfcolors block from level wall colors (3-band pattern).
+    """Generate per-scanline pfcolors block from level wall colors.
 
-    DF0FRACINC=20 gives ~9 playfield rows. Each entry = one playfield row.
-    Pattern: color1 x3, color2 x3, color1 x3 (rows 0-2, 3-5, 6-8).
+    DF0FRACINC=20 gives ~9 playfield rows in 176 visible scanlines.
+    Each row ~ 176/9 = ~20 scanlines.
+    3 bands: rows 0-2 (color1, ~60 scanlines), rows 3-5 (color2, ~60 scanlines),
+             rows 6-8 (color1, ~56 scanlines).
     """
     with open(json_path) as f:
         data = json.load(f)
@@ -107,7 +109,11 @@ def generate_pfcolors(json_path):
     c1 = nearest_ntsc_byte(r1, g1, b1)
     c2 = nearest_ntsc_byte(r2, g2, b2)
 
-    entries = [c1] * 3 + [c2] * 3 + [c1] * 3
+    # 176 visible scanlines, 3 bands of ~59 scanlines each
+    band1 = 59  # rows 0-2
+    band2 = 59  # rows 3-5
+    band3 = 58  # rows 6-8 (remainder)
+    entries = [c1] * band1 + [c2] * band2 + [c1] * band3
     return "\n".join(" ${:02X}".format(e) for e in entries)
 
 def inject_level(hero_path, level_code, pfcolors_code):
