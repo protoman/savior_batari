@@ -2534,16 +2534,16 @@ playfieldcolorL046
 	.byte  $B4
 	.byte  $B4
 	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
-	.byte  $B4
+	.byte  $32
+	.byte  $32
+	.byte  $32
+	.byte  $32
+	.byte  $32
+	.byte  $32
+	.byte  $32
+	.byte  $32
+	.byte  $32
+	.byte  $32
 	.byte  $32
 	.byte  $32
 	.byte  $32
