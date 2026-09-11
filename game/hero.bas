@@ -135,7 +135,6 @@ main
  if h <= 0 then i = 0
 
  ; Colors - set every frame
- COLUPF = $28
  COLUP0 = $0E
  COLUP1 = $1C
  scorecolor = $0E
