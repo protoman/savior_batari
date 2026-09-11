@@ -302,9 +302,7 @@ end
  if collision(player0, playfield) then j = 1
 
  ; Boundaries
- if player0x < 18 then player0x = 18
  if player0x > 148 then player0x = 148
- if player0y < 10 then player0y = 10
 
  goto main
 
@@ -339,11 +337,8 @@ LoadRoom0
   pfhline 31 2 31 on
   pfhline 0 3 0 on
   pfhline 31 3 31 on
-  pfhline 0 4 0 on
   pfhline 31 4 31 on
-  pfhline 0 5 0 on
   pfhline 31 5 31 on
-  pfhline 0 6 0 on
   pfhline 31 6 31 on
   pfhline 0 7 3 on
   pfhline 28 7 31 on
