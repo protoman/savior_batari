@@ -96,8 +96,8 @@ main
  if joy0left then player0x = player0x - 1 : p = 255 : e = 0
  if joy0right then player0x = player0x + 1 : p = 1 : e = 1
 
- ; Vertical movement
- if joy0up then player0y = player0y - 1 : d = 255 : n = 0
+ ; Vertical movement — skip UP if head was touching playfield last frame
+ if joy0up then if j = 0 then player0y = player0y - 1 : d = 255 : n = 0
 
  ; Gravity
  if !joy0up then n = n + 1
@@ -296,6 +296,10 @@ end
  ; Simple collision check after drawscreen (matches the example)
  if collision(player0, playfield) then player0x = player0x - p
  if collision(player0, playfield) then player0y = player0y - d
+
+ ; Save collision state for next frame (used to block UP when head touches ceiling)
+ j = 0
+ if collision(player0, playfield) then j = 1
 
  ; Boundaries
  if player0x < 18 then player0x = 18
