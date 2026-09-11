@@ -85,8 +85,8 @@ end
   startY = 32
 ; Miner goal
   minerRoom = 1
-  minerX = 132
-  minerY = 160
+  minerX = 40
+  minerY = 112
 ; Room count for transitions
   maxRoom = 1
 ; LEVEL_METADATA_END
@@ -119,7 +119,7 @@ main
 
  ; Gravity
  if !joy0up then n = n + 1
- if !joy0up then if n >= 2 then player0y = player0y + 1 : d = 1 : n = 0
+ if !joy0up then if n >= 1 then player0y = player0y + 1 : d = 1 : n = 0
 
  ; Room transitions (before drawscreen, like the example)
  ; Right edge -> next room
@@ -524,8 +524,7 @@ GameOver
 LoadRoom
  pfclear; ROOM_CODE_START
 LoadRoom0
-  pfhline 0 0 12 on
-  pfhline 19 0 31 on
+  pfhline 0 0 31 on
   pfhline 0 1 3 on
   pfhline 28 1 31 on
   pfhline 0 2 3 on
@@ -551,39 +550,25 @@ LoadRoom0
   return
 
 LoadRoom1
-  pfhline 0 0 5 on
-  pfhline 10 0 21 on
-  pfhline 26 0 31 on
-  pfhline 0 1 0 on
-  pfhline 15 1 16 on
-  pfhline 31 1 31 on
-  pfhline 0 2 0 on
-  pfhline 15 2 16 on
-  pfhline 31 2 31 on
-  pfhline 0 3 0 on
-  pfhline 15 3 16 on
-  pfhline 31 3 31 on
-  pfhline 0 4 0 on
-  pfhline 15 4 16 on
-  pfhline 31 4 31 on
-  pfhline 0 5 0 on
-  pfhline 15 5 16 on
-  pfhline 31 5 31 on
-  pfhline 0 6 0 on
-  pfhline 15 6 16 on
-  pfhline 31 6 31 on
-  pfhline 0 7 0 on
-  pfhline 15 7 16 on
-  pfhline 31 7 31 on
-  pfhline 0 8 0 on
-  pfhline 15 8 16 on
-  pfhline 31 8 31 on
-  pfhline 0 9 0 on
-  pfhline 15 9 16 on
-  pfhline 31 9 31 on
-  pfhline 0 10 0 on
-  pfhline 15 10 16 on
-  pfhline 31 10 31 on
+  pfhline 0 0 13 on
+  pfhline 18 0 31 on
+  pfhline 0 1 13 on
+  pfhline 18 1 31 on
+  pfhline 0 2 13 on
+  pfhline 18 2 31 on
+  pfhline 0 3 13 on
+  pfhline 18 3 31 on
+  pfhline 0 4 3 on
+  pfhline 28 4 31 on
+  pfhline 0 5 3 on
+  pfhline 28 5 31 on
+  pfhline 0 6 3 on
+  pfhline 28 6 31 on
+  pfhline 0 7 3 on
+  pfhline 28 7 31 on
+  pfhline 0 8 31 on
+  pfhline 0 9 31 on
+  pfhline 0 10 31 on
   pfhline 0 11 31 on
   return
 ; ROOM_CODE_END
