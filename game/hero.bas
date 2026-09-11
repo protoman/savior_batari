@@ -527,7 +527,11 @@ GameOver
  return
 
 LoadRoom
- pfclear; ROOM_CODE_START
+  pfclear
+  if o = 0 then gosub LoadRoom0
+  if o = 1 then gosub LoadRoom1
+  return
+LoadRoom0
 LoadRoom0
   pfhline 0 0 31 on
   pfhline 0 1 0 on

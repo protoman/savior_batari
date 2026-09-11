@@ -83,6 +83,17 @@ def generate_level_code(json_path):
 
     return "\n".join(lines), len(rooms)
 
+def generate_loadroom_dispatcher(num_rooms):
+    """Generate LoadRoom dispatcher that selects room based on variable o."""
+    lines = []
+    lines.append("LoadRoom")
+    lines.append("  pfclear")
+    for r in range(num_rooms):
+        lines.append("  if o = {} then gosub LoadRoom{}".format(r, r))
+    lines.append("  return")
+    lines.append("")
+    return "\n".join(lines)
+
 def generate_pfcolors(json_path):
     """Generate per-scanline pfcolors block from level wall colors."""
     with open(json_path) as f:
@@ -137,7 +148,7 @@ def generate_level_metadata(json_path):
 
     return "\n".join(lines)
 
-def inject_level(hero_path, level_code, pfcolors_code, metadata_code):
+def inject_level(hero_path, level_code, pfcolors_code, metadata_code, dispatcher_code):
     with open(hero_path, 'r') as f:
         content = f.read()
 
@@ -145,6 +156,11 @@ def inject_level(hero_path, level_code, pfcolors_code, metadata_code):
     pattern = r'; ROOM_CODE_START.*?; ROOM_CODE_END'
     replacement = "; ROOM_CODE_START\n" + level_code + "; ROOM_CODE_END"
     new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+
+    # Inject LoadRoom dispatcher
+    lr_pattern = r'LoadRoom\n\s*pfclear; ROOM_CODE_START'
+    lr_replacement = dispatcher_code.rstrip() + "\nLoadRoom0"
+    new_content = re.sub(lr_pattern, lr_replacement, new_content, flags=re.DOTALL)
 
     # Inject pfcolors (inside main loop, before drawscreen)
     pf_pattern = r'pfcolors:\s*\n(?:\s*\$[0-9A-Fa-f]+\s*\n)+end'
@@ -179,9 +195,10 @@ def main():
     level_code, num_rooms = generate_level_code(json_path)
     pfcolors_code = generate_pfcolors(json_path)
     metadata_code = generate_level_metadata(json_path)
+    dispatcher_code = generate_loadroom_dispatcher(num_rooms)
     print("Level {} ({} rooms)".format(os.path.basename(json_path), num_rooms))
 
-    if inject_level(hero_path, level_code, pfcolors_code, metadata_code):
+    if inject_level(hero_path, level_code, pfcolors_code, metadata_code, dispatcher_code):
         print("Injected OK")
     else:
         print("Inject FAILED (no changes)")
