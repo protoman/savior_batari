@@ -117,9 +117,9 @@ main
  ; Vertical movement — skip UP if head was touching playfield last frame
  if joy0up then if j = 0 then player0y = player0y - 1 : d = 255 : n = 0
 
- ; Gravity
- if !joy0up then n = n + 1
- if !joy0up then if n >= 1 then player0y = player0y + 1 : d = 1 : n = 0
+ ; Gravity - only when in air (j=0), not when on ground (j=1)
+ if !joy0up then if j = 0 then n = n + 1
+ if !joy0up then if j = 0 then if n >= 1 then player0y = player0y + 1 : d = 1 : n = 0
 
  ; Jet engine sound when flying
  if joy0up then AUDC0 = 8 : AUDF0 = 4 : AUDV0 = 8
