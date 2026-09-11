@@ -76,6 +76,9 @@ end
  g = 6 : h = 0 : i = 0
  j = 0 : n = 0 : o = 0
  score = 123456
+ ; Enemy variables (DPC+ extra vars)
+ ; var0=enemyX, var1=enemyY, var2=enemyDir, var3=rangeMin, var4=rangeMax
+ var0 = 0 : var1 = 0 : var2 = 1 : var3 = 0 : var4 = 30
 
 ; LEVEL_METADATA_START
 ; Level metadata (auto-generated from JSON)
@@ -89,6 +92,9 @@ end
   minerY = 160
 ; Room count for transitions
   maxRoom = 1
+; Enemy data per room
+; Room 0 enemy: x=98, y=48, dir=1, min=34, max=82
+; Room 1 enemy: x=82, y=160, dir=1, min=66, max=114
 ; LEVEL_METADATA_END
 
  ; Load first room
@@ -125,6 +131,11 @@ main
  if joy0up then AUDC0 = 8 : AUDF0 = 4 : AUDV0 = 8
  if !joy0up then AUDV0 = 0
 
+ ; Enemy movement (patrol between range_min and range_max)
+ if var4 > var3 then var0 = var0 + var2
+ if var0 <= var3 then var2 = 1
+ if var0 >= var4 then var2 = 255
+
  ; Room transitions and boundaries
  ; Right edge -> next room (or block)
  if player0x > 150 then if o < maxRoom then o = o + 1 : gosub LoadRoom : player0x = 18
@@ -152,6 +163,10 @@ main
  if joy0down then if i = 0 then if g > 0 then i = 1 : h = 30 : g = g - 1
  if i = 1 then h = h - 1
  if h <= 0 then i = 0
+
+ ; Enemy position (set player1 sprite)
+ player1x = var0
+ player1y = var1
 
  ; Colors - set every frame
  COLUP0 = $0E
@@ -534,6 +549,7 @@ LoadRoom
   pfclear
   if o = 0 then gosub Room0
   if o = 1 then gosub Room1
+  gosub LoadEnemies
   return
 Room0
 Room0Data
@@ -594,6 +610,10 @@ Room1
   pfhline 20 10 20 on
   pfhline 31 10 31 on
   pfhline 0 11 31 on
+  return
+LoadEnemies
+  if o = 0 then var0 = 98 : var1 = 48 : var2 = 1 : var3 = 34 : var4 = 82
+  if o = 1 then var0 = 82 : var1 = 160 : var2 = 1 : var3 = 34 : var4 = 66
   return
 ; ROOM_CODE_END
 return

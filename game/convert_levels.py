@@ -83,6 +83,33 @@ def generate_level_code(json_path):
 
     return "\n".join(lines), len(rooms)
 
+def generate_enemy_code(json_path):
+    """Generate LoadEnemies subroutine that sets var0-var4 based on room o."""
+    with open(json_path) as f:
+        data = json.load(f)
+
+    level = data.get("level", data)
+    rooms = level.get("rooms", [])
+
+    lines = []
+    lines.append("LoadEnemies")
+    for r, room in enumerate(rooms):
+        enemies = room.get("enemies", [])
+        if enemies:
+            e = enemies[0]  # First enemy only
+            ex = int(e.get("x", 0) * 4) + 18
+            ey = int(e.get("y", 0) * 16)
+            er_min = int(e.get("range_min", 0) * 4) + 18
+            er_max = int(e.get("range_max", 30) * 4) + 18
+            edir = e.get("dir", 1)
+            lines.append("  if o = {} then var0 = {} : var1 = {} : var2 = {} : var3 = {} : var4 = {}".format(
+                r, ex, ey, edir, er_min, er_max))
+        else:
+            lines.append("  if o = {} then var0 = 0 : var1 = 0 : var2 = 0 : var3 = 0 : var4 = 0".format(r))
+    lines.append("  return")
+    lines.append("")
+    return "\n".join(lines)
+
 def generate_loadroom_dispatcher(num_rooms):
     """Generate LoadRoom dispatcher that selects room based on variable o."""
     lines = []
@@ -117,7 +144,7 @@ def generate_pfcolors(json_path):
     return "\n".join(" ${:02X}".format(e) for e in entries)
 
 def generate_level_metadata(json_path):
-    """Generate level metadata: player start, miner, room count, num rooms per transition."""
+    """Generate level metadata: player start, miner, room count, num rooms per transition, enemies."""
     with open(json_path) as f:
         data = json.load(f)
 
@@ -146,21 +173,37 @@ def generate_level_metadata(json_path):
     lines.append("; Room count for transitions")
     lines.append("  maxRoom = {}".format(num_rooms - 1))
 
+    # Enemy data per room (first enemy only, stored in comments for reference)
+    lines.append("; Enemy data per room")
+    for r, room in enumerate(rooms):
+        enemies = room.get("enemies", [])
+        if enemies:
+            e = enemies[0]  # First enemy only
+            # Convert editor coords to screen coords
+            ex = int(e.get("x", 0) * 4) + 18
+            ey = int(e.get("y", 0) * 16)
+            er_min = int(e.get("range_min", 0) * 4) + 18
+            er_max = int(e.get("range_max", 30) * 4) + 18
+            lines.append("; Room {} enemy: x={}, y={}, dir={}, min={}, max={}".format(
+                r, ex, ey, e.get("dir", 1), er_min, er_max))
+        else:
+            lines.append("; Room {} enemy: none".format(r))
+
     return "\n".join(lines)
 
-def inject_level(hero_path, level_code, pfcolors_code, metadata_code, dispatcher_code):
+def inject_level(hero_path, level_code, pfcolors_code, metadata_code, dispatcher_code, enemy_code):
     with open(hero_path, 'r') as f:
         content = f.read()
 
     # Inject room code
     pattern = r'; ROOM_CODE_START.*?; ROOM_CODE_END'
-    replacement = "; ROOM_CODE_START\n" + level_code + "; ROOM_CODE_END"
+    replacement = "; ROOM_CODE_START\n" + level_code + "\n" + enemy_code + "; ROOM_CODE_END"
     new_content = re.sub(pattern, replacement, content, flags=re.DOTALL)
 
     # Inject LoadRoom dispatcher
     lr_pattern = r'LoadRoom\n\s*pfclear; ROOM_CODE_START'
     lr_replacement = dispatcher_code.rstrip() + "\nLoadRoom0"
-    new_content = re.sub(lr_pattern, lr_replacement, new_content, flags=re.DOTALL)
+    new_content = re.sub(lr_pattern, lr_replacement, new_content)
 
     # Inject pfcolors (inside main loop, before drawscreen)
     pf_pattern = r'pfcolors:\s*\n(?:\s*\$[0-9A-Fa-f]+\s*\n)+end'
@@ -196,9 +239,10 @@ def main():
     pfcolors_code = generate_pfcolors(json_path)
     metadata_code = generate_level_metadata(json_path)
     dispatcher_code = generate_loadroom_dispatcher(num_rooms)
+    enemy_code = generate_enemy_code(json_path)
     print("Level {} ({} rooms)".format(os.path.basename(json_path), num_rooms))
 
-    if inject_level(hero_path, level_code, pfcolors_code, metadata_code, dispatcher_code):
+    if inject_level(hero_path, level_code, pfcolors_code, metadata_code, dispatcher_code, enemy_code):
         print("Injected OK")
     else:
         print("Inject FAILED (no changes)")
